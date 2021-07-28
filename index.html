@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LibreMesh presentation</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Where did my network go? An android app for LibreMesh
+## AlterMundi - Tomás Assenza
+
+???
+Hi! I'm Tomás. I'm going to present the work that we did during the Google Summer of Code 2021 with Altermundi.
+
+---
+
+layout: false
+
+# Agenda
+
+1. Introduction
+2. Proposal
+3. The app
+
+
+???
+Those are the topics that we'll talk about. I'll start with an Introduction explaining the problem and context so we can continue talking about the proposal, and finally I'll show the app that we did and it's features.
+
+---
+
+class: inverse, center, middle
+
+
+# Introduction
+
+
+???
+So, let's begin with the introduction
+
+
+---
+
+layout: false
+
+# Introduction
+
+* The problem
+
+
+???
+The problem is that Android usually chooses the network that provides internet connection so in some circumstances the users can have trouble connecting to the Lime-App which is the Graphical Interface that provides the configuration of the node.
+
+--
+
+* The Google Summer of Code context
+
+
+???
+The Google Summer of Code is a program of Google that helps organizations to do open-source projects. With Altermundi we presented a proposal approved first by Freifunk as an umbrella corporation, and then by Google.
+
+
+--
+
+* The Community Networks context
+
+
+???
+It's common among community networks that a big percentage of the users only uses (or most commonly uses) a mobile phone, and the majority of these devices uses Android. If the users can't connect to the Lime-App and have internet on their devices, they can't know what's the problem on the network or inform them.
+
+
+
+
+---
+
+class: inverse, center, middle
+
+# Proposal
+
+
+???
+So now I'm going to pass to the proposal
+
+
+---
+
+layout: false
+
+# The proposal
+
+The proposal consists of an app that had three objectives during the two months of the GSoC:
+
+--
+
+* Developing a network selection app.
+
+
+???
+This consists of an app that can choose between two networks, the WiFi or the Mobile Data.
+The advantage of this is that if the device detects that the WiFi doesn't provide internet, then the app can "force" the mobile phone to connect to the Lime-App with the WiFi interface.
+
+
+
+--
+
+* Minimizing the app Weight
+
+
+???
+One of the objectives of the app is to integrate the app with the LibreMesh operating system. This means that any user that has access to the Lime-App will have the possibility to download the app directly from inside the node and to do this, the app needs to be light.
+
+
+--
+
+* A friendly graphical interface
+
+
+???
+To avoid confusion the app needed to be designed with a GUI that only had two or three screens and an easy path to the Lime-App without much interaction.
+
+
+---
+
+class: inverse, center, middle
+
+# The app
+
+
+???
+So, with all that in mind, now we'll see the application that we developed during the last month.
+
+
+---
+
+layout: false
+
+.left-column[
+    # The app
+    - The logic
+]
+.right-column[
+    The logic of the app consists in two parts:
+    - Checking if the device has a WiFi connection to a LibreMesh node.
+    - Opening a navigator (WebView) that accesses the Lime-App with it's features.
+    
+    FOTO DE LIBREMESH
+]
+
+???
+/*/After read/*/This is a screenshot of the app entering the Lime-App
+
+---
+
+.left-column[
+    # The app
+    - The logic
+    - The GUI
+]
+.right-column[
+    The Graphical User Interface consists of the WebView in the case that the access was successful or an error that shows tips to do a correct connection if it wasn't.
+    
+    GIF DE ERROR
+]
+
+???
+/*/After read/*/ And here we have a gif that shows the error accessing the Lime-App 
+
+---
+
+class: inverse, center, middle
+
+# Thanks!
+
+## Altermundi - Tomás Assenza
+### tassenza@frsf.utn.edu.ar
+
+
+???
+That's all the presentation. Thanks to Altermundi for giving me this space and it was a pleasure to join and talk with you about the work that we did during the last month. Thanks to all of you for listening! If anyone wants to make questions about the proposal or the app, I'm here to answer them.
+
+ 
+ 
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
