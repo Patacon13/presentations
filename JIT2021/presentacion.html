@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="remark,remarkjs,markdown,slideshow,presentation" />
+    <meta name="description" content="A simple, in-browser, markdown-driven slideshow tool." />
+    <title>QG-JIT-2021</title>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+      .correCuatro {
+        padding-left: 4em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+##Implementación Didáctica de una Simulación, bajo un Motor de Juegos, para el Laboratorio en Química de la FRSF, UTN
+### Universidad Tecnológica Nacional - Facultad Regional Santa Fe
+####Tomás Assenza
+####José Maximiliano Schiappa Pietra
+####Carlos Córdoba
+####Domingo Liprandi
+
+???
+Buenas tardes. Mi nombre es Tomás Assenza. Soy estudiante de Ingeniería en Sistemas de Información en la Facultad Regional Santa Fe, de la Universidad Tecnológica Nacional, y becario del departamento de química general en un proyecto de I+D dedicado a la creación de nuevas herramientas didáctivas y evaluativas, puntualmente dedicadas a la creación de múltiples software a modo de simuladores químicos para la guía de trabajos prácticos de la materia.
+
+---
+layout: false
+class: center, middle
+
+## “Una computadora es para mí la herramienta más sorprendente que hayamos ideado. Es el equivalente a una bicicleta para nuestras mentes”
+
+Steve Jobs
+
+???
+Steve Jobs decía que una computadora era para el la herramienta más soprendente que se haya ideado, y que era el equivalente a una bicicleta para la mente. La idea en traer esta frase es pensar sobre la importancia que tiene el buen uso de la informática dentro de la educación, ya que puede ser una herramienta que cambie completamente la forma de enseñanza.
+
+---
+
+# Temas
+1. **Experiencias previas**
+2. Construyendo un simulador
+3. Funcionamiento del simulador
+4. Usándolo como método evaluativo
+
+???
+Durante el día de hoy voy a estar hablando de estos temas. La idea de esta presentación es entender como fue el proceso de creación del simulador del trabajo práctico "Densidad de sólidos". 
+---
+template: inverse
+### Experiencias previas
+
+???
+Comenzaremos hablando sobre las experiencias previas y el contexto en el cual se realiza este simulador. 
+Durante el año 2020 la pandemia del COVID-19 obligó a la facultad a dictar todas las materias de forma virtual, lo cual impidió a la cátedra a realizar los clásicos trabajos de laboratorio que venía realizando históricamente.
+---
+layout: false
+
+.left-column[
+  ### Experiencias previas
+]
+.right-column[
+  Cambio a la virtualidad:
+  
+- **Necesidad de realizar expriencias de laboratorio virtualmente**
+
+.center[![Simulador de densidad de PhET](https://i.ibb.co/HNgfgps/density-300.png)]
+]
+
+???
+Para poder realizar las experiencias que previamente se hacían en un laboratorio, la cátedra comenzó a utilizar simuladores provistos por otras universidades o empresas. Estos generalmente tenían una finalidad educativa, por lo que eran amigables al usuario, y permitían que el alumno pueda realizar un proceso de aprendizaje práctico de forma virtual.
+
+Como alternativa momentánea, estos simuladores funcionaban bien ya que gozaban de una cálidad y procedimientos adecuados. Se puede mencionar como ejemplo las simulaciones del proyecto de la Universidad de Colorado PhET. Una de estas simulaciones es la  de densidad, la cual se puede ver en la imagen de la diapositiva.
+Estos programas funcionan desde una página web sin necesidad de que el alumno descargue nada. El proyecto tiene muchos simuladores de ciencias exactas como física y química, por lo que tiene una gran variedad de opciones para elegir.
+
+Es evidente que, al tratarse de soluciones generales, los procedimientos redactados en las guías de trabajos prácticos de la materia no podrían ser seguidos de forma exacta. Es entonces donde desde nuestra facultad surgió el interés en la creación de simuladores propios.
+---
+.left-column[
+  ### Experiencias previas
+]
+.right-column[
+  Cambio a la virtualidad:
+  
+- Necesidad de realizar expriencias de laboratorio virtualmente
+
+- **Idea: crear simuladores químicos**
+![Carreras de la utn](https://i.ibb.co/d0fB205/carreras01-500.jpg)
+]
+
+???
+Con la idea de generar una solución que funcione para todas las carreras de la facultad, se utilizaron las guías de trabajos prácticos para seleccionar los procedimientos que se usarían en los simuladores. De esta manera la producción terminaría teniendo la precisión necesaria para luego ser presentado a alumnos.
+La materia tiene un total de siete trabajos prácticos por lo que, para poder cubrir la mayor cantidad de trabajos posibles, los simuladores a realizar debían ser finalizados en un período corto de tiempo.
+
+---
+.left-column[
+  ### Experiencias previas
+]
+.right-column[
+  Cambio a la virtualidad:
+  
+- Necesidad de realizar expriencias de laboratorio virtualmente
+
+- Idea: crear simuladores químicos
+
+- **Creación del equipo**
+
+.correCuatro[
+![Dibujo quimico trabajando](https://i.ibb.co/cgHYzsL/quimica.png)
+]
+]
+???
+Con la idea tomada, la cátedra comenzó a trabajar para poder comenzar con la producción de estos simuladores. El equipo se conformó con docentes de la cátedra, y estudiantes de química general, formando el proyecto de investigación y desarrollo "Nuevas Herramientas de Evaluación" que se encargaría de poner en valor esta iniciativa.
+
+---
+template: inverse
+### Construcción de un simulador
+
+???
+Ahora hablaremos sobre como fue el proceso de construcción del simulador "Densidad de sólidos". La construcción de un software nunca es facil, y lleva un largo proceso que, en caso de no seguirse de forma correcta, provocará una cantidad alta de errores a la hora de poner en producción el programa. Por esto, se debía pensar el paso a paso de como se produciría el simulador, y luego seguirlo de forma ordenada. 
+
+---
+.left-column[
+  ### Experiencias previas
+  ### Construcción de un simulador
+]
+.right-column[
+
+- Uso de un motor de juegos
+![Captura de pantalla de programación en construct 2](https://i.ibb.co/ngcKDsD/construct-500.jpg)
+
+]
+
+???
+Con el objetivo de poder realizar una gran cantidad de simuladores en poco tiempo, se aprovechó un motor de juegos. Estos permiten utilizar funciones previamente establecidas de renderizado en 2D o 3D, motores físicos y de colisiones, sonido o automatización de procesos, lo cual hace que la mayoría de las tareas avanzadas las realice este software, y las tareas del encargado del desarrollo pasan a relacionarse con las actividades de más alto nivel (aquellos con los cuales el usuario tiene interacción más directa).
+
+Por experiencias anteriores con las que contábamos, se decidió utilizar Construct 2 como motor. Esto permitió utilizar los lenguajes HTML, CSS y JavaScript como base de la herramienta.
+
+---
+.left-column[
+  ### Experiencias previas
+  ### Construcción de un simulador
+]
+.right-column[
+
+- Uso de un motor de juegos
+- Construct 2, HTML, CSS y JavaScript
+![Foto de HTML, CSS y JavaScript](https://i.ibb.co/zhjD2mm/index.png)
+]
+
+???
+La ventaja que otorgan estos lenguajes es que son web, por lo cual, al igual que ocurría con los PhET, el alumno no deberá descargar nada, y puede ser configurado dentro de un servidor.
+La posibilidad de tener una aplicación web permite además una reducción en la cantidad de recursos que necesitará el alumno para poder ejecutar la simulación ya que no requiere ocupar espacio adicional, y el uso de CPU, GPU y RAM que requiere es bajo. Esto es muy importante ya que no todos los estudiantes tienen computadoras lo suficientemente potentes como para utilizar programas pesados.
+
+---
+template: inverse
+### Funcionamiento del simulador
+
+???
+Una vez finalizado el trabajo, se consiguió un simulador químico funcionando con el procedimiento completo del trabajo práctico. En esta sección de la presentación vamos a hablar sobre como funciona el simulador y que características tiene. 
+
+---
+
+.left-column[
+  ### Experiencias previas
+  ### Construcción de un simulador
+  ### Funcionamiento del simulador
+]
+.right-column[
+
+- **Estructura general del simulador**
+![Captura de pantalla del simulador](https://i.ibb.co/Dg1PGQ1/captura-con-procedimiento.png)
+]
+
+???
+El simulador cuenta con una estructura general que es común a todos los software que se desarrollen en el PID. 
+
+Se puede ver en la captura de pantalla como el simulador contiene el procedimiento a la izquierda, de manera que el alumno puede trabajar mientras lee los pasos a seguir. En la parte superior se pueden seleccionar los materiales o sustancias, mientras que en la parte superior izquierda se encuentra el botón "UTN" que permite acceder al texto introductorio, tablas, fórmulas e información extra del simulador. En la parte superior izquierda hay un espacio para el lavado y guardado de los elementos, mientras que a la izquierda se encuentra la tabla donde el estudiante puede anotar los datos que recolecta durante la experiencia.
+
+---
+
+.left-column[
+  ### Experiencias previas
+  ### Construcción de un simulador
+  ### Funcionamiento del simulador
+]
+.right-column[
+
+- Estructura general del simulador
+- **Reproducción de videos**
+![Simulador esperando click para reproducir video](https://i.ibb.co/djL77sm/Captura-video.png)
+]
+
+???
+El simulador cuenta además con la posibilidad de reproducir videos provistos por la cátedra. Estos generalmente eran compartidos por el Campus Virtual, pero esta herramienta permitió que se le muestren al estudiante en el momento preciso en el que usaría el elemento, dando una mayor interacción entre el recurso y el alumno.
+En la captura de pantalla se puede apreciar como, dentro del espacio de trabajo, se esconde el procedimiento y la tabla, dando lugar a un espacio para la reproducción.
+
+---
+
+.left-column[
+  ### Experiencias previas
+  ### Construcción de un simulador
+  ### Funcionamiento del simulador
+]
+.right-column[
+
+- Estructura general del simulador
+- Reproducción de videos
+- **Interacción entre elementos**
+![Imagen mostrando la interaccion de dos elementos](https://i.ibb.co/cYTWb2n/elementos.png)
+]
+
+???
+El simulador utiliza la metodología de Drag and Drop o, arrastrar y soltar, para que el alumno pueda realizar la interacción entre elementos. De esta manera, el estudiante puede realizar el paso a paso del procedimiento que le indica el docente, utilizando herramientas como balanzas o calibres.
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+    </script>
+  </body>
+</html>
