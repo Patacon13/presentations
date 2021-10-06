@@ -135,7 +135,9 @@ class: center, middle, inverse
 ####Domingo Liprandi
 
 ???
-Buenas tardes. Mi nombre es Tomás Assenza. Soy estudiante de Ingeniería en Sistemas de Información en la Facultad Regional Santa Fe, de la Universidad Tecnológica Nacional, y becario del departamento de química general en un proyecto de I+D dedicado a la creación de nuevas herramientas didáctivas y evaluativas, puntualmente dedicadas a la creación de múltiples software a modo de simuladores químicos para la guía de trabajos prácticos de la materia.
+Buenas tardes. Mi nombre es Tomás Assenza. Soy estudiante de Ingeniería en Sistemas de Información en la Facultad Regional Santa Fe, de la Universidad Tecnológica Nacional, y becario del departamento de química general en un proyecto de I+D dedicado a la creación de nuevas herramientas didáctivas y evaluativas, puntualmente enfocadas a la creación de múltiples software a modo de simuladores químicos para la guía de trabajos prácticos de la materia.
+
+Hoy voy a presentar el trabajo "Implementación Didáctica de una Simulación, bajo un Motor de Juegos, para el Laboratorio en Quimica de la Facultad Regional Santa Fe, Universidad Tecnológica Nacional.
 
 ---
 layout: false
@@ -145,8 +147,14 @@ class: center, middle
 
 Steve Jobs
 
+## "La mayor parte de la creatividad es una transición de un contexto a otro donde las cosas son más sorprendentes"
+
+Alan Kay
+
 ???
-Steve Jobs decía que una computadora era para el la herramienta más soprendente que se haya ideado, y que era el equivalente a una bicicleta para la mente. La idea en traer esta frase es pensar sobre la importancia que tiene el buen uso de la informática dentro de la educación, ya que puede ser una herramienta que cambie completamente la forma de enseñanza.
+Steve Jobs decía que una computadora era para el la herramienta más soprendente que se haya ideado, y que era el equivalente a una bicicleta para la mente. Por su parte, en una entrevista Alan Kay (uno de los científicos en computación más importantes de la historia), dijo que la mayor parte de la creatividad es una transición de un contexto a otro donde las cosas son más sorprendentes.
+
+La idea en traer estas frases es pensar sobre la importancia que tiene el buen uso de la informática dentro de la educación, y como se puede crear una disrupción en las didácticas actuales de enseñanza, avanzando hacia nuevas metodologías que puedan permitir una mayor calidad educativa.
 
 ---
 
@@ -154,13 +162,13 @@ Steve Jobs decía que una computadora era para el la herramienta más soprendent
 1. **Experiencias previas**
 2. Construyendo un simulador
 3. Funcionamiento del simulador
-4. Usándolo como método evaluativo
+4. Despliegue y análisis
 
 ???
-Durante el día de hoy voy a estar hablando de estos temas. La idea de esta presentación es entender como fue el proceso de creación del simulador del trabajo práctico "Densidad de sólidos". 
+Durante el día de hoy hablaremos de estos temas. La idea de esta presentación es entender como fue el proceso de creación del simulador del trabajo práctico "Densidad de sólidos". 
 ---
 template: inverse
-### Experiencias previas
+## Experiencias previas
 
 ???
 Comenzaremos hablando sobre las experiencias previas y el contexto en el cual se realiza este simulador. 
@@ -210,22 +218,24 @@ La materia tiene un total de siete trabajos prácticos por lo que, para poder cu
 .right-column[
   Cambio a la virtualidad:
   
-- Necesidad de realizar expriencias de laboratorio virtualmente
+- Necesidad de realizar expriencias de laboratorio virtualmente.
 
-- Idea: crear simuladores químicos
+- Idea: crear simuladores químicos.
 
-- **Creación del equipo**
+- **Creación del equipo.**
 
 .correCuatro[
 ![Dibujo quimico trabajando](https://i.ibb.co/cgHYzsL/quimica.png)
 ]
 ]
 ???
-Con la idea tomada, la cátedra comenzó a trabajar para poder comenzar con la producción de estos simuladores. El equipo se conformó con docentes de la cátedra, y estudiantes de química general, formando el proyecto de investigación y desarrollo "Nuevas Herramientas de Evaluación" que se encargaría de poner en valor esta iniciativa.
+Con la idea tomada, la cátedra comenzó con la producción de estos simuladores. El equipo se conformó con docentes de la materia, y estudiantes de carreras de ingeniería, formando el proyecto de investigación y desarrollo "Nuevas Herramientas de Evaluación" que se encargaría de poner en valor esta iniciativa.
+
+Para la organziación del equipo, se decidió que el proceso de desarrollo del software fuera incremental, por lo que se avanzó en la programación de eventos y el diseño de imagenes al mismo tiempo, generando entregables que terminarían escalando en la versión final. 
 
 ---
 template: inverse
-### Construcción de un simulador
+## Construcción de un simulador
 
 ???
 Ahora hablaremos sobre como fue el proceso de construcción del simulador "Densidad de sólidos". La construcción de un software nunca es facil, y lleva un largo proceso que, en caso de no seguirse de forma correcta, provocará una cantidad alta de errores a la hora de poner en producción el programa. Por esto, se debía pensar el paso a paso de como se produciría el simulador, y luego seguirlo de forma ordenada. 
@@ -236,8 +246,9 @@ Ahora hablaremos sobre como fue el proceso de construcción del simulador "Densi
   ### Construcción de un simulador
 ]
 .right-column[
-
-- Uso de un motor de juegos
+  Proceso de creación:
+  
+- Uso de un motor de juegos.
 ![Captura de pantalla de programación en construct 2](https://i.ibb.co/ngcKDsD/construct-500.jpg)
 
 ]
@@ -245,7 +256,7 @@ Ahora hablaremos sobre como fue el proceso de construcción del simulador "Densi
 ???
 Con el objetivo de poder realizar una gran cantidad de simuladores en poco tiempo, se aprovechó un motor de juegos. Estos permiten utilizar funciones previamente establecidas de renderizado en 2D o 3D, motores físicos y de colisiones, sonido o automatización de procesos, lo cual hace que la mayoría de las tareas avanzadas las realice este software, y las tareas del encargado del desarrollo pasan a relacionarse con las actividades de más alto nivel (aquellos con los cuales el usuario tiene interacción más directa).
 
-Por experiencias anteriores con las que contábamos, se decidió utilizar Construct 2 como motor. Esto permitió utilizar los lenguajes HTML, CSS y JavaScript como base de la herramienta.
+Por experiencias anteriores con las que contábamos, se decidió utilizar Construct 2 como motor. Esto permitió utilizar los lenguajes HTML, CSS y JavaScript como base de la herramienta. 
 
 ---
 .left-column[
@@ -253,19 +264,22 @@ Por experiencias anteriores con las que contábamos, se decidió utilizar Constr
   ### Construcción de un simulador
 ]
 .right-column[
+  Proceso de creación:
 
-- Uso de un motor de juegos
-- Construct 2, HTML, CSS y JavaScript
+- Uso de un motor de juegos.
+
+- Construct 2, HTML, CSS y JavaScript.
 ![Foto de HTML, CSS y JavaScript](https://i.ibb.co/zhjD2mm/index.png)
 ]
 
 ???
 La ventaja que otorgan estos lenguajes es que son web, por lo cual, al igual que ocurría con los PhET, el alumno no deberá descargar nada, y puede ser configurado dentro de un servidor.
+
 La posibilidad de tener una aplicación web permite además una reducción en la cantidad de recursos que necesitará el alumno para poder ejecutar la simulación ya que no requiere ocupar espacio adicional, y el uso de CPU, GPU y RAM que requiere es bajo. Esto es muy importante ya que no todos los estudiantes tienen computadoras lo suficientemente potentes como para utilizar programas pesados.
 
 ---
 template: inverse
-### Funcionamiento del simulador
+## Funcionamiento del simulador
 
 ???
 Una vez finalizado el trabajo, se consiguió un simulador químico funcionando con el procedimiento completo del trabajo práctico. En esta sección de la presentación vamos a hablar sobre como funciona el simulador y que características tiene. 
@@ -278,15 +292,16 @@ Una vez finalizado el trabajo, se consiguió un simulador químico funcionando c
   ### Funcionamiento del simulador
 ]
 .right-column[
+  El simulador por dentro:
 
-- **Estructura general del simulador**
+- **Estructura general del simulador.**
 ![Captura de pantalla del simulador](https://i.ibb.co/Dg1PGQ1/captura-con-procedimiento.png)
 ]
 
 ???
 El simulador cuenta con una estructura general que es común a todos los software que se desarrollen en el PID. 
 
-Se puede ver en la captura de pantalla como el simulador contiene el procedimiento a la izquierda, de manera que el alumno puede trabajar mientras lee los pasos a seguir. En la parte superior se pueden seleccionar los materiales o sustancias, mientras que en la parte superior izquierda se encuentra el botón "UTN" que permite acceder al texto introductorio, tablas, fórmulas e información extra del simulador. En la parte superior izquierda hay un espacio para el lavado y guardado de los elementos, mientras que a la izquierda se encuentra la tabla donde el estudiante puede anotar los datos que recolecta durante la experiencia.
+Se puede ver en la captura de pantalla como el simulador contiene el procedimiento a la izquierda, de manera que el alumno puede trabajar mientras lee los pasos a seguir. En la parte superior se pueden seleccionar los materiales o sustancias, mientras que en la parte superior izquierda se encuentra el botón "UTN" que permite acceder al texto introductorio, tablas, fórmulas e información extra del simulador. En la parte superior derecha hay un espacio para el lavado y guardado de los elementos, mientras que a la derecha se encuentra la tabla donde el estudiante puede anotar los datos que recolecta durante la experiencia.
 
 ---
 
@@ -296,14 +311,17 @@ Se puede ver en la captura de pantalla como el simulador contiene el procedimien
   ### Funcionamiento del simulador
 ]
 .right-column[
+  El simulador por dentro:
 
-- Estructura general del simulador
-- **Reproducción de videos**
+- Estructura general del simulador.
+
+- **Reproducción de videos.**
 ![Simulador esperando click para reproducir video](https://i.ibb.co/djL77sm/Captura-video.png)
 ]
 
 ???
 El simulador cuenta además con la posibilidad de reproducir videos provistos por la cátedra. Estos generalmente eran compartidos por el Campus Virtual, pero esta herramienta permitió que se le muestren al estudiante en el momento preciso en el que usaría el elemento, dando una mayor interacción entre el recurso y el alumno.
+
 En la captura de pantalla se puede apreciar como, dentro del espacio de trabajo, se esconde el procedimiento y la tabla, dando lugar a un espacio para la reproducción.
 
 ---
@@ -314,16 +332,148 @@ En la captura de pantalla se puede apreciar como, dentro del espacio de trabajo,
   ### Funcionamiento del simulador
 ]
 .right-column[
+  El simulador por dentro:
 
-- Estructura general del simulador
-- Reproducción de videos
-- **Interacción entre elementos**
+- Estructura general del simulador.
+
+- Reproducción de videos.
+
+- **Interacción entre elementos.**
 ![Imagen mostrando la interaccion de dos elementos](https://i.ibb.co/cYTWb2n/elementos.png)
 ]
 
 ???
 El simulador utiliza la metodología de Drag and Drop o, arrastrar y soltar, para que el alumno pueda realizar la interacción entre elementos. De esta manera, el estudiante puede realizar el paso a paso del procedimiento que le indica el docente, utilizando herramientas como balanzas o calibres.
 
+Para darle una mayor interacción, se diseñaron una serie de animaciones en respuestas a eventos como la que se muestra en la diapositiva. Esto significa que según el estado en el que se encuentre el simulador, y la distancia entre ciertos elementos, estas animaciones se reproducirán generando efectos como el trasvasado o la toma de una medida en un calibre.
+
+---
+template: inverse
+## Despliegue y análisis
+
+???
+Finalizado el simulador, llegaba la hora de ponerlo a prueba brindándoselo a los estudiantes, y analizando los resultados para poder entender mejor la utilidad de este tipo de herramientas.
+
+---
+
+.left-column[
+  ### Experiencias previas
+  ### Construcción de un simulador
+  ### Funcionamiento del simulador
+  ### Despliegue y análisis
+]
+.right-column[
+  Distribución:
+
+  - **Uso del campus virtual de la facultad**
+  ![Foto de moodle](https://i.ibb.co/YWXTXjm/moodle-350.png)
+]
+???
+Dentro de las ventajas de que el software sea una aplicación web era que podía ser introducido en el curso de química general en el campus virtual de la facultad, sin la necesidad de utilizar algún servidor externo. De esta manera, el estudiante accede al campus y tiene el simulador en la sección a la que accede todos los días para el estudio de la materia.
+
+En la misma sección donde se encuentra el simulador, los docentes realizaron a los estudiantes unas preguntas a modo de evaluación "post-simulación". Estas podían ser resueltas con lo aprendido dentro de la simulación, y los datos anotados en la tabla dentro del software.
+
+---
+.left-column[
+  ### Experiencias previas
+  ### Construcción de un simulador
+  ### Funcionamiento del simulador
+  ### Despliegue y análisis
+]
+.right-column[
+  Distribución:
+
+- Uso del campus virtual de la facultad.
+
+- **Encuestas de satisfacción.**
+![Encuestas de satisfaccion](https://i.ibb.co/gDVWsPN/Encuestas-550.png)
+]
+
+???
+Finalizado el trabajo práctico, se les solicitó a los estudiantes de todas las carreras contestar un cuestionario relacionados al grado de satisfacción que tenían con respecto al simulador. Los resultados indicados en las figuras que se ven en la diapositiva son alentadores, y nos inspiran a seguir produciendo herramientas de este estilo.
+
+---
+template: inverse
+
+## Trabajos futuros
+
+???
+Para finalizar, comentaremos cuales serán los trabajos futuros planificados dentro del proyecto. 
+
+---
+.left-column[
+  ### Experiencias previas
+  ### Construcción de un simulador
+  ### Funcionamiento del simulador
+  ### Despliegue y análisis
+  ### Trabajos futuros
+]
+.right-column[
+  Mejoras e implementaciones previstas:
+
+- **Actualizaciones sobre los simuladores ya generados.**
+]
+
+???
+En cada simulador que se realice, se espera poder tomar el feedback que nos proporcionan los estudiantes luego de realizarlos, y aprovecharlo para mejorar la calidad del software para los cursos que prosigan.
+
+Dentro de un proceso de desarrollo de software es normal volver a revisar los trabajos realizados, por lo que se entiende que fuera de que un simulador esté "finalizado", requerirá mantenimiento a medida que se encuentren errores.
+
+---
+
+.left-column[
+  ### Experiencias previas
+  ### Construcción de un simulador
+  ### Funcionamiento del simulador
+  ### Despliegue y análisis
+  ### Trabajos futuros
+]
+.right-column[
+  Mejoras e implementaciones previstas:
+
+- Actualizaciones sobre los simuladores ya generados.
+
+- **Producción de nuevos simuladores para otros trabajos prácticos.**
+]
+
+???
+Como la experiencia fue exitosa, se buscará abarcar una mayor cantidad de trabajos prácticos (en lo posible, simular todos los de las guías prácticas de la materia).
+
+Se entiende que todos los trabajos prácticos pueden ser realizados con esta metodología. En este contexto, es viable preguntarse que ocurriría con estas simulaciones cuando se vuelva a la presencialidad. Esto fue analizado desde el proyecto, y se planificó [pase a la siguiente diapositiva]
+
+---
+.left-column[
+  ### Experiencias previas
+  ### Construcción de un simulador
+  ### Funcionamiento del simulador
+  ### Despliegue y análisis
+  ### Trabajos futuros
+]
+.right-column[
+  Mejoras e implementaciones previstas:
+
+- Actualizaciones sobre los simuladores ya generados.
+
+- Producción de nuevos simuladores para otros trabajos prácticos.
+
+- **Mantener las simulaciones como una "alternativa digital" de la cátedra.**
+]
+
+???
+mantenerlos como una alternativa digital. La realidad es que proyectos como el ya mencionado PhET funcionan en epocas de presencialidad de forma constante, por lo que se entiende que este tipo de herramientas agregan recursos valiosos a la materia, y que pueden acompañar a un laboratorio clásico sin problemas.
+
+Este tipo de herramientas suelen ser adaptaciones que permiten una mayor flexibilidad en el aprendizaje del alumno, con la posibilidad de que cada estudiante realice un proceso sin la problemática de los tiempos. En este marco, y sabiendo que las distintas disciplinas de la ingeniería se encargan de la aplicación de conocimientos científicos dentro de un contexto particular. Resulta lógico modificar las formas de enseñanza a las nuevas tecnologías, y permitir a cada alumno encontrar en cada materia, su utilidad en la solución de problemas del área que esté estudiando. Esa fue nuestra motivación para diseñar e implementar este tipo de herramientas, que son útiles justamente para elevar la calidad educativa de la materia en beneficio del estudiante.  
+
+---
+template: inverse
+
+# GRACIAS
+
+## PID "Nuevas Herramientas para la Evaluación Formativa en Química."
+### E-mail de contacto: tassenza@frsf.utn.edu.ar
+
+???
+Y eso es todo. Muchas gracias a todos por su atención y el espacio cedido para la presentación de este trabajo que venimos realizando, en conjunto con otros simuladores, desde el año pasado. Me despido saludando cordialmente desde la ciudad de Santa Fe, y estoy atento a cualquier duda o consulta que pudiera surgir con respecto a la presentación. ¡Muchas gracias!  
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
