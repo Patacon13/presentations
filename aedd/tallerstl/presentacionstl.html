@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - STL</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Taler de Estructuras Dinámicas - C++
+## Algoritmos y Estructuras de Datos
+### Tomás Assenza
+
+???
+---
+
+layout: false
+class: center, middle
+
+
+## "There are only two hard things in Computer Science: cache invalidation and naming things."
+
+Phil Karlton
+
+## "The best way to prepare (to be a programmer) is to write programs, and to study great programs that other people have written."
+
+Bill Gates 
+
+---
+
+# Contenidos
+1. ¿Por qué estudiar estructuras dinámicas?
+2. Array
+3. Vector
+4. Map
+5. Set (Ordered-Unordered Set)
+
+???
+
+---
+
+class: inverse, center, middle
+
+
+# ¿Por qué estudiar estructuras dinámicas?
+
+
+---
+
+layout: false
+
+# ¿Por qué estudiar estructuras dinámicas?
+
+--
+
+* Competencias de programación.
+
+--
+
+* Entrevistas laborales (y trabajo en general).
+
+--
+
+* Útiles en I+D.
+
+--
+
+* Mayor facilidad de uso por funciones pre-armadas.
+
+--
+
+(Y por todo lo que deberíamos estudiar Algoritmos y Estructuras de Datos)
+
+---
+
+class: inverse, center, middle
+
+
+# Array
+
+---
+
+.left-column[
+  ### Array
+]
+.right-column[
+Conceptos generales:
+- Arreglo similar a los tradicionales.
+]
+
+---
+
+.left-column[
+  ### Array
+]
+.right-column[
+Conceptos generales:
+- Arreglo similar a los tradicionales.
+- Incorpora las funciones de la librería estándar de C++.
+]
+
+???
+
+Referencias:
+https://en.cppreference.com/w/cpp/container/array
+
+
+---
+
+.left-column[
+  ### Array
+]
+.right-column[
+Conceptos generales:
+- Arreglo similar a los tradicionales.
+- Incorpora las funciones de la librería estándar de C++.
+- Todo lo que hacemos con un arreglo normal, lo podemos hacer con Array. Pero, en algunos casos, las funciones facilitan la resolución de problemas.
+]
+
+???
+
+Referencias:
+https://en.cppreference.com/w/cpp/container/array
+
+---
+
+# .center[Array]
+```c++
+#include <array>
+```
+
+### Declaración
+
+```c++
+array<TipoDeDato,TamañoFisico> nombreDelArreglo;
+```
+
+--
+
+### Inicialización
+
+```c++
+array<TipoDeDato,TamañoFisico> nombreDelArreglo {1, 2, 3};
+```
+
+--
+
+### Acceso y modificación de elementos
+
+```c++
+nombreDelArreglo[indice] = nuevoValor;
+```
+
+???
+Existe una funcion .at que permite acceder al índice del elemento. Esta funciona igual que el operador [].
+
+---
+
+## .center[Array - Funciones integradas]
+
+Imaginemos los arrays definidos como
+
+```c++
+array<int, 6> arreglo1 {1, 2, 3}; //Arreglo de tamaño físico 6, tamaño lógico 3
+array<int, 6> arreglo2 {4, 5, 6}; //Arreglo de tamaño físico 6, tamaño lógico 3
+```
+
+--
+
+#### Función front y back (acceso al primer o último elemento).
+
+```c++
+cout << arreglo1.front(); // Imprime 1
+cout << arreglo1.back(); // Imprime 3
+```
+
+--
+
+#### Funciones empty, size y max_size
+
+```c++
+cout << arreglo1.empty() //Imprime 0 (devuelve false) ya que contiene elementos.
+cout << arreglo1.size() //Imprime 3. El tamaño lógico es 3.
+cout << arreglo1.max_size() //Imprime 6. El tamaño físico es 6.
+```
+--
+
+#### Función swap
+
+```c++
+arreglo1.swap(arreglo2); //Intercambia los arreglos de arreglo1 = {1,2,3}, arreglo2 = {4,5,6} a arreglo1 = {4,5,6}, arreglo2 = {1,2,3}
+```
+
+---
+
+## .center[Array - Funciones complementarias]
+
+```c++
+#include <array>
+#include <algorithm>
+```
+
+Imaginemos el array definido como
+
+```c++
+array<int, 6> arreglo {1, 2, 3}; //Arreglo de tamaño físico 6, tamaño lógico 3
+```
+
+
+#### Función sort para ordenar de menor a mayor
+
+```c++
+sort(arreglo.begin(), arreglo.end());
+```
+
+--
+
+#### Función sort para ordenar de mayor a menor
+
+```c++
+sort(arreglo.begin(), arreglo.end(), greater<int>());
+```
+
+---
+
+## .center[Array - Funciones complementarias]
+
+#### Definir nosotros mismos como ordenar
+
+Imaginemos que tenemos
+
+```c++
+struct quimico{
+    int num;
+    int ganancia;
+}
+
+array<3, quimico> quimicos {quimico1, quimico2, quimico3};
+```
+
+--
+
+y queremos ordenarlos de menor a mayor con respecto a num Y ganancia
+
+```c++
+sort(arreglo.begin(), arreglo.end(), miComparacion);
+
+bool miComparacion(const quimico a, const quimico b) {
+    if(a.num!=b.num) return a.num<b.num;
+    else return a.ganancia<b.ganancia;
+}
+```
+
+--
+
+Este tipo de funciones "auxiliares" son muy útiles si tenemos arrays de structs y queremos usar sort. Usamos más de un return ya que, en estos casos, es más visible para la resolución del problema (similar a lo que nos pasaba en funciones recursivas).
+
+
+
+???
+
+Referencias:
+https://aprende.olimpiada-informatica.org/cpp-sort
+
+---
+
+## .center[Comparación y recorrido de arreglos]
+
+#### Para comparar, podemos usar la comparación elemento a elemento, o mirar el total del arreglo.
+
+```c++
+if (arreglo1[0] == arreglo2[5]) //Compara el valor de la posición 0 del arreglo1, con la posición 5 del arreglo2
+if (arreglo1 == arreglo2) //Compara si arreglo1 es igual a arreglo2
+```
+
+--
+
+#### Para recorrer un arreglo, en el taller usaremos dos formas
+
+**Recorrido clásico**
+
+```c++
+for (int i = 0; i < arreglo.size(); i++) 
+    cout << arreglo[i] << " ";
+```
+
+--
+
+**Recorrido por elementos**
+
+```c++
+for (tipoDeDato elemento : arreglo) 
+    cout << elemento << " "; //Si el elemento es de una estructura, debemos hacer el acceso a sus atributos antes de imprimir.
+```
+
+---
+
+# Ejemplo de resolución
+
+"Leer dos arreglos de cinco elementos, ordenarlos de menor a mayor e intercambiarlos. 
+Luego, imprimir si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
+
+--
+
+```c++
+#include <iostream>
+#include <array>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	array<int, 5> arreglo1;
+	array<int, 5> arreglo2;
+}
+```
+
+---
+
+# Ejemplo de resolución
+
+"Leer dos arreglos de cinco elementos, ordenarlos de menor a mayor e intercambiarlos. 
+Luego, imprimir si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
+
+```c++
+#include <iostream>
+#include <array>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	array<int, 5> arreglo1;
+	array<int, 5> arreglo2;
+
+	for (int i = 0; i < 5; i++)
+	    cin >> arreglo1[i];
+
+	for (int i = 0; i < 5; i++)
+	    cin >> arreglo2[i];
+}
+```
+
+---
+# Ejemplo de resolución
+
+"Leer dos arreglos de cinco elementos, ordenarlos de menor a mayor e intercambiarlos. 
+Luego, imprimir si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
+
+```c++
+#include <iostream>
+#include <array>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	array<int, 5> arreglo1;
+	array<int, 5> arreglo2;
+
+	for (int i = 0; i < 5; i++)
+	    cin >> arreglo1[i];
+
+	for (int i = 0; i < 5; i++)
+	    cin >> arreglo2[i];
+
+	arreglo1.swap(arreglo2);
+}
+```
+
+---
+# Ejemplo de resolución
+
+"Leer dos arreglos de cinco elementos, ordenarlos de menor a mayor e intercambiarlos. 
+Luego, imprimir si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
+
+```c++
+#include <iostream>
+#include <array>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	array<int, 5> arreglo1;
+	array<int, 5> arreglo2;
+
+	for (int i = 0; i < 5; i++)
+	    cin >> arreglo1[i];
+
+	for (int i = 0; i < 5; i++)
+	    cin >> arreglo2[i];
+
+	arreglo1.swap(arreglo2);
+	sort(arreglo1.begin(), arreglo2.end());
+}
+```
+
+---
+# Ejemplo de resolución
+
+"Leer dos arreglos de cinco elementos, ordenarlos de menor a mayor e intercambiarlos. 
+Luego, imprimir si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
+
+```c++
+#include <iostream>
+#include <array>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	array<int, 5> arreglo1;
+	array<int, 5> arreglo2;
+
+	for (int i = 0; i < 5; i++)
+	    cin >> arreglo1[i];
+
+	for (int i = 0; i < 5; i++)
+	    cin >> arreglo2[i];
+
+	arreglo1.swap(arreglo2);
+	sort(arreglo1.begin(), arreglo2.end());
+
+	if (arreglo1[3] == arreglo2[4]) cout << "Son iguales" << endl;
+	else cout << "No son iguales" << endl;
+}
+```
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+    </script>
+  </body>
+</html>
