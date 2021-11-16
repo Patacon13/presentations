@@ -441,8 +441,8 @@ int main() {
 	for (int i = 0; i < 5; i++)
 	    cin >> arreglo2[i];
 
-	arreglo1.swap(arreglo2);
 	sort(arreglo1.begin(), arreglo2.end());
+	arreglo1.swap(arreglo2);
 }
 ```
 
@@ -469,8 +469,8 @@ int main() {
 	for (int i = 0; i < 5; i++)
 	    cin >> arreglo2[i];
 
-	arreglo1.swap(arreglo2);
 	sort(arreglo1.begin(), arreglo2.end());
+	arreglo1.swap(arreglo2);
 
 	if (arreglo1[3] == arreglo2[4]) cout << "Son iguales" << endl;
 	else cout << "No son iguales" << endl;
