@@ -585,7 +585,7 @@ También cuenta, al igual que array, con la función .at como alternativa a al o
 
 ### .center[Vector - Funciones integradas]
 
-Imaginemos los arrays definidos como
+Imaginemos los vectores definidos como
 
 ```c++
 vector<int> vector1 {1, 2, 3}; //Vector de tamaño 3
@@ -846,8 +846,8 @@ int main() {
 	
 	cout << "Mediana: ";
 	int mitad = mediciones.size()/2; 
-	if (n % 2 == 0) cout << mediciones[mitad] << endl;
-	else cout << (mediciones[mitad - 1] + mediciones[mitad])/2 << endl;
+	if (n % 2 != 0) cout << mediciones[mitad] << endl;
+	else cout << (mediciones[mitad - 1] + mediciones[mitad])/2.0 << endl;
 
 	cout << "Arreglo: ";
 }
@@ -879,8 +879,8 @@ int main() {
 	
 	cout << "Mediana: ";
 	int mitad = mediciones.size()/2; 
-	if (n % 2 == 0) cout << mediciones[mitad] << endl;
-	else cout << (mediciones[mitad - 1] + mediciones[mitad])/2 << endl;
+	if (n % 2 != 0) cout << mediciones[mitad] << endl;
+	else cout << (mediciones[mitad - 1] + mediciones[mitad])/2.0 << endl;
 	
 	cout << "Arreglo: ";
 	for (int elemento : vector1) cout << elemento << " ";
@@ -1091,6 +1091,7 @@ int main() {
 	map<string, int> frecuencias; 
 	int n, m;
 	string palabra;
+}
 ```
 
 ---
@@ -1114,6 +1115,7 @@ int main() {
 		cin>>palabra;
 		frecuencias[palabra]++;
 	}
+}
 ```
 
 ---
@@ -1143,6 +1145,7 @@ int main() {
 		cin>>palabra;
 		cout << frecuencias[palabra] << endl;
 	}
+}
 ```
 
 ---
@@ -1211,9 +1214,9 @@ Conceptos generales:
 
 ---
 
-# .center[Array]
+# .center[Set]
 ```c++
-#include <array>
+#include <set>
 ```
 
 ### Declaración
@@ -1295,9 +1298,10 @@ Leer un número N de palabras y mostrarlos en pantalla sin repetidos y en órden
 using namespace std;
 
 int main() {
-	set<string> items
+	set<string> items;
 	int n;
 	string palabra;
+}
 ```
 
 ---
@@ -1311,7 +1315,7 @@ int main() {
 using namespace std;
 
 int main() {
-	set<string> items
+	set<string> items;
 	int n;
 	string palabra;
 	
@@ -1321,6 +1325,7 @@ int main() {
 		cin >> palabra;
 		items.insert(palabra);
 	}
+}
 ```
 
 ---
@@ -1334,7 +1339,7 @@ int main() {
 using namespace std;
 
 int main() {
-	set<string> items
+	set<string> items;
 	int n;
 	string palabra;
 	
@@ -1347,7 +1352,14 @@ int main() {
 	
 	for (string elemento : items) cout << elemento << " ";
 	cout << endl;
+}
 ```
+
+---
+
+# Aclaración general
+
+* En todas las estructuras vistas, el elemento por default si no hay una asignación es **0**. Los elementos no contienen basura por defecto.
 
 ---
 
