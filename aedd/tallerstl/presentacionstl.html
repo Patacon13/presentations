@@ -57,7 +57,7 @@ layout: true
 class: inverse, center, middle
 ---
 
-# Taler de Estructuras Dinámicas - C++
+# Taller de Estructuras Dinámicas - C++
 ## Algoritmos y Estructuras de Datos
 ### Tomás Assenza
 
@@ -174,6 +174,24 @@ https://en.cppreference.com/w/cpp/container/array
 
 ---
 
+.left-column[
+  ### Array
+]
+.right-column[
+Conceptos generales:
+- Arreglo similar a los tradicionales.
+- Incorpora las funciones de la librería estándar de C++.
+- Todo lo que hacemos con un arreglo normal, lo podemos hacer con Array. Pero, en algunos casos, las funciones facilitan la resolución de problemas.
+- Es una estructura estática.
+]
+
+???
+
+Referencias:
+https://en.cppreference.com/w/cpp/container/array
+
+---
+
 # .center[Array]
 ```c++
 #include <array>
@@ -190,7 +208,7 @@ array<TipoDeDato,TamañoFisico> nombreDelArreglo;
 ### Inicialización
 
 ```c++
-array<TipoDeDato,TamañoFisico> nombreDelArreglo {1, 2, 3};
+array<TipoDeDato,TamañoFisico> nombreDelArreglo {dato1, dato2, dato3};
 ```
 
 --
@@ -206,7 +224,7 @@ Existe una funcion .at que permite acceder al índice del elemento. Esta funcion
 
 ---
 
-## .center[Array - Funciones integradas]
+### .center[Array - Funciones integradas]
 
 Imaginemos los arrays definidos como
 
@@ -235,15 +253,14 @@ cout << arreglo1.max_size() //Imprime 6. El tamaño físico es 6.
 ```
 --
 
-#### Función swap
+#### Función swap (Solo con arreglos de igual tamaño físico)
 
 ```c++
-arreglo1.swap(arreglo2); //Intercambia los arreglos de arreglo1 = {1,2,3}, arreglo2 = {4,5,6} a arreglo1 = {4,5,6}, arreglo2 = {1,2,3}
+arreglo1.swap(arreglo2); //Intercambia el contenido de los arreglos arreglo1 = {1,2,3}, arreglo2 = {4,5,6} quedando arreglo1 = {4,5,6}, arreglo2 = {1,2,3}
 ```
-
 ---
 
-## .center[Array - Funciones complementarias]
+### .center[Array - Funciones complementarias]
 
 ```c++
 #include <array>
@@ -253,14 +270,14 @@ arreglo1.swap(arreglo2); //Intercambia los arreglos de arreglo1 = {1,2,3}, arreg
 Imaginemos el array definido como
 
 ```c++
-array<int, 6> arreglo {1, 2, 3}; //Arreglo de tamaño físico 6, tamaño lógico 3
+array<int, 6> arreglo {3, 1, 2}; //Arreglo de tamaño físico 6, tamaño lógico 3
 ```
 
 
 #### Función sort para ordenar de menor a mayor
 
 ```c++
-sort(arreglo.begin(), arreglo.end());
+sort(arreglo.begin(), arreglo.end()); //arreglo pasa a ser {1, 2, 3}
 ```
 
 --
@@ -268,12 +285,12 @@ sort(arreglo.begin(), arreglo.end());
 #### Función sort para ordenar de mayor a menor
 
 ```c++
-sort(arreglo.begin(), arreglo.end(), greater<int>());
+sort(arreglo.begin(), arreglo.end(), greater<int>()); //arreglo pasa a ser {3, 2, 1}
 ```
 
 ---
 
-## .center[Array - Funciones complementarias]
+### .center[Array - Funciones complementarias]
 
 #### Definir nosotros mismos como ordenar
 
@@ -285,12 +302,12 @@ struct quimico{
     int ganancia;
 }
 
-array<3, quimico> quimicos {quimico1, quimico2, quimico3};
+array<quimico, 3> quimicos {quimico1, quimico2, quimico3};
 ```
 
 --
 
-y queremos ordenarlos de menor a mayor con respecto a num Y ganancia
+y queremos ordenarlos de menor a mayor con respecto a **num Y ganancia**
 
 ```c++
 sort(arreglo.begin(), arreglo.end(), miComparacion);
@@ -319,8 +336,8 @@ https://aprende.olimpiada-informatica.org/cpp-sort
 #### Para comparar, podemos usar la comparación elemento a elemento, o mirar el total del arreglo.
 
 ```c++
-if (arreglo1[0] == arreglo2[5]) //Compara el valor de la posición 0 del arreglo1, con la posición 5 del arreglo2
-if (arreglo1 == arreglo2) //Compara si arreglo1 es igual a arreglo2
+if (arreglo1[0] == arreglo2[5]) //Compara el valor que está en la posición 0 del arreglo1, con el valor que está en la posición 5 del arreglo2
+if (arreglo1 == arreglo2) //Compara si arreglo 1 es igual a arreglo 2, verificando si todos los elementos de arreglo1 son iguales lexicográficamente a todos los elementos de arreglo2
 ```
 
 --
@@ -348,7 +365,7 @@ for (tipoDeDato elemento : arreglo)
 # Ejemplo de resolución
 
 "Leer dos arreglos de cinco elementos, ordenarlos de menor a mayor e intercambiarlos. 
-Luego, imprimir si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
+Luego, indicar por pantalla si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
 
 --
 
@@ -370,7 +387,7 @@ int main() {
 # Ejemplo de resolución
 
 "Leer dos arreglos de cinco elementos, ordenarlos de menor a mayor e intercambiarlos. 
-Luego, imprimir si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
+Luego, indicar por pantalla si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
 
 ```c++
 #include <iostream>
@@ -395,7 +412,7 @@ int main() {
 # Ejemplo de resolución
 
 "Leer dos arreglos de cinco elementos, ordenarlos de menor a mayor e intercambiarlos. 
-Luego, imprimir si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
+Luego, indicar por pantalla si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
 
 ```c++
 #include <iostream>
@@ -414,7 +431,7 @@ int main() {
 	for (int i = 0; i < 5; i++)
 	    cin >> arreglo2[i];
 
-	arreglo1.swap(arreglo2);
+	sort(arreglo1.begin(), arreglo2.end());
 }
 ```
 
@@ -422,7 +439,7 @@ int main() {
 # Ejemplo de resolución
 
 "Leer dos arreglos de cinco elementos, ordenarlos de menor a mayor e intercambiarlos. 
-Luego, imprimir si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
+Luego, indicar por pantalla si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
 
 ```c++
 #include <iostream>
@@ -450,7 +467,7 @@ int main() {
 # Ejemplo de resolución
 
 "Leer dos arreglos de cinco elementos, ordenarlos de menor a mayor e intercambiarlos. 
-Luego, imprimir si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
+Luego, indicar por pantalla si el elemento 3 del arreglo1 es igual al elemento 4 del arreglo2."
 
 ```c++
 #include <iostream>
@@ -477,6 +494,910 @@ int main() {
 }
 ```
 
+---
+
+class: inverse, center, middle
+
+# Vector
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+]
+.right-column[
+Conceptos generales:
+- Lista, o arreglo dinámico.
+]
+
+???
+Referencias:
+https://en.cppreference.com/w/cpp/container/vector
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+]
+.right-column[
+Conceptos generales:
+- Lista, o arreglo dinámico.
+- El tamaño físico es igual al tamaño lógico y puede variar.
+]
+
+???
+Referencias:
+https://en.cppreference.com/w/cpp/container/vector
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+]
+.right-column[
+Conceptos generales:
+- Lista, o arreglo dinámico.
+- El tamaño físico es igual al tamaño lógico y puede variar.
+- Cuenta con más funciones que array.
+]
+
+???
+Referencias:
+https://en.cppreference.com/w/cpp/container/vector
+
+---
+
+# .center[Vector]
+```c++
+#include <vector>
+```
+
+### Declaración
+
+```c++
+vector<tipoDeDato> nombreDelVector; //vector de tamaño 0
+vector<tipoDeDato> nombreDelVector2(tamaño, valor); //vector de tamaño <tamaño>, con cada uno de sus elementos igualados a <valor>.
+```
+
+--
+
+### Inicialización
+
+```c++
+vector<tipoDeDato> nombreDelVector {dato1, dato2, dato3}; //vector {dato1, dato2, dato3} de tamaño 3
+```
+
+--
+
+### Acceso y modificación de elementos
+
+```c++
+nombreDelVector[indice] = nuevoValor;
+```
+
+???
+También cuenta, al igual que array, con la función .at como alternativa a al operador [].
+
+---
+
+### .center[Vector - Funciones integradas]
+
+Imaginemos los arrays definidos como
+
+```c++
+vector<int> vector1 {1, 2, 3}; //Vector de tamaño 3
+vector<int> vector2 {4, 5, 6}; //Vector de tamaño 3
+```
+
+--
+
+#### Función front y back (acceso al primer o último elemento).
+
+```c++
+cout << vector1.front(); // Imprime 1
+cout << vector1.back(); // Imprime 3
+```
+
+--
+
+#### Funciones empty y size
+
+```c++
+cout << vector1.empty() //Imprime 0 (devuelve false) ya que contiene elementos.
+cout << vector1.size() //Imprime 3 ya que el tamaño es 3.
+```
+--
+
+#### Función swap
+
+```c++
+vector1.swap(vector2); //Intercambia el contenido de los vectores vector1 = {1,2,3}, vector2 = {4,5,6} quedando vector1 = {4,5,6}, vector2 = {1,2,3}
+```
+
+---
+
+### .center[Vector - Funciones complementarias]
+
+```c++
+#include <vector>
+#include <algorithm>
+```
+
+Imaginemos el vector definido como
+
+```c++
+vector<int> vector1 {3, 1, 2}; //Vector de tamaño 3
+```
+
+
+#### Función sort para ordenar de menor a mayor
+
+```c++
+sort(vector1.begin(), vector1.end()); //vector1 pasa a ser {1, 2, 3}
+```
+
+--
+
+#### Función sort para ordenar de mayor a menor
+
+```c++
+sort(vector1.begin(), vector1.end(), greater<int>()); //vector1 pasa a ser {3, 2, 1}
+```
+
+Aclaración: la estrategia del criterio mencionada en array también es válida para vectores
+
+---
+
+#### .center[Vector - Funciones complementarias]
+
+##### Función push_back para insertar elementos
+
+```c++
+vector1.push_back(elemento); //Aumenta uno el tamaño de vector1, y agrega el elemento en la última posición.
+```
+
+--
+
+##### Función pop_back para eliminar el último elemento
+
+```c++
+vector1.pop_back(); //Elimina el último elemento y reduce en uno el tamaño.
+```
+
+--
+
+##### Función resize para modificar el tamaño del vector
+
+```c++
+vector1.resize(nuevoTamaño); //el vector pasa a tener como tamaño nuevoTamaño. Los elementos no definidos son automáticamente establecidos como 0.
+```
+
+--
+
+##### Función insert
+
+```c++
+vector1.insert(vector1.begin()+indice, valor); //Inserta el valor en el índice definido.
+```
+
+--
+
+##### Función clear
+
+```c++
+vector1.clear(); //elimina todos los elementos y establece el tamaño del vector como 0.
+```
+
+---
+
+#### .center[Comparación y recorrido de vectores]
+
+#### Para comparar, podemos usar la comparación elemento a elemento, o mirar el total del vector.
+
+```c++
+if (vector1[0] == vector2[5]) //Compara el valor que está en la posición 0 del vector1, con el valor que está en la posición 5 del vector2
+if (vector1 == vector2) //Compara si vector 1 es igual a vector 2, verificando si todos los elementos de arreglo1 son iguales lexicográficamente a todos los elementos de vector2
+```
+
+--
+
+#### Para recorrer un arreglo, en el taller usaremos dos formas
+
+**Recorrido clásico**
+
+```c++
+for (int i = 0; i < vector1.size(); i++) 
+    cout << vector1[i] << " ";
+```
+
+--
+
+**Recorrido por elementos**
+
+```c++
+for (tipoDeDato elemento : vector1) 
+    cout << elemento << " "; //Si el elemento es de una estructura, debemos hacer el acceso a sus atributos antes de imprimir.
+```
+
+--
+
+**Encontrar máximo y mínimo elemento**
+
+```c++
+int maximo = *max_element(vector1.begin(), vector1.end());
+int minimo = *min_element(vector1.begin(), vector1.end());
+```
+
+
+---
+
+# Ejemplo de aplicación
+
+**Problema**
+
+"Definimos a la mediana como el valor en la posición central de un conjunto de datos **ordenados**.
+
+Escribir un programa que reciba un numero N que representa una cantidad de mediciones,
+luego, leer N mediciones e indicar cual es la mediana. Finalmente, imprimir los valores ordenados y su promedio.
+
+Aclaración: si N es par, la mediana es el promedio entre los dos valores centrales."
+
+--
+
+# Antes de resolver, simplificamos el problema
+
+"Para un conjunto de números N, calcular su mediana y mostrarlos ordenados."
+
+---
+
+### Resolución
+
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	vector<int> mediciones;
+	int n, medicion;
+}
+```
+
+---
+
+### Resolución
+
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	vector<int> mediciones;
+	int n, medicion;
+	
+	cin >> n;
+	
+	for (int i = 0; i < n; i++) {
+		cin >> medicion;
+		mediciones.push_back(medicion);
+	}
+}
+```
+
+---
+
+### Resolución
+
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	vector<int> mediciones;
+	int n, medicion;
+	
+	cin >> n;
+	
+	for (int i = 0; i < n; i++) {
+		cin >> medicion;
+		mediciones.push_back(medicion);
+	}
+	
+	sort(mediciones.begin(), mediciones.end());
+
+	cout << "Mediana: ";
+}
+```
+
+---
+
+### Resolución
+
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	vector<int> mediciones;
+	int n, medicion;
+	
+	cin >> n;
+	
+	for (int i = 0; i < n; i++) {
+		cin >> medicion;
+		mediciones.push_back(medicion);
+	}
+	
+	sort(mediciones.begin(), mediciones.end());
+	
+	cout << "Mediana: ";
+	int mitad = mediciones.size()/2; 
+	if (n % 2 == 0) cout << mediciones[mitad] << endl;
+	else cout << (mediciones[mitad - 1] + mediciones[mitad])/2 << endl;
+
+	cout << "Arreglo: ";
+}
+```
+
+---
+
+### Resolución
+
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	vector<int> mediciones;
+	int n, medicion;
+	
+	cin >> n;
+	
+	for (int i = 0; i < n; i++) {
+		cin >> medicion;
+		mediciones.push_back(medicion);
+	}
+	
+	sort(mediciones.begin(), mediciones.end());
+	
+	cout << "Mediana: ";
+	int mitad = mediciones.size()/2; 
+	if (n % 2 == 0) cout << mediciones[mitad] << endl;
+	else cout << (mediciones[mitad - 1] + mediciones[mitad])/2 << endl;
+	
+	cout << "Arreglo: ";
+	for (int elemento : vector1) cout << elemento << " ";
+	cout << endl;
+}
+```
+
+---
+
+class: inverse, center, middle
+
+# Map
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+  ### Map
+]
+.right-column[
+Conceptos generales:
+- El acceso sigue siendo mediante [] pero se cambia el concepto de índice por clave.
+]
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+  ### Map
+]
+.right-column[
+Conceptos generales:
+- El acceso sigue siendo mediante [] pero se cambia el concepto de índice por clave.
+- A cada clave existente en un mapa se le corresponde un valor.
+]
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+  ### Map
+]
+.right-column[
+Conceptos generales:
+- El acceso sigue siendo mediante [] pero se cambia el concepto de índice por clave.
+- A cada clave existente en un mapa se le corresponde un valor.
+- Las claves **no necesariamente deben ser una secuencia ordenada**
+]
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+  ### Map
+]
+.right-column[
+Conceptos generales:
+- El acceso sigue siendo mediante [] pero se cambia el concepto de índice por clave.
+- A cada clave existente en un mapa se le corresponde un valor.
+- Las claves **no necesariamente deben ser una secuencia ordenada**
+- Las claves pueden ser de **cualquier tipo**.
+]
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+  ### Map
+]
+.right-column[
+Conceptos generales:
+- El acceso sigue siendo mediante [] pero se cambia el concepto de índice por clave.
+- A cada clave existente en un mapa se le corresponde un valor.
+- Las claves **no necesariamente deben ser una secuencia ordenada**
+- Las claves pueden ser de **cualquier tipo**.
+- El mapa **automáticamente** está ordenado por sus claves alfabéticamente.
+]
+
+---
+
+# .center[Map]
+```c++
+#include <map>
+```
+
+### Declaración
+
+```c++
+map<tipoDeDatoClave, tipoDeDatoValor> nombreDelMapa; //Mapa con 0 elementos.
+```
+
+--
+
+### Inicialización
+
+```c++
+map<tipoDeDatoClave, tipoDeDatoValor> nombreDelMapa { {clave1, dato1}, {clave2, dato2}, {clave3, dato3} }; //mapa con 3 pares clave-valor
+```
+
+--
+
+### Acceso y modificación de elementos
+
+```c++
+nombreDelMapa[clave] = nuevoValor; //si la clave no tenía ningún valor, el mapa aumenta en uno su tamaño y el valor es asociado a la clave.
+```
+---
+
+### .center[Map - Funciones integradas]
+
+Imaginemos mapas definidos como
+
+```c++
+map<int, int> mapa1 { {1, 1}, {2, 2}, {3, 3} }; //Mapa de tamaño 3
+map<int, int> mapa2 { {4, 4}, {5, 5}, {6, 6} }; //Mapa de tamaño 3
+```
+
+--
+
+#### Funciones empty y size
+
+```c++
+cout << mapa1.empty() //Imprime 0 (devuelve false) ya que contiene elementos.
+cout << mapa1.size() //Imprime 3 ya que el tamaño es 3.
+```
+--
+
+#### Función swap
+
+```c++
+mapa1.swap(mapa2); //Intercambia el contenido de los mapas mapa1 = { {1, 1}, {2, 2}, {3, 3} }, vector2 = { {4, 4}, {5, 5}, {6, 6} } quedando vector1 = { {4, 4}, {5, 5}, {6, 6} }, vector2 = { {1, 1}, {2, 2}, {3, 3} }
+```
+
+--
+
+#### Función count
+
+```c++
+mapa1.count(clave) //Devuelve 1 si la clave tiene algún valor asociado, y 0 en caso contrario.
+```
+
+---
+
+## .center[Comparación y recorrido de arreglos]
+
+#### Para comparar, podemos usar la comparación elemento a elemento, o mirar el total del mapa.
+
+```c++
+if (mapa1["clave1"] == mapa2[5]) //Compara el valor que está en la clave "clave1" del mapa1, con el valor que está en la clave 5 del mapa22 
+if (mapa1 == mapa2) //Compara si mapa1 es igual a mapa2, verificando si todos los elementos de mapa1 son iguales lexicográficamente a todos los elementos de mapa2
+```
+*Aclaración*: solo se comparan los valores, no las claves.
+
+--
+
+#### Para recorrer un mapa, en el taller usaremos un único tipo de recorrido.
+
+--
+
+**Recorrido por elementos**
+
+```c++
+for (pair<tipoDatoClave, tipoDatoValor> elemento : mapa1) {
+    cout << "clave: " << elemento.first << " valor: " << elemento.second << " "; //Si el elemento es de una estructura, debemos hacer el acceso a sus atributos antes de imprimir.
+}
+```
+
+---
+
+# Ejemplo de aplicación
+
+**Problema**
+
+"Twitter es una red social que permite a los usuarios enviar mensajes públicos de hasta 240
+caracteres. Generalmente dentro de la red se generan "tendencias" gracias a un análisis que hace
+la plataforma sobre la cantidad de ocurrencias de una palabra durante un período determinado.
+
+Como sos un ingeniero en sistemas de la UTN - FRSF (y, obviamente, un apasionado de los Algoritmos y 
+Estructuras de Datos), decidiste trabajar para Twitter ya que la considerás una gran red social.
+Para iniciar, te solicitaron que generes un sistema que reciba un número N de palabras (con
+repetidas entre ellas), y un número M de consultas. Para cada consulta, deberás indicar cuantas 
+apariciones tiene cada palabra."
+
+--
+
+# Antes de resolver, simplificamos el problema
+
+"Para un conjunto de palabras N, contar la frecuencia de cada una. Luego, responder cada consulta
+con la frecuencia de la palabra correspondiente."
+
+---
+
+### Resolución
+
+```c++
+#include <iostream>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	map<string, int> frecuencias; 
+	int n, m;
+	string palabra;
+```
+
+---
+
+### Resolución
+
+```c++
+#include <iostream>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	map<string, int> frecuencias; 
+	int n, m;
+	string palabra;
+	
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		cin>>palabra;
+		frecuencias[palabra]++;
+	}
+```
+
+---
+
+### Resolución
+
+```c++
+#include <iostream>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	map<string, int> frecuencias; 
+	int n, m;
+	string palabra;
+	
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		cin>>palabra;
+		frecuencias[palabra]++;
+	}
+	
+	cin >> m;
+	for (int i = 0; i < m; i++) {
+		cin>>palabra;
+		cout << frecuencias[palabra] << endl;
+	}
+```
+
+---
+
+class: inverse, center, middle
+
+# Set
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+  ### Map
+  ### Set
+]
+.right-column[
+Conceptos generales:
+- No podemos acceder de forma aleatoria (está prohibido el uso de []).
+]
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+  ### Map
+  ### Set
+]
+.right-column[
+Conceptos generales:
+- No podemos acceder de forma aleatoria (está prohibido el uso de []).
+- Conjunto ordenado (automáticamente) de elementos de un mismo tipo.
+]
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+  ### Map
+  ### Set
+]
+.right-column[
+Conceptos generales:
+- No podemos acceder de forma aleatoria (está prohibido el uso de []).
+- Conjunto ordenado (automáticamente) de elementos de un mismo tipo.
+- Todos los elementos deben ser distintos.
+]
+
+---
+
+.left-column[
+  ### Array
+  ### Vector
+  ### Map
+  ### Set
+]
+.right-column[
+Conceptos generales:
+- No podemos acceder de forma aleatoria (está prohibido el uso de []).
+- Conjunto ordenado (automáticamente) de elementos de un mismo tipo.
+- Todos los elementos deben ser distintos.
+- Existe una variante llamada "unordered_set" que funciona igual, pero los elementos no están ordenados.
+]
+
+---
+
+# .center[Array]
+```c++
+#include <array>
+```
+
+### Declaración
+
+```c++
+set<TipoDeDato> nombreDelSet; //set ordenado
+unordered_set<TipoDeDato> nombreDelUnorderedSet; //set no ordenado
+```
+
+--
+
+### Inicialización
+
+```c++
+set<TipoDeDato> nombreDelSet {dato1, dato2, dato3}; //los elementos se ordenan automáticamente y se eliminan los repetidos si existieran.
+```
+
+--
+
+### Agregar un elemento
+
+```c++
+miSet.insert(elemento); //inserta elemento y re-ordena el set.
+```
+
+---
+
+## .center[Comparación y recorrido de set]
+
+#### Podemos comparar mirando el set completo.
+
+```c++
+if (set1 == set2) //Compara si set1 es igual a set2, verificando si todos los elementos de set1 son iguales lexicográficamente a todos los elementos de set2
+```
+
+--
+
+#### Para recorrer un set, vamos a usar, al igual que en map, una única forma.
+
+**Recorrido por elementos**
+
+```c++
+for (tipoDeDato elemento : set) 
+    cout << elemento << " "; //Si el elemento es de una estructura, debemos hacer el acceso a sus atributos antes de imprimir.
+```
+
+---
+
+### Ejemplo de aplicación
+
+**Problema**
+
+Valentina es una mujer muy dedicada que trabaja hasta tarde todos los días. Para ahorrar tiempo,
+ella escribe todos los ítems al mismo tiempo que los recuerda. Ella usa una aplicación móvil para
+esta tarea.
+
+El problema es que esta aplicación no elimina los ítems duplicados y, como Valentina es distraída,
+ella frecuentemente anota el mismo ítem más de una vez y la lista se hace demasiado larga.
+Tu trabajo consta en mejorar esa aplicación, por lo que tendrás que escribir un programa que
+excluya ítems duplicados de la lista de compras y los ordene en orden alfabético.
+
+La entrada consta de un número N (cantidad de ítems), seguida de N ítems separados por un espacio.
+
+**Versión simplificada del problema**
+https://www.beecrowd.com.br/judge/es/problems/view/2729
+
+### Antes de resolver, simplificamos el problema
+
+Leer un número N de palabras y mostrarlos en pantalla sin repetidos y en órden alfabético.
+
+---
+
+### Resolución
+
+```c++
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+int main() {
+	set<string> items
+	int n;
+	string palabra;
+```
+
+---
+
+### Resolución
+
+```c++
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+int main() {
+	set<string> items
+	int n;
+	string palabra;
+	
+	cin >> n;
+	
+	for (int i = 0; i < n; i++) {
+		cin >> palabra;
+		items.insert(palabra);
+	}
+```
+
+---
+
+### Resolución
+
+```c++
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+int main() {
+	set<string> items
+	int n;
+	string palabra;
+	
+	cin >> n;
+	
+	for (int i = 0; i < n; i++) {
+		cin >> palabra;
+		items.insert(palabra);
+	}
+	
+	for (string elemento : items) cout << elemento << " ";
+	cout << endl;
+```
+
+---
+
+# Algunos temas útiles que no se dictan en el taller
+
+--
+
+* Iteradores
+
+--
+
+* Deque, queue, priority queue, stack
+
+--
+
+* Macros
+
+
+Todos estos temas están contenidos dentro del libro "Competitive Programmer's Handbook"
+
+https://cses.fi/book/book.pdf
+
+---
+
+# Formas de seguir aprendiendo
+
+* Resolviendo problemas de jueces en línea (codeforces, leetcode, uri, etc.)
+
+--
+
+* Participando de competencias de programación.
+
+--
+
+* Leyendo bibliografía.
+
+--
+
+* Participando de la comunidad de programación competitiva de la UTN - FRSF.
+https://discord.gg/VEsMc9qU
+
+---
+
+class: inverse, center, middle
+
+# Fin
+
+### Contacto: tassenza@frsf.utn.edu.ar (o, por mensaje privado de Teams).
+
+### ¡Gracias por participar de parte del Equipo de Algoritmos y Estructuras de Datos!
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
     </script>
