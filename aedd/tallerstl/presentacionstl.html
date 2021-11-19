@@ -182,7 +182,7 @@ Conceptos generales:
 - Arreglo similar a los tradicionales.
 - Incorpora las funciones de la librería estándar de C++.
 - Todo lo que hacemos con un arreglo normal, lo podemos hacer con Array. Pero, en algunos casos, las funciones facilitan la resolución de problemas.
-- Cuenta con un tamaño físico y un tamaño lógico.
+- Es una estructura estática.
 ]
 
 ???
@@ -731,6 +731,35 @@ int maximo = *max_element(vector1.begin(), vector1.end());
 int minimo = *min_element(vector1.begin(), vector1.end());
 ```
 
+---
+
+# Extra: matrices dinámicas
+
+### Declaración
+
+```c++
+vector<vector<tipoDeDato>> nombreDeMatriz; //vector de tamaño 0
+```
+
+--
+
+### Recorridos
+
+**Recorrido clásico**
+
+```c++
+for (unsigned i = 0; i < nombreDeMatriz.size(); i++) 
+    for (unsigned j = 0; j < nombreDeMatriz[i].size(); j++) 
+        cout << nombreDeMatriz[i][j]
+```
+
+**Recorrido por elementos**
+
+```c++
+for (vector<int> fila : nombreDeMatriz)
+    for (int elemento : fila)
+        cout << elemento << endl;
+```
 
 ---
 
@@ -883,7 +912,7 @@ int main() {
 	else cout << (mediciones[mitad - 1] + mediciones[mitad])/2.0 << endl;
 	
 	cout << "Arreglo: ";
-	for (int elemento : mediciones) cout << elemento << " ";
+	for (int elemento : vector1) cout << elemento << " ";
 	cout << endl;
 }
 ```
