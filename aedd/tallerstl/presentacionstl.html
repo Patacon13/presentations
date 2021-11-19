@@ -738,29 +738,49 @@ int minimo = *min_element(vector1.begin(), vector1.end());
 ### Declaración
 
 ```c++
-vector<vector<tipoDeDato>> nombreDeMatriz; //vector de tamaño 0
+vector<vector<tipoDeDato>> nombreDeMatriz; //matriz de tamaño 0
 ```
 
 --
+
+### ¿Como podemos ingresar todos sus elementos?
+
+```c++
+nombreDeMatriz.resize(cantFilas);
+int numeroIngreso;
+for (int i = 0; i < cantFilas; i++) {
+	for (int j = 0; j < cantColumnas; j++) {
+		cin >> numeroIngreso;
+		nombreDeMatriz[i].push_back(numeroIngreso);
+	}
+}
+```
+
+---
+
 
 ### Recorridos
 
 **Recorrido clásico**
 
 ```c++
-for (unsigned i = 0; i < nombreDeMatriz.size(); i++) 
-    for (unsigned j = 0; j < nombreDeMatriz[i].size(); j++) 
-        cout << nombreDeMatriz[i][j];
+for (unsigned i = 0; i < nombreDeMatriz.size(); i++) {
+	for (unsigned j = 0; j < nombreDeMatriz[i].size(); j++) 
+		cout << nombreDeMatriz[i][j] << " ";
+	cout << endl;
+}
 ```
 
 --
-	    
+
 **Recorrido por elementos**
 
 ```c++
-for (vector<int> fila : nombreDeMatriz)
-    for (int elemento : fila)
-        cout << elemento << endl;
+for (vector<int> fila : nombreDeMatriz) {
+	for (int elemento : fila)
+		cout << elemento << " ";
+	cout << endl;
+}
 ```
 
 ---
