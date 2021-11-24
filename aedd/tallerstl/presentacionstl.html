@@ -254,8 +254,32 @@ cout << arreglo1.max_size() //Imprime 6. El tamaño físico es 6.
 
 Aclaración: existía previamente un error en la diapositiva. arreglo1.size() y arreglo1.max_size() devuelven siempre el tamaño físico. max_size() y size() siempre serán iguales.	    
 
---
+---
 
+### .center[Array - Funciones integradas]
+
+Imaginemos los arrays definidos como
+
+```c++
+array<int, 6> arreglo1 {1, 2, 3}; //Arreglo de tamaño físico 6, tamaño lógico 3
+array<int, 6> arreglo2 {4, 5, 6}; //Arreglo de tamaño físico 6, tamaño lógico 3
+```
+
+#### Función front y back (acceso al primer o último elemento).
+
+```c++
+cout << arreglo1.front(); // Imprime 1
+cout << arreglo1.back(); // Imprime 3
+```
+
+#### Funciones empty, size y max_size
+
+```c++
+cout << arreglo1.empty() //Imprime 0 (devuelve false) ya que contiene elementos.
+cout << arreglo1.size() //Imprime 6. El tamaño físico es 6.
+cout << arreglo1.max_size() //Imprime 6. El tamaño físico es 6.
+```
+	    
 #### Función swap (Solo con arreglos de igual tamaño físico)
 
 ```c++
