@@ -248,9 +248,12 @@ cout << arreglo1.back(); // Imprime 3
 
 ```c++
 cout << arreglo1.empty() //Imprime 0 (devuelve false) ya que contiene elementos.
-cout << arreglo1.size() //Imprime 3. El tamaño lógico es 3.
+cout << arreglo1.size() //Imprime 6. El tamaño físico es 6.
 cout << arreglo1.max_size() //Imprime 6. El tamaño físico es 6.
 ```
+
+Aclaración: existía previamente un error en la diapositiva. arreglo1.size() y arreglo1.max_size() devuelven siempre el tamaño físico. max_size() y size() siempre serán iguales.	    
+
 --
 
 #### Función swap (Solo con arreglos de igual tamaño físico)
