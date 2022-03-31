@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - STL</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 1 - Algoritmos y ZinjaI
+### Comisión A y F
+### Docentes de práctica:
+#### JTP Gastón Michieri
+#### Auxiliar Gustavo Olivieri
+#### Auxiliar Tomás Assenza
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+---
+
+layout: false
+
+.left-column[
+  ### Definición de algoritmos
+]
+.right-column[
+	Conjunto finito y ordenado de pasos, que ejecutados de manera correcta, permite obtener un resultado o resolver un determinado problema.
+]
+
+---
+
+.left-column[
+  ### Definición de algoritmos
+]
+.right-column[
+	Conjunto finito y ordenado de pasos, que ejecutados de manera correcta, permite obtener un resultado o resolver un determinado problema.
+	![image](https://user-images.githubusercontent.com/42981462/161085195-4de8c607-611c-4546-8512-dc34a3c1db27.png)
+]
+
+---
+
+.left-column[
+  ### Definición de algoritmos
+  ### Entornos de desarrollo
+]
+.right-column[
+	Herramienta que integra todos los recursos que necesita el programador
+]
+
+---
+
+.left-column[
+  ### Definición de algoritmos
+  ### Entornos de desarrollo
+]
+.right-column[
+	Herramienta que integra todos los recursos que necesita el programador
+	![image](https://user-images.githubusercontent.com/42981462/161085422-b922bbe3-9a8f-4c3b-bb2a-dbb590c53ad7.png)
+]
+
+---
+.center[
+### Estructura de un programa
+]
+	
+
+1) Utilizando ZinjaI copia el siguiente programa en el editor. Luego, compilalo y ejecutalo. Observando el comportamiento resultante analizar: ¿Qué realiza el programa? ¿Cómo se estructura un programa en C++?
+
+--
+	
+```C++
+#include <iostream>
+using namespace std;
+
+
+```
+*A este fragmento del código lo denominamos "Directivas"*
+
+--
+
+```C++
+int main (void) {
+	int nroLegajo;
+	
+	cout << "Me dices tu número de legajo?" << endl;
+	cin >> nroLegajo;
+	cout << "Ingreso de " << nroLegajo << " al ZinjaI!" << endl;
+	
+	return 0;
+}
+```
+*A este fragmento del código lo denominamos "Cuerpo"*
+
+---
+
+.center[
+### Entradas, Algoritmos y Salidas
+]
+
+2) Tu misión, si decides aceptarla, es recibir los 3 números de 2 dígitos que desactivan la bomba del destino final. Para desactivarla simplemente tienes que mostrar los 3 números recibidos en el orden inverso al que los recibiste, decodificando cada número sumándole su último dígito, y separándolos con un guión medio.
+
+*Ejemplo:*
+*Ingrese el código de desactivación de la bomba: 37 24 51*
+*El código de desactivación real es 52-28-44*
+
+--
+
+.center[
+![Gráfico de entrada-salida](https://user-images.githubusercontent.com/42981462/161085473-e20e72f0-e511-4abe-a33c-c2eed94a027e.png)
+]
+
+---
+
+.center[
+### Algoritmo "Desactivar Bomba"
+]
+
+--
+
+.left-column[
+  **Pseudocódigo**
+```
+Leer num1
+Leer num2
+Leer num3
+
+num1 <- num1 + num1%10
+num2 <- num2 + num2%10
+num3 <- num3 + num3%10
+
+Mostrar num3-num2-num1
+```
+]
+--
+.right-custom[
+**Diagrama de flujo**
+
+![diagrama de flujo](https://user-images.githubusercontent.com/42981462/161085546-aeb3214b-8775-4997-b0d9-cdb8aa3f2f1d.png)
+]
+---
+
+.left-column[
+  ### Definición de algoritmos
+  ### Entornos de desarrollo
+  ### Estructura de un Programa
+  ### Entradas y Salidas
+  ### Pseudocódigo
+  ### Jueces en Línea
+]
+.right-column[
+.center[
+### ¿Por qué usamos jueces en línea?
+]
+* Corrección automática
+* Seguimiento del progreso de los alumnos
+* Entrenamiento
+* Evaluación -> Parcial y Final
+* Participación en Competencias de programación - TECNOMATE
+]
+
+---
+
+.left-column[
+  ### Definición de algoritmos
+  ### Entornos de desarrollo
+  ### Estructura de un Programa
+  ### Entradas y Salidas
+  ### Pseudocódigo
+  ### Jueces en Línea
+]
+.right-column[
+.center[
+### ¿Por qué usamos jueces en línea?
+]
+
+* Corrección automática
+* Seguimiento del progreso de los alumnos
+* Entrenamiento
+* Evaluación -> Parcial y Final
+* Participación en Competencias de programación - TECNOMATE
+.center[
+![Imagen de beecrowd](https://user-images.githubusercontent.com/42981462/161085622-1fefa1f2-e864-41cc-a527-580dca061450.png) ![Imagen de omega up](https://user-images.githubusercontent.com/42981462/161085663-99cc8e1e-4ecd-4f1a-9945-5701c9ab7857.png)
+]
+]
+
+---
+
+.left-column[
+  ### Definición de algoritmos
+  ### Entornos de desarrollo
+  ### Estructura de un Programa
+  ### Entradas y Salidas
+  ### Pseudocódigo
+  ### Jueces en Línea
+]
+
+
+.right-custom2[
+|Resultado del juez|Significado|
+|---|---|
+|<span style="color:green">Accepted</span>|<span style="color:green">Accepted: </span> El envío satisfizo todos los casos de prueba.|
+|<span style="color:orange">Compilation error</span>|<span style="color:orange">Error de compilación: </span> La solución enviada tiene errores de compilación. En la página de visualización del código fuente, la/s línea/s con error aparecen resaltadas. Para verlo tenés que dar click al ID del envío|
+|<span style="color:green">Presentation error</span>|<span style="color:green">Error de presentación: </span> Significa que estás muy cerca de que tu solución sea aceptada, pero que tenés al menos un error en la cantidad de espacios en blanco, o te falta un fin de línea (endl) o hay algunas letras que están en minúsculas que tendrían que estar en mayúsculas o viceversa.|
+|<span style="color:blue">Runtime error</span>|<span style="color:blue">Error en tiempo de ejecución: </span> se da, por ejemplo, cuando definís un arreglo con menor capacidad de la que requiere el problema, o cuando intentás acceder a una posición de memoria inválida|
+]
+
+---
+
+.left-column[
+  ### Definición de algoritmos
+  ### Entornos de desarrollo
+  ### Estructura de un Programa
+  ### Entradas y Salidas
+  ### Pseudocódigo
+  ### Jueces en Línea
+]
+
+
+.right-custom2[
+|Resultado del juez|Significado|
+|---|---|
+|<span style="color:red">Wrong answer (%)</span>|<span style="color:red">Respuesta incorrecta (%): </span> Tu solución no satisfizo todos los casos de prueba. Tené en cuenta que tu programa se prueba con entradas que no están en la descripción del problema, pero que se ajustan a las restricciones del enunciado. El valor que se indica entre paréntesis es el porcentaje en que tu respuesta difiere en relación a la salida esperada. Por ejemplo, si recibís <span style="color:red">Wrong answer (90%)</span>, significa que tu respuesta difiere en un 90% de la correcta.|
+|<span style="color:blue">Time limit exceeded</span>|<span style="color:blue">Límite de tiempo excedido: </span> Tu solución demoró más tiempo que el esperado para ejecutar todos los casos de prueba del juez. Si el límite de tiempo para un problema es, por ej., de 2 segundos, y a tu programa le lleva 2.3 segundos ejecutar todos los casos de prueba, vas a recibir este error. Es importante que tengas en cuenta la técnica que usás para resolver el problema.|
+]
+
+---
+
+.center[
+### Estrategia de trabajo
+]
+
+#### 1. Leer el enunciado del problema y comprender lo que se pide.
+#### 2. Identificar Entradas y Salidas.
+#### 3. Pensar el algoritmo para poder obtener la salida a partir de las entradas.
+#### 4. Codificar la solución en el IDE (ZinjaI).
+#### 5. Probar hasta considerar que la solución es la correcta, considerando los distintos casos de entrada que puede haber.
+#### 6. Subir la solución al juez en línea (beecrowd/omegaUp).
+#### 7. Analizar el resultado del envío.
+#### 8. Si hay algún error, analizar y corregir, y si es necesario, volver al punto 1.
+---
+class: inverse, center, middle
+
+
+# **Actividad propuesta**
+
+## Codificar los algoritmos resueltos.
+## Instalación de ZinjaI
+## Registración y matriculación en jueces en línea.
+
+#### Equipo de Algoritmos y Estructuras de Datos
+#### Comisión A
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+    </script>
+  </body>
+</html>
