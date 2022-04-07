@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Química - TP Integrador</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+
+---
+
+# Química General - Ingeniería en Sistemas de Información
+## Trabajo Práctico integrador
+### Contenidos abarcados: Química, Matemática y Algoritmos.
+
+???
+---
+
+layout: false
+
+# Cinética Química
+
+### ¿Como resolvemos en clases la resolución de problemas de cinética química?
+
+--
+
+**Tomemos de ejemplo el ejercicio 1 de la guía de coloquios:**
+
+Para la reacción:
+`\(2NO(g) + 2H_{2}(g) -> N_{2}(g) + 2H_{2}O(g)\)`
+
+Se obtuvieron los siguientes datos:
+
+![image](https://user-images.githubusercontent.com/42981462/162252599-59aee77d-e9b9-4dea-ba50-621ce59577c3.png)
+
+---
+
+### Primero se efectúan relaciones de a pares relacionando aquellos datos que permitan obtener un parámetro a la vez. por tanto de:
+
+![image](https://user-images.githubusercontent.com/42981462/162253101-2db8abd1-a125-4382-b5d8-86617e93e1d8.png)
+
+--
+
+Dividiéndo ambas ecuaciones:
+
+![image](https://user-images.githubusercontent.com/42981462/162254903-4df034ac-a676-4dcf-9343-e48722be38ef.png)
+
+---
+Reemplazando:
+
+![image](https://user-images.githubusercontent.com/42981462/162255084-10529655-35ef-4d3a-b201-bf79f397dd93.png)
+
+--
+
+Cancelando términos:
+
+
+![image](https://user-images.githubusercontent.com/42981462/162255592-d5b0a9c2-0813-49ed-91bf-413be3cd4b02.png)
+
+--
+
+Aplicando logarítmo:
+
+![image](https://user-images.githubusercontent.com/42981462/162258042-56f11bfd-f0f6-42d1-9df4-c349e8679c8d.png)
+
+--
+Despejando
+
+![image](https://user-images.githubusercontent.com/42981462/162258083-9dc8c37a-1b9a-4423-a2a8-5c6aad58fbed.png)
+
+---
+
+Para calcular M hacemos el mismo procedimiento, pero utilizando las experiencias A y B
+
+![image](https://user-images.githubusercontent.com/42981462/162260161-b2c5918d-17c4-4b16-be6e-da680080ce48.png)
+
+--
+
+Simplificando:
+
+![image](https://user-images.githubusercontent.com/42981462/162261605-f670c73e-3a6d-4e21-a886-c1881d02b867.png)
+
+--
+
+![image](https://user-images.githubusercontent.com/42981462/162261756-8a2d1308-5ed7-4886-9203-3289c173dc36.png)
+
+--
+
+![image](https://user-images.githubusercontent.com/42981462/162261828-9229640a-4d27-4415-b922-9eb424b7bb5d.png)
+
+---
+
+### Finalmente calculamos el k
+
+![image](https://user-images.githubusercontent.com/42981462/162262714-a2b4b236-3418-45ca-bcf9-b97ae3ab1d93.png)
+
+--
+
+![image](https://user-images.githubusercontent.com/42981462/162262857-3aaee940-c1c9-40d9-b780-c7e22a93b1e7.png)
+
+--
+
+![image](https://user-images.githubusercontent.com/42981462/162262948-2665c22a-33bd-450b-b958-5d6f410123a7.png)
+
+---
+
+###Valores finales (sin unidades):
+
+* n = 2
+* m = 1
+* k = 0,741
+* Orden global = n + m = 3
+
+--
+
+###Creado de un programa que calcule estos valores como trabajo práctico
+
+![image](https://user-images.githubusercontent.com/42981462/162263809-49269db2-0780-4ea7-911d-06f0bd779886.png)
+
+---
+
+#### Entendiendo que estos casos son puntuales, se les solicita a los alumnos generar un programa que utilice métodos matemáticos para la resolución de **cualquier** conjunto de experiencias
+
+Métodos que se pueden usar:
+
+* Gauss-Jordan
+* Determinantes
+* Sustitución
+
+---
+class: inverse, center, middle
+
+# Equipo de Química General - Sistemas
+
+### Vanina Mazzieri
+### Carlos Córdoba
+### Tomás Assenza
+
+   
+    </textarea>
+    <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript"></script>
+    <script src='https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML' type="text/javascript"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+
+      // Setup MathJax
+      MathJax.Hub.Config({
+          tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+      MathJax.Hub.Queue(function() {
+          $(MathJax.Hub.getAllJax()).map(function(index, elem) {
+              return(elem.SourceElement());
+          }).parent().addClass('has-jax');
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>
