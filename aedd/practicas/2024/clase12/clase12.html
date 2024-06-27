@@ -80,21 +80,13 @@ Universidad Tecnológica Nacional - Facultad Regional Santa Fe
 
 layout: false
 
-.left-column[
-  ### Definición de arreglo
-]
-.right-column[
-	"Un arreglo es un grupo de posiciones de memorias contíguas que tienen el mismo nombre y tipo"
-]
+## Definición de arreglo
+"Un arreglo es un grupo de posiciones de memorias contiguas que tienen el mismo nombre y tipo"
 
 ---
 
 
-.left-column[  
-  ### Definición de arreglo
-  ### Tipos de arreglos
-]
-.right-column[
+## Tipos de arreglos
 * Unidimensionales: arreglos de una dimensión, llamados vectores o listas.
 ![ejemplo arreglo unidimensional](./ejemploarreglo.png)
 * Bidimensionales: arreglos de dos dimensiones, conocidos como matrices.
@@ -102,189 +94,39 @@ layout: false
 * Multidimensional: los demás tipos son llamados multidimensionales.
 
 .center[![ejemplo arreglo unidimensional](./ejemplomultidimensional.png)]
-]
-
 
 ---
-
-.left-column[  
-  ### Definición de arreglo
-  ### Tipos de arreglos
-  ### Tipos de tamaño
-]
-.right-column[
+## Tipos de tamaño
 * Tamaño físico: es el tamaño máximo de elementos que el arreglo puede almacenar
+
 ![ejemplo arreglo unidimensional](./ejemplotamaniofisico.png)
-]
 
 ---
 
-.left-column[  
-  ### Definición de arreglo
-  ### Tipos de arreglos
-  ### Tipos de tamaño
-]
-.right-column[
-* Tamaño físico: es el tamaño máximo de elementos que el arreglo puede almacenar.
-![ejemplo tamaño físico](./ejemplotamaniofisico.png)
-* Tamaño lógico: es la cantidad de elementos que tiene almacenado el arreglo.
-![ejemplo tamaño lógico](./ejemplotamaniologico.png)
-]
 
----
+## Declaración y acceso
 
-.left-column[  
-  ### Definición de arreglo
-  ### Tipos de arreglos
-  ### Tipos de tamaño
-  ### Declaración y acceso
-]
-.right-column[
 * Declaración
 ![declaraciones](./declaraciones.png)
 
-]
-
 ---
 
-.left-column[  
-  ### Definición de arreglo
-  ### Tipos de arreglos
-  ### Tipos de tamaño
-  ### Declaración y acceso
-]
-.right-column[
+## Declaración y acceso
+
 * Declaración
+
 ![declaraciones](./declaraciones.png)
 
 * Acceso
+
 ![ejemplo arreglo](./ejemploarreglocolorido.png)
+
   * Para referirse a un elemento hay que especificar:
       * El nombre del arreglo
       * El número de posición.
   * El primer elemento está en la posición 0: a[0] -> 13
   * El segundo elemento está en la posición 1: a[1] -> 45
   * El tercer elemento está en la posición 2: a[2] -> 12
-]
-
----
-
-.center[
-### Ejercicios
-]
-	
-
-1) Declarar un arreglo de **N** componentes numéricos **enteros**. Luego, implementar variantes para la **inicialización** de sus componentes:
-* Asignando **valores** iniciales por extensión en la declaración.
-* Definiendo la **función** *void inicializar_teclado(int V[], int tam)* que carga los valores a través de la entrada estándar (teclado).
-* Definiendo la **función** *void inicializar_aleatorio(int V[], int tam)* que carga los valores a través de funciones de generación de números aleatorios haciendo uso de las funciones *srand(time(NULL))* y *rand()*
-
----
-
-.center[
-### Ejercicios
-]
-	
-
-1) Declarar un arreglo de **N** componentes numéricos **enteros**. Luego, implementar variantes para la **inicialización** de sus componentes:
-* Asignando **valores** iniciales por extensión en la declaración.
-	
-```C++
-#include <iostream>
-using namespace std;
-#define N 1000
-
-```
-*Definimos N como un tamaño muy grande, ya que será el tamaño físico del arreglo, y no sabemos cuantos componentes contendrá*.
-
----
-
-.center[
-### Ejercicios
-]
-
-1) Declarar un arreglo de **N** componentes numéricos **enteros**. Luego, implementar variantes para la **inicialización** de sus componentes:
-* Asignando **valores** iniciales por extensión en la declaración.
-
-```C++
-#include <iostream>
-using namespace std;
-#define N 1000
-
-int main() {
-   int vector[N] {12, 13, 14, 15};
-}
-```
-
-* *¿Cual será el tamaño físico de este arreglo? ¿Y el lógico?*
-* *¿Que pasa con los elementos a la derecha de los que declaramos (vector[5], vector[6], ...)? ¿Que pasa si inicializamos el vector como vector[N] {}, vector[N] = {} o vector[N] = {0}?*
-
----
-
-1) Declarar un arreglo de **N** componentes numéricos **enteros**. Luego, implementar variantes para la **inicialización** de sus componentes:
-* Definiendo la **función** *void inicializar_teclado(int V[], int tam)* que carga los valores a través de la entrada estándar (teclado).
-
-```C++
-#include <iostream>
-using namespace std;
-#define N 1000
-
-void inicializar_teclado(int V[], int tam);
-
-int main(int argc, char *argv[]) {
-	int vector[1000];
-	
-	int tamanioLogico;
-	cout << "Ingrese la cantidad de elementos que tiene su arreglo" << endl;
-	cin >> tamanioLogico;
-	
-	inicializar_teclado(vector, tamanioLogico);
-	return 0;
-}
-
-void inicializar_teclado(int V[], int tam) {
-	for (int i = 0; i < tam; i++) {
-		int ingreso;
-		cout << "Ingrese el valor " << i + 1 << endl;
-		cin >> ingreso;
-		V[i] = ingreso;
-	}
-}
-```
-
----
-
-1) Declarar un arreglo de **N** componentes numéricos **enteros**. Luego, implementar variantes para la **inicialización** de sus componentes:
-* Definiendo la **función** *void inicializar_aleatorio(int V[], int tam)* que...
-
-```C++
-#include <iostream>
-#include <ctime>
-using namespace std;
-
-void inicializar_aleatorio(int V[], int tam);
-
-int main(int argc, char *argv[]) {
-	int vector[1000];
-	
-	int tamanioLogico;
-	cout << "Ingrese la cantidad de elementos que tiene su arreglo" << endl;
-	cin >> tamanioLogico;
-	
-	inicializar_aleatorio(vector, tamanioLogico);
-	return 0;
-}
-
-void inicializar_aleatorio(int V[], int tam) {
-	srand(time(NULL));
-	for (int i = 0; i < tam; i++) {
-		int ingreso = rand();
-		V[i] = ingreso;
-	}
-}
-```
-
-**¿Como podríamos modificar la función para que tenga un tope inferior y superior?**
 
 ---
 
@@ -293,7 +135,7 @@ void inicializar_aleatorio(int V[], int tam) {
 Array fill I - Beecrowd 1173 
 ]
 
-**Descripcion**
+**Descripción**
 
 Leer un número y hacer un programa que lo ponga en la primera posición de un arreglo N[10]. En cada posición subsecuente, se debe colocar el doble de lo que tiene la posición anterior. Por ejemplo, si el ingreso es 1, el arreglo tendrá los números 1,2,4,8, y los que correspondan cómo siguientes.
 
@@ -339,6 +181,189 @@ void imprimir_vector(int V[], int tam){
 		cout<<"N["<<i<<"]"<<" = "<<V[i]<<endl;
 }
 ```
+
+
+---
+
+.center[
+### Ejercicios
+Frecuencia de Los Números I - Beecrowd 1171 
+]
+
+**Descripción**
+
+En este problema su trabajo será leer algunos números enteros positivos e imprimir cuántas veces aparece cada número en la entrada. Deberá escribir cada valor diferente que aparezca en la entrada, ordenados ascendentemente.
+
+**Entrada:**
+
+La entrada consiste de un único caso de prueba. La primera línea contiene un entero **N**, que indica la cantidad de números enteros **X** (1 ≤ **X** ≤ 2000) que se deberán leer. Cada número no aparecerá más de 20 veces en la entrada.
+
+
+**Salida:**
+
+Imprima la salida como se muestra en el caso de ejemplo, indicando cuántas veces aparece cada número en la entrada, ascendentemente.
+
+Ejercicio en Beecrowd: https://judge.beecrowd.com/es/problems/view/1171
+
+---
+
+```C++
+#include <iostream>
+#define TAMFRECUENCIAS 20000
+using namespace std;
+void ingresaElementos(int [], int);
+void imprimeFrecuencias(int []);
+
+int main(int argc, char *argv[]) {
+	int frecuencias[TAMFRECUENCIAS] {};
+	int n;
+	
+	cin >> n;
+	
+	ingresaElementos(frecuencias, n);
+	imprimeFrecuencias(frecuencias);
+	
+	return 0;
+}
+void ingresaElementos(int frecuencias[], int n) {
+	for (int i = 0; i < n; i++) {
+		int ingreso;
+		cin >> ingreso;
+		frecuencias[ingreso]++;
+	}
+}
+void imprimeFrecuencias(int frecuencias[]) {
+	for (int i = 0; i < TAMFRECUENCIAS; i++) {
+		if (frecuencias[i] != 0) 
+			cout << i << " aparece " << frecuencias[i] << " vez(es)" << endl;
+	}
+}
+```
+
+---
+
+## Tipos de tamaño
+
+* Tamaño físico: es el tamaño máximo de elementos que el arreglo puede almacenar.
+
+![ejemplo tamaño físico](./ejemplotamaniofisico.png)
+
+* Tamaño lógico: es la cantidad de elementos que tiene almacenado el arreglo.
+
+![ejemplo tamaño lógico](./ejemplotamaniologico.png)
+
+---
+
+.center[
+### Ejercicios
+]
+	
+
+1) Declarar un arreglo de **N** componentes numéricos **enteros**. Luego, implementar variantes para la **inicialización** de sus componentes:
+* Asignando **valores** iniciales por extensión en la declaración.
+* Definiendo la **función** *void inicializar_teclado(int V[], int tam)* que carga los valores a través de la entrada estándar (teclado).
+* Definiendo la **función** *void inicializar_aleatorio(int V[], int tam)* que carga los valores a través de funciones de generación de números aleatorios haciendo uso de las funciones *srand(time(NULL))* y *rand()*
+
+---
+
+.center[
+### Ejercicios
+]
+	
+
+1) Declarar un arreglo de **N** componentes numéricos **enteros**. Luego, implementar variantes para la **inicialización** de sus componentes:
+* Asignando **valores** iniciales por extensión en la declaración.
+	
+```C++
+#include <iostream>
+using namespace std;
+#define N 1000
+
+```
+*Definimos N como un tamaño muy grande, ya que será el tamaño físico del arreglo, y no sabemos cuántos componentes contendrá*.
+
+---
+
+.center[
+### Ejercicios
+]
+
+1) Declarar un arreglo de **N** componentes numéricos **enteros**. Luego, implementar variantes para la **inicialización** de sus componentes:
+* Asignando **valores** iniciales por extensión en la declaración.
+
+```C++
+#include <iostream>
+using namespace std;
+#define N 1000
+
+int main() {
+   int vector[N] {12, 13, 14, 15};
+}
+```
+
+* *¿Cual será el tamaño físico de este arreglo? ¿Y el lógico?*
+* *¿Que pasa con los elementos a la derecha de los que declaramos (vector[5], vector[6], ...)? ¿Que pasa si inicializamos el vector como vector[N] {}, vector[N] = {} o vector[N] = {0}?*
+
+---
+
+1) Declarar un arreglo de **N** componentes numéricos **enteros**. Luego, implementar variantes para la **inicialización** de sus componentes:
+* Definiendo la **función** *void inicializar_teclado(int V[], int tam)* que carga los valores a través de la entrada estándar (teclado).
+
+```C++
+#include <iostream>
+using namespace std;
+#define N 1000
+
+void inicializar_teclado(int V[], int tam);
+
+int main(int argc, char *argv[]) {
+	int vector[1000];
+	int tamanioLogico;
+	cout << "Ingrese la cantidad de elementos que tiene su arreglo" << endl;
+	cin >> tamanioLogico;
+	
+	inicializar_teclado(vector, tamanioLogico);
+	return 0;
+}
+void inicializar_teclado(int V[], int tam) {
+	for (int i = 0; i < tam; i++) {
+		int ingreso;
+		cout << "Ingrese el valor " << i + 1 << endl;
+		cin >> ingreso;
+		V[i] = ingreso;
+	}
+}
+```
+
+---
+
+1) Declarar un arreglo de **N** componentes numéricos **enteros**. Luego, implementar variantes para la **inicialización** de sus componentes:
+* Definiendo la **función** *void inicializar_aleatorio(int V[], int tam)* que...
+
+```C++
+#include <iostream>
+#include <ctime>
+using namespace std;
+void inicializar_aleatorio(int V[], int tam);
+int main(int argc, char *argv[]) {
+	int vector[1000];
+	int tamanioLogico;
+	cout << "Ingrese la cantidad de elementos que tiene su arreglo" << endl;
+	cin >> tamanioLogico;
+	
+	inicializar_aleatorio(vector, tamanioLogico);
+	return 0;
+}
+void inicializar_aleatorio(int V[], int tam) {
+	srand(time(NULL));
+	for (int i = 0; i < tam; i++) {
+		int ingreso = rand();
+		V[i] = ingreso;
+	}
+}
+```
+
+**¿Como podríamos modificar la función para que tenga un tope inferior y superior?**
 
 ---
 
@@ -386,7 +411,6 @@ int main(int argc, char *argv[]) {
 	} while(!existeNumero(numerosIniciales, TAMANIO, sumaDigitos(ingreso)));
 	
 	cout << "El numero que cumple la condicion es: " << ingreso << endl;
-	
 	return 0;
 }
 
@@ -398,82 +422,24 @@ void inicializaArreglo(int V[], int tam) {
 		V[i] = ingreso;
 	}
 }
+```
 
+---
+
+```C++
 bool existeNumero(int V[], int tam, int numero) {
 	bool encontrado = false;
 	int i = 0;
-	
 	while (i < tam and !encontrado) {
 		if (V[i] == numero) encontrado = true;
 		i++;
 	}
-	
 	return encontrado;
 }
 
 int sumaDigitos(int numero) {
 	if (numero < 10) return numero;
 	return numero % 10 + sumaDigitos(numero/10);
-}
-```
-
----
-
-.center[
-### Ejercicios
-Frecuencia de Los Números I - Beecrowd 1171 
-]
-
-**Descripcion**
-
-En este problema su trabajo será leer algunos números enteros positivos e imprimir cuántas veces aparece cada número en la entrada. Deberá escribir cada valor diferente que aparezca en la entrada, ordenados ascendentemente.
-
-**Entrada:**
-
-La entrada consiste de un único caso de prueba. La primera línea contiene un entero **N**, que indica la cantidad de números enteros **X** (1 ≤ **X** ≤ 2000) que se deberán leer. Cada número no aparecerá más de 20 veces en la entrada.
-
-
-**Salida:**
-
-Imprima la salida como se muestra en el caso de ejemplo, indicando cuántas veces aparece cada número en la entrada, ascendentemente.
-
-Ejercicio en Beecrowd: https://judge.beecrowd.com/es/problems/view/1171
-
----
-
-```C++
-#include <iostream>
-#define TAMFRECUENCIAS 20000
-using namespace std;
-void ingresaElementos(int [], int);
-void imprimeFrecuencias(int []);
-
-int main(int argc, char *argv[]) {
-	int frecuencias[TAMFRECUENCIAS] {};
-	int n;
-	
-	cin >> n;
-	
-	ingresaElementos(frecuencias, n);
-	imprimeFrecuencias(frecuencias);
-	
-	return 0;
-}
-
-void ingresaElementos(int frecuencias[], int n) {
-	for (int i = 0; i < n; i++) {
-		int ingreso;
-		cin >> ingreso;
-		frecuencias[ingreso]++;
-	}
-}
-
-
-void imprimeFrecuencias(int frecuencias[]) {
-	for (int i = 0; i < TAMFRECUENCIAS; i++) {
-		if (frecuencias[i] != 0) 
-			cout << i << " aparece " << frecuencias[i] << " vez(es)" << endl;
-	}
 }
 ```
 
