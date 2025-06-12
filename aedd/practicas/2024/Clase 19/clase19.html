@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 19</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 19 - Registros
+### Comisión A y F
+### Docente de práctica:
+#### Tomás Assenza
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+---
+layout: false
+
+.center[
+### Ejercicios - Guía práctica
+Registros - Ejercicio 2
+]
+
+Un diccionario puede ser visto como una colección ordenada de palabras. Cada palabra, consiste en un término (string de hasta 25 caracteres), una categoría gramatical (0 = sustantivo, 1 = adjetivo, 2 = artículo, 3 = pronombre y 4 = verbo), y una o más definiciones (lista de -como máximo- 5 strings).
+
+En base a estas definiciones, se le solicita:
+
+* Defina todas las estructuras de datos necesarias para representar un diccionario.
+* Defina e implemente la función cantidadDeArticulos() que recibe un diccionario y devuelve la cantidad de palabras que corresponden a artículos.
+* Defina e implemente la función encontrarPalabra() que recibe un diccionario y un término e imprime por pantalla todas las definiciones asociadas a dicho término. Además, si el término fue encontrado devuelve true. En caso contrario, se devuelve false.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Registros - Ejercicio 2
+]
+
+* Defina e implemente la función agregarPalabra() siguiendo el siguiente esquema:
+
+```
+bool agregarPalabra(...,Palabra p) {
+...
+}
+```
+
+La función recibe una palabra y la agrega en orden alfabético dentro de un diccionario.
+
+* Defina e implemente la función cargarEnMatriz() que recibe un diccionario y devuelve una matriz M de 26 columnas por 5 filas. En M, cada columna corresponde a una letra, mientras que cada fila corresponde a una categoría gramatical. Luego, al retornar, cada celda de la matriz M[i][j] debe contener la cantidad de palabras que inician con la j-ésima letra y corresponden a la i-ésima categoría gramatical.
+* Defina e implemente la función ordenarPalabras() que recibe un diccionario con todas sus palabras desordenadas. Como resultado de la llamada a la función, el diccionario se encuentra ordenado.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Registros - Ejercicio 4
+]
+
+Una CAJA de supermercado puede ser vista como una COLA de PEDIDOS esperando ser atendidos. Toda CAJA tiene un NÚMERO IDENTIFICADOR (valor entero). A su vez, un PEDIDO se encuentra formado por un conjunto de ÍTEMS (máximo 30 ítems por PEDIDO) y
+un código de cliente (valor entero). Un ÍTEM queda definido por un código de producto (valor entero) y una cantidad (valor entero).
+
+l supermercado COTO posee todos sus PRODUCTOS identificados en una matriz de 20x100 elementos donde el código de producto surge de la concatenación del número de fila seguido del número de columna. Es decir, el código del producto situado en la fila 15, columna 25 es 1525. A su vez, cada elemento de la matriz corresponde a un PRODUCTO definido según su marca (string), descripción (string) y precio unitario (valor real). 
+
+Cuando un PEDIDO es atendido en una CAJA, el PEDIDO se convierte en una VENTA y sale de la COLA DE PEDIDOS DE LA CAJA. Una VENTA contiene el PEDIDO y el total facturado para el mismo (valor real).
+
+---
+
+En base a estas definiciones, se le solicita:
+
+* Defina todas las estructuras de datos necesarias para representar los productos, las 15 cajas y las ventas del supermercado COTO.
+* Sobre la definición del supermercado COTO, se le solicita:
+  * Defina e implemente la función agregarPedidoEnCaja() cual recibe un PEDIDO y un NÚMERO DE CAJA (identificador), y actualiza la COLA DE PEDIDOS de la caja que tiene ese identificador incorporando el nuevo pedido en el lugar apropiado.
+  * Defina e implemente la función atenderSiguientePedido() que genera una VENTA para cada caja cuya COLA DE PEDIDOS tenga PEDIDOS pendientes de ser atendidos. Como resultado de esta función, se debe retornar la lista de VENTAS generadas y el total facturado en este conjunto.
+  * Defina e implemente la función marcaMasCara() que muestra por pantalla la MARCA del producto con CÓDIGO iniciado en 18 que tiene mayor PRECIO UNITARIO.
+  * Defina e implemente la función cajaMasLenta() que devuelve el NÚMERO IDENTIFICADOR de la CAJA que tiene la COLA DE PEDIDOS más larga.
+  * Defina e implemente la función existeCajaRapida() que garantiza que, en un momento dado, sólo existe una caja cuyos PEDIDOS tienen cómo máximo 10 ITEMS. Si sólo hay una caja que cumple esta característica, la función devuelve true. En otro caso, devuelve false.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Registros - Ejercicio 5
+]
+
+Y con las eliminatorias llegando a su fin, se viene el mundial de fútbol Qatar 2022. La organización ha solicitado que se desarrolle una solución para dar soporte al seguimiento de los partidos, como así también automatice la generación de llaves de cuartos, semis y finales. Dicho
+proyecto se divide entre varias empresas, y corresponde a usted desarrollar la parte de las llaves correspondientes a cuartos, semis, y finales.
+
+El sistema debe permitir cargar todas las llaves de cuartos de final (4 llaves, 8 equipos). Cada llave debe tener la fecha y hora en la cual se disputa el partido, los equipos que lo disputan, y el marcador final (dado que es eliminatoria, siempre habrá un equipo ganador). Dichas llaves, a su vez, darán paso a las llaves de semifinales y, a su vez, a los dos partidos de la final. Las llaves de semifinales y finales deberán llenarse automáticamente a medida que se cargan los resultados de los partidos.
+
+---
+
+Como parte del sistema se le solicita:
+* Diseñar el modelo de datos que dará soporte a la sección del fixture indicada.
+* Permitir la carga de los partidos correspondientes a cuartos: los nombres de los equipos que juegan, la fecha y hora del partido, y la ubicación.
+* Permitir la carga de los partidos correspondientes a semifinales y finales: fecha y hora del partido y ubicación. En este caso, los equipos se deben determinar a partir de los resultados de las llaves de cuartos y semifinales (respectivamente).
+* Diseñar e implementar la función informarResultados, la cual muestra el listado de los equipos campeón, subcampeón, tercero y cuarto.
+
+---
+
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>

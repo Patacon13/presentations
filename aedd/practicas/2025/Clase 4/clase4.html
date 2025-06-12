@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 4</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 4 - Estructuras condicionales
+### Comisión A
+### Docentes de práctica:
+#### Tomás Assenza
+#### Exequiel Benavidez
+#### Facundo Sanchez
+#### Nicolas Huber
+#### Brian Briani
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+
+---
+
+layout: false
+
+.center[
+### Beecrowd - 3301
+]
+
+**Descripción**
+
+El tío Patinhas era un millonario que vivía en su mansión y tenía tres sobrinos: Huguinho, Zezinho y Luisinho. Se confundió fácilmente entre los tres sobrinos porque eran muy similares, a pesar de sus diferentes edades. Un día, los tres hicieron una apuesta con su tío: si acertaba quién era el sobrino del medio, es decir, ni el menor ni el mayor, le darían una moneda de oro y si fallaba, tendría que dar a cada uno uno una moneda de oro. Así que el tío te pidió ayuda para poder ganar la apuesta.
+
+**Entrada**
+
+La entrada consta de varios casos de prueba. Cada caso contiene tres valores enteros H, Z y L, que representan las edades de Huguinho, Zezinho y Luisinho, respectivamente.
+
+**Salida**
+
+Para cada caso de prueba, escriba el nombre del sobrino del medio en minúsculas.
+
+---
+
+.center[
+### Solución
+]
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+  int edadHuguinho, edadZezinho, edadLuisinho;
+  cin >> edadHuguinho >> edadZezinho >> edadLuisinho;
+  
+  if (edadHuguinho > edadZezinho and edadHuguinho < edadLuisinho) 
+    cout << "huguinho" << endl;
+  else if (edadHuguinho < edadZezinho and edadHuguinho > edadLuisinho) 
+    cout << "huguinho" << endl;
+  else if (edadZezinho > edadHuguinho and edadZezinho < edadLuisinho) 
+    cout << "zezinho" << endl;
+  else if (edadZezinho < edadHuguinho and edadZezinho > edadLuisinho) 
+    cout << "zezinho" << endl;
+  else 
+    cout << "luisinho" << endl;
+  return 0;
+}
+```
+---
+
+.center[
+### Solución con or
+]
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+  int edadHuguinho, edadZezinho, edadLuisinho;
+  cin >> edadHuguinho >> edadZezinho >> edadLuisinho;
+  
+  if ((edadHuguinho > edadZezinho and edadHuguinho < edadLuisinho) 
+  or (edadHuguinho < edadZezinho and edadHuguinho > edadLuisinho)) 
+    cout << "huguinho" << endl;
+  else if ((edadZezinho > edadHuguinho and edadZezinho < edadLuisinho)
+  or (edadZezinho < edadHuguinho and edadZezinho > edadLuisinho)) 
+    cout << "zezinho" << endl;
+  else 
+    cout << "luisinho" << endl;
+  return 0;
+}
+```
+
+---
+
+.center[
+### Beecrowd - 1045
+]
+
+Recibir 3 números double (A, B and C) que representan los lados de un triángulo y ordenarlos de manera decreciente, de tal manera que el lado A sea el mas grande de los tres lados. A continuación, determinar el tipo de triángulo que pueden formar, basado en los siguientes casos, mostrando siempre el mensaje apropiado:
+
+* si A ≥ B + C, mostrar el mensaje: **NAO FORMA TRIANGULO**
+* si A² = B² + C²  mostrar el mensaje: **TRIANGULO RETANGULO**
+* si A² > B² + C², mostrar el mensaje: **TRIANGULO OBTUSANGULO**
+* si A² < B² + C², mostrar el mensaje: **TRIANGULO ACUTANGULO**
+* si los tres lados son del mismo tamaño, mostrar el mensaje: **TRIANGULO EQUILATERO**
+* si sólo dos lados son iguales y el tercero es diferente, mostrar el mensaje: **TRIANGULO ISOSCELES**
+
+**Entrada**
+
+La entrada contiene tres números double, A (0 < A) , B (0 < B) y C (0 < C).
+
+**Salida**
+
+Mostrar todas las clasificaciones del triángulo presentadas en la entrada.
+
+
+---
+
+.center[
+### Solución
+]
+
+
+```C++
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double a, b, c;
+
+    cin >> a >> b >> c;
+
+	double tempIntercambio;
+    if (a < b) {
+		tempIntercambio = a;
+		a = b;
+		b = tempIntercambio;
+	}
+    if (a < c) {
+		tempIntercambio = a;
+		a = c;
+		c = tempIntercambio;
+	}
+    if (b < c) {
+		tempIntercambio = b;
+		b = c;
+		c = tempIntercambio;
+	}
+
+```
+
+---
+
+.center[
+### Solucion (parte 2)
+]
+
+```C++
+    if (a >= b + c) {
+        cout << "NAO FORMA TRIANGULO" << endl;
+    } else {
+        if (a*a == b * b + c * c) {
+            cout << "TRIANGULO RETANGULO" << endl;
+        } else if (a * a > b * b + c * c) {
+            cout << "TRIANGULO OBTUSANGULO" << endl;
+        } else {
+            cout << "TRIANGULO ACUTANGULO" << endl;
+        }
+
+        if (a == b and b == c) {
+            cout << "TRIANGULO EQUILATERO" << endl;
+        } else if (a == b or a == c or b == c) {
+            cout << "TRIANGULO ISOSCELES" << endl;
+        }
+    }
+
+    return 0;
+}
+```
+
+---
+
+.center[
+### Ejercicio 12 - Guía 3
+]
+
+Un software de administración de proyectos tiene un precio que va de acuerdo al tipo de servicio: si se instala On Premises (O) o si se presta como servicio Hosting (H). Además, dicho precio se calcula diferente de acuerdo al tipo de servicio, a saber:
+
+Tipo de servicio On Premises (O):
+
+* Version C (Community): Precio mensual: $0.00 (no importa la cantidad de usuarios que lo usen).
+* Versión B (Business): Precio mensual: $100 hasta 25 usuarios inclusive, $200 para más de 25 usuarios.
+* Versión P (Premium): Precio mensual: $200 hasta 50 usuarios inclusive, $500 para más de 50 usuarios.
+
+Tipo de servicio Hosting (H):
+
+Version C (Community): Precio mensual: $0.00 (no importa la cantidad de usuarios que lo usen).
+Versión B (Business): Precio mensual: $25.00 + $1.50 por usuario, hasta 25 usuarios inclusive. $2.00 por usuario si son más de 25.
+Versión P (Premium): Precio mensual: $50 + $2.50 por usuario, hasta 50 usuarios inclusive. $3.50 por usuario si son más de 50.
+
+---
+
+.center[
+### Ejercicio 5 - Guía 3
+]
+
+Se solicita escribir el código requerido para poder ingresar desde el teclado un número de día de la semana (de 1 a 7) y un número de mes (de 1 a 12), y que imprima el nombre del día de la semana y el del mes correspondientes, en texto. Si el día o el mes ingresado es incorrecto entonces deberá mostrarse un mensaje de error que indique la situación.
+
+Ejemplos:
+* Si el usuario ingresa 3 y 8, se mostrará por pantalla Martes y Agosto.
+* Si el usuario ingresa 12 y 7, se mostrará por pantalla "Dia inexistente".
+
+---
+
+# Puesta en común
+
+* Ejercicio 6
+* Ejercicio 8
+* Ejercicio 14
+
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create({ slideNumberFormat: ""});
+</script>
+</body>
+</html>

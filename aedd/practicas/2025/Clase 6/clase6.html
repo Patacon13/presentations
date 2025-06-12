@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 6</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica  6 - Estructuras repetitivas
+### Comisión A
+### Docentes de práctica:
+#### Tomás Assenza
+#### Exequiel Benavidez
+#### Facundo Sanchez
+#### Nicolas Huber
+#### Brian Briani
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+
+---
+
+layout: false
+
+.center[
+### Ejercicio 5 - Guía 4
+]
+
+Estás desarrollando un programa en C++ que te permitirá realizar varias operaciones con los números ingresados por el usuario. Tu objetivo es diseñar un programa interactivo que solicite al usuario ingresar números y que calcule la suma de los números pares ingresados, la cantidad de números impares y la cantidad de números negativos, hasta que se alcance el final del archivo (EOF) mediante la combinación de teclas Ctrl + Z en Windows o Ctrl + D en sistemas Unix
+
+---
+
+.center[
+### Solución
+]
+
+```C++
+#include <iostream>
+using namespace std;
+  
+int main(int argc, char *argv[]) {
+    
+  int dato;
+  int sum_pares = 0;
+  int cant_impares = 0;
+  int cant_neg = 0;
+    
+  while(cin >> dato) {
+      if (dato % 2 == 0)
+        sum_pares += dato;
+      else
+        cant_impares++;
+      
+      if(dato < 0 )
+        cant_neg++;
+  }
+    
+  cout << "La suma de los datos pares da: " << sum_pares << endl;
+  cout << "La cantidad de datos impares fue de: "<< cant_impares << endl;
+  cout << "Los numeros negativos fueron: " << cant_neg << endl;
+    
+  return 0;
+}   
+```
+
+---
+
+.center[
+### Ejercicio 11 - Guía 4
+]
+
+Escribir un programa que permita ingresar el valor de la población actual de un país (PobAct), la tasa de crecimiento anual (Tasa) y un valor de población esperada, al que desea llegar (PobEsp). Suponiendo que la tasa de crecimiento sea constante, determinar y mostrar en pantalla el año en el cual la población supere la población esperada
+
+**Ejemplo:**
+
+Se ingresan las ternas:
+
+PobAct: 450000 h - Tasa: 60000 h/a - PobEsp: 1200000 h
+
+---
+
+.center[
+### Solucion
+]
+
+```C++
+#include <iostream>
+using namespace std;
+  
+int main(int argc, char *argv[]) {
+  unsigned int PobAct, Tasa, PobEsp, PobProy;
+  int anio =1;
+    
+  cout << "Indique los siguientes datos:"<<endl;
+  cout << "Poblacion actual: ";
+  cin >> PobAct;
+  cout <<"Tasa de crecimiento poblacional por anio: ";
+  cin >> Tasa;
+  cout << "Poblacion esperada: ";
+  cin >> PobEsp;
+    
+  PobProy = PobAct + Tasa;
+    
+  while (PobProy <= PobEsp) {
+    PobProy = PobProy + Tasa;
+    anio++;
+  }
+    
+  cout << "La poblacion esperada se va a alcanzar en "
+       << anio << " anios." << endl;
+    
+    
+  return 0;
+}  
+```
+
+---
+
+
+.center[
+### Beecrowd - 1113
+]
+
+Lea un número indeterminado de pares de enteros. Escriba un mensaje para cada par, indicando si estos dos números están en orden ascendente o descendente.
+
+**Entrada**
+
+La entrada consta de varios casos de prueba. Cada caso contiene dos enteros X e Y. La entrada finaliza cuando X = Y.
+
+**Salida**
+
+Para cada caso de prueba imprima Crescente (creciente en portugués), si los valores de X e Y están en orden ascendente, caso contrario imprima Decrescente (decreciente en portugués).
+
+
+---
+
+.center[
+### Solucion
+]
+
+```C++
+#include<iostream>
+using namespace std;
+int main(){
+  int x, y;
+  
+  do {
+    cin >> x >> y;
+    if (x > y) {
+      cout<<"Decrescente"<<endl;
+    }
+    else {
+      if (x != y) {
+        cout<<"Crescente"<<endl;
+      }
+    }
+  } while (x!=y);
+  
+  return 0;
+}  
+```
+
+---
+
+.center[
+### Ejercicio 13 - Guía 4
+]
+
+Un pirata digital encontró un cofre con una clave: un número entero de hasta 5 cifras. Para abrirlo, debe conocer la suma de sus cifras. Escribí un programa que le pida al usuario ingresar un número entero positivo y muestre la suma de sus cifras
+
+
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create({ slideNumberFormat: ""});
+</script>
+</body>
+</html>

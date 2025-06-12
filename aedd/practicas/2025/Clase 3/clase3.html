@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 3</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 3 - Estructuras condicionales
+### Comisión A
+### Docentes de práctica:
+#### Tomás Assenza
+#### Facundo Sanchez
+#### Nicolas Huber
+#### Brian Briani
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+---
+
+layout: false
+
+.center[
+### Solucion - ejercicio 4
+]
+
+```C++
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+  char x;
+  cout << "Ingrese el caracter: "; cin >> x;
+  cout << "Es una letra minuscula? " << (x >= 'a' and x <= 'z') << endl;
+  cout << "Es una letra mayuscula? " << (x >= 'A' and x <= 'Z') << endl;
+  cout << "Es un numero? " << (x>='0' and x<='9') << endl;
+  cout << "Es un simbolo? " << (!(x >= '0' and x <= '9') and
+                            !(x >= 'A' and x <= 'Z') and
+                            !(x >= 'a' and x <= 'z')) << endl;
+  return 0;
+}  
+```
+
+---
+
+.center[
+### Solucion - ejercicio 9
+]
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+	
+	char n;
+	cin >> n;
+	bool booleano=n;
+	short shorteando = n;
+	int inteando = n;
+	long longeando = n;
+	float flotando = n;
+	double doblando = n;
+	
+	cout << "booleano " << booleano << endl;
+	cout << "short " << shorteando << endl;
+	cout << "int " << inteando << endl;
+	cout << "long " << longeando << endl;
+	cout << "float " << flotando << endl;
+	cout << "double " << doblando << endl;
+		
+	return 0;
+}
+```
+
+---
+
+.center[
+### Solucion - ejercicio 12
+]
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+  char a, b;
+  cout << "Ingrese el primer dígito numérico: ";
+  cin >> a;
+  cout << "Ingrese el segundo dígito numérico: ";
+  cin >> b;
+  cout << endl;
+  cout << "La suma de ambos dígitos da como resultado: " << (a - '0') + (b - '0') 
+       << endl;
+  return 0;
+}
+```
+
+---
+
+
+## Estructura if
+
+* Selección incompleta: Si sólo se desea realizar una acción en caso que la expresión booleana sea verdadera y no hay acción por el falso.
+
+--
+
+* Selección completa: Se evalúa una expresión booleana y según sea verdadera o falsa, se ejecuta una acción u otra; por cualquier caso la ejecución continúa con la sentencia siguiente al if. 
+
+--
+
+* Selección anidada: Una sentencia if es anidada cuando la acción de la rama verdadera y/o la rama falsa, son también una sentencia if.
+
+---
+
+.center[
+### OmegaUp - 5725
+]
+
+**Descripción**
+
+Una secuencia de tres enteros A, B, C es creciente débil si a <= b <= c y decreciente débil si a >= b >= c. Si la secuencia es tanto creciente débil como decreciente débil, preferiremos notar el hecho de que todos sus números son iguales. Escribe un programa que determine si una secuencia dada es creciente débil, decreciente débil, si todos los números son iguales o si no existe un orden aparente.
+
+**Entrada**
+
+Los tres enteros A, B, C. Puedes suponer que -100 <= A, B, C <= 100.
+
+**Salida**
+
+Una letra C si la secuencia es creciente débil, una letra D si es decreciente débil, una letra I si todos los números son iguales o una letra X si no existe un orden aparente.
+
+---
+
+.center[
+### Solución
+]
+
+```C++
+#include <iostream>
+using namespace std;
+  
+int main() {
+  int a,b,c;
+  cin >> a >> b >> c;
+
+  if (a == b && b == c) cout << "I" << endl;
+  else if (a <= b && b <= c) cout << "C" << endl;
+  else if (a >= b && b >= c) cout << "D" << endl;
+  else cout << "X" << endl;
+  return 0;
+}
+```
+
+
+---
+
+.center[
+### Ejercicio 4 - Guía 3
+]
+
+Un postulante a un empleo realiza un test de capacitación. Se ingresa por teclado la cantidad total de preguntas realizadas y la cantidad de preguntas contestadas correctamente. Se pide desarrollar un programa que informe el nivel obtenido por el postulante, según el porcentaje de respuestas correctas y sabiendo que:
+
+* Nivel máximo: Porcentaje >= 90.
+* Nivel medio: Porcentaje >= 75% y < 90%.
+* Nivel regular: Porcentaje >= 50% y < 75%.
+* Fuera de nivel: Porcentaje < 50%.
+
+---
+
+.center[
+### Ejercicio 7 - Guía 3
+]
+
+Diseñe un algoritmo que lea un número de tres cifras y determine si es o no capicúa. Un número es capicúa si “se lee igual al derecho y al revés”.
+
+**Ejemplo**:
+* Si se ingresa 383, el programa retorna un mensaje indicando que es capicúa.
+* Si se ingresa 473, el programa retorna un mensaje indicando que no es capicúa
+
+---
+
+.center[
+### Ejercicio 6 - Guía 3
+]
+
+
+En un supermercado el cliente puede pagar con tarjeta de débito (opciones ‘d’ ó ‘D’), con Billetera
+Santa Fe (opciones ‘b’ ó ‘B’) o con tarjeta de crédito (opciones ‘c’ o ‘C’), en 1 o 3 cuotas. El precio
+final de la compra del cliente estará sujeto a las siguientes condiciones:
+
+* Si el cliente paga con tarjeta de crédito deberá indicar si paga en 1 o 3 cuotas. Si el pago es en 1 cuota no habrá recargo. Si el pago es en 3 cuotas tendrá un recargo del 10% del monto total.
+* Si el cliente paga con tarjeta de débito y el importe a pagar es superior a $3000 se le hace un 15% de descuento. En caso contrario no se aplica ningún descuento ni recargo.
+* Si el cliente paga con Billetera Santa Fe, obtiene un descuento del 30% sobre el monto total.
+
+Escribir un programa en C++ que permita leer por teclado el monto de la compra y su forma de pago, y que calcule el monto final a pagar por el cliente de acuerdo a la forma de pago elegida.
+Cuando corresponda, especificar también el monto a pagar en cada cuota.
+
+---
+
+# Puesta en común
+
+* Ejercicio 10
+* Ejercicio 13
+
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create({ slideNumberFormat: ""});
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 5</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 5 - Estructuras condicionales y repetitivas
+### Comisión A
+### Docentes de práctica:
+#### Tomás Assenza
+#### Exequiel Benavidez
+#### Facundo Sanchez
+#### Nicolas Huber
+#### Brian Briani
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+
+---
+
+layout: false
+
+.center[
+### Ejercicio 9 - Guía 3
+]
+
+Escribir un programa que dado un número del 0 al 9, escriba en pantalla los números restantes
+hasta el 10.
+
+**Ejemplo:**
+
+Ingrese un número del 1 al 10: 7
+
+8
+
+9
+
+---
+
+```C++
+int main(int argc, char *argv[]) {
+
+  int numero;
+  cout << "Ingrese un numero (entre 0 y 9)"<<endl;
+  cin >> numero;
+  
+  switch(numero){
+    
+  case 0:
+		cout << "1\t";
+	case 1:
+		cout << "2\t";
+	case 2:
+		cout << "3\t";
+	case 3:
+		cout << "4\t";
+	case 4:
+		cout << "5\t";
+	case 5:
+		cout << "6\t";
+	case 6:
+		cout << "7\t";
+	case 7:
+		cout << "8\t";
+	case 8:
+		cout << "9\t";
+	case 9:
+		cout << "10\t";
+    break;
+  default:
+    cout << "Se ingreso un numero fuera del rango" << endl;
+  };
+}  
+```
+
+---
+
+.center[
+### Beecrowd - 1048
+]
+
+La empresa ABC decidió dar un aumento salarial a sus empleados, según la siguiente tabla:
+
+0 - 400.00 -> 15%
+
+400.01 - 800.00 -> 12%
+
+800.01 - 1200.00 -> 10%
+
+1200.01 - 2000.00 -> 7%
+
+Por encima de 2000.00 -> 4%
+
+Lea el salario del empleado, calcule e imprima el nuevo salario del empleado, así como el dinero ganado y el porcentaje de aumento obtenido. 
+
+**Entrada**
+
+La entrada contiene un solo número de punto flotante, con 2 dígitos luego del punto decimal.
+
+
+**Salida**
+
+Imprimir el número correspondiente informando el nuevo salario, el dinero extra (mostrar con dos cifras decimales) y el porcentaje obtenido.
+
+
+---
+
+.center[
+### Ejercicio 11 - Guía 3
+]
+
+Un número entero positivo se dice alternante si está compuesto de una secuencia de dígitos que alterna entre uno par y otro impar. Desarrollar un programa que permita ingresar un número de cinco cifras y determine si es alternante.
+
+**Ejemplos:**
+
+* 18307 es alternante.
+* 74120 no es alternante
+
+---
+
+.center[
+### Ejercicio 1 - Guía 4
+]
+
+Eres un mago en entrenamiento y necesitas encontrar el número mágico. Para encontrar ese número debes  escribir un programa en C++ que haga lo siguiente:
+
+
+* Pide al usuario que ingrese un número entre  [10000, 100000].
+* Si el número es par, muestra un mensaje mágico: “¡Has encontrado un número mágico par!”
+* Si el número es impar, muestra otro mensaje mágico: “¡Has encontrado un número mágico impar!”
+* Si el usuario ingresa un valor fuera del rango, pídele que lo intente de nuevo hasta que proporcione una entrada válida.
+
+---
+
+.center[
+### Solución
+]
+
+```C++
+#include <iostream>
+using namespace std;
+  
+int main(int argc, char *argv[]) {
+    
+  int numero_magico;
+  cout << "Ingrese un numero entero." << endl;
+  cin >> numero_magico;
+    
+  while (numero_magico > 100000 or numero_magico < 10000) {
+    cout << "Intente con otro numero." << endl;
+    cin >> numero_magico;
+  }
+    
+  if (numero_magico % 2 == 0)
+      cout << "Has encontrado un numero magico par!!" << endl;
+    else
+      cout << "Has encontrado un numero magico impar!!" << endl;
+    
+    return 0;
+}
+```
+
+
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create({ slideNumberFormat: ""});
+</script>
+</body>
+</html>

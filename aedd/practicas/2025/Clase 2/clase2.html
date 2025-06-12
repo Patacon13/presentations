@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 2</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 2 - Tipos de datos, operadores y casting
+### Comisión A
+### Docentes de práctica:
+#### Tomás Assenza
+#### Facundo Sanchez
+#### Nicolas Huber
+#### Brian Briani
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+---
+
+layout: false
+
+## Casting
+
+* Implicito
+```C++
+int numeroEntero;
+float numeroFlotante = 4.5;
+numeroEntero = numeroFlotante;
+```
+
+--
+
+* Explícito
+```C++
+float precio = (int) 16.77 + (int) 23.99;
+```
+
+---
+
+.center[
+### Ejercicio 16 - Guía 2
+]
+
+¿Se pueden sumar dos caracteres? ¿Qué se obtiene?. Ingresar por teclado dos variables de tipo caracter X e Y. Sumar las variables y asignarle el resultado a X. Mostrar por pantalla los valores de X e Y. ¿Qué pasa si ingreso un caracter numérico?
+
+---
+
+.center[
+### Promedio 2 - Beecrowd (1006)
+]
+
+
+
+Leer tres valores (variables A, B y C), que son las tres notas de estudiantes. Entonces, calcule el promedio, considerando que la nota A tiene peso 2, la nota B tiene peso 3 y la nota C tiene peso 5. Cosiderar que cada nota puede ser del 0 al 10.0, siempre con un punto decimal.
+
+**Entrada**
+
+El archivo de entrada contiene 3 valores de punto flotante (double) con un dígito decimal después de la coma.
+
+**Salida**
+
+Imprime el mensaje "MEDIA" (Promedio en Portugués) y el promedio de los estudiantes de acuerdo con el siguiente ejemplo, con un espacio en blanco antes y después del signo igual.
+
+**Ejemplo**
+
+|Entrada|Salida|
+|---|---|
+|5.0 6.0 7.0|MEDIA = 6.3
+|5.0 10.0 10.0|MEDIA = 9.0
+|10.0 10.0 5.0|MEDIA = 7.5
+
+---
+
+.center[
+### Solucion
+]
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+  
+  double primeraNota;
+	double segundaNota;
+	double terceraNota;
+	double media;
+
+	cin>>primeraNota;
+	cin>>segundaNota;
+	cin>>terceraNota;
+
+  media = ((primeraNota * 2) + (segundaNota * 3 + (terceraNota * 5))) / 10;
+  cout<<fixed<<setprecision(1);
+  cout<<"MEDIA = "<<media<<endl;
+  
+  return 0;
+}  
+```
+
+---
+
+### Recordemos
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+  
+  int primerOperando, segundoOperando;
+  
+  cout << "Ingresa el primer número: ";
+  cin >> primerOperando;
+  cout << "Ingresa el segundo número: ";
+  cin >> segundoOperando;
+  
+  cout << "Suma: " << primerOperando + segundoOperando << endl;
+  cout << "Diferencia: " << primerOperando - segundoOperando << endl;
+  cout << "Producto: " << primerOperando * segundoOperando << endl;
+  cout << "Cociente: " << primerOperando / segundoOperando << endl;
+  
+  return 0;
+}  
+```
+
+---
+
+.center[
+### Ejercicio 6 - Guía 2
+]
+
+¿Qué valor se almacena en las variables i (de tipo int) y x (de tipo float) tras ejecutar cada una de estas sentencias?
+
+* i = 2;
+* i = 2 / 4
+* x = 2.0 / 4.0;
+* x = 2 / 4;
+* i = 2.0 / 4;
+* x = 2.0 / 4;
+
+---
+
+.center[
+### Ejercicio 13 - Guía 2
+]
+
+En el marco de la programación en C++, se te propone implementar un programa que calcule el área de un círculo en base a un valor de radio leido por teclado. Para el mismo programa, deberás mostrar 3 resultados del área obtenida. Cada resultado deberá ser calculado en base a una representación de PI basada en:
+
+* Una constante literal.
+* Una constante definida.
+* Una constante declarada.
+
+---
+
+.center[
+### Solucion
+]
+
+```C++
+#include <iostream>
+#define PI_DEFINIDA 3.14159
+using namespace std;
+  
+int main(int argc, char *argv[]) {
+    
+  double radio;
+    
+  const double PI_DECLARADA = 3.14159;
+    
+  cout << "Ingrese el radio del círculo" << endl;
+  cin >> radio;
+    
+  cout << "Usando constante literal: " << 3.14159 * radio * radio << endl;
+  cout << "Usando constante definida: " << PI_DEFINIDA * radio * radio << endl;
+  cout << "Usando constante declarada: " << PI_DECLARADA * radio * radio << endl;
+    
+  return 0;
+}
+```
+
+
+---
+
+.center[
+### Puesta en Común
+]
+
+* Ejercicio 9
+* Ejercicio 12
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create({ slideNumberFormat: ""});
+</script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 18</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 18 - Registros
+### Comisión A y F
+### Docente de práctica:
+#### Tomás Assenza
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+---
+layout: false
+
+.center[
+### Ejercicios - Guía práctica
+Registros - Ejercicio 1
+]
+
+Modelar las siguientes estructuras según corresponda:
+
+* Un punto en el plano.
+* Una línea.
+* Una fecha.
+* Los datos personales de un individuo.
+* Los datos personales de un estudiante.
+* La lista de alumnos de un curso.
+* Los datos personales de un empleado.
+* Un naipe.
+* Un mazo de naipes.
+* Un libro.
+* Un inventario de libros de una biblioteca.
+
+
+---
+
+```C++
+struct Punto {
+    int x, y;
+};
+```
+
+--
+
+```C++
+struct Linea {
+    Punto p1, p2;
+};
+```
+
+--
+
+```C++
+struct Fecha {
+    int dia, mes, anio;
+};
+```
+
+--
+
+```C++
+struct Ubicacion {
+    string calle;
+    int numero;
+    string pais;
+    string localidad;
+};
+```
+
+```C++
+struct Individuo {
+    string nombre;
+    string apellido;
+    Fecha fechaNacimiento;
+    Ubicacion domicilio;
+}
+```
+
+---
+
+// Asumimos que trabajamos sobre un estudiante de la UTN - FRSF
+```C++
+struct Estudiante {
+    Individuo datosGenerales;
+    string carrera;
+    int legajo;
+}
+```
+
+--
+
+```C++
+struct Curso {
+    Estudiante estudiantes[100];
+    int cantidadEstudiantes = 0;
+}
+```
+
+--
+
+```C++
+struct Empleado {
+    Individuo datosGenerales;
+    string empresa, categoria;
+    int salario;
+};
+```
+
+--
+
+```C++
+struct Naipe {
+    int numero;
+    string tipo;
+};
+```
+
+--
+
+```C++
+struct Mazo {
+    Naipe naipes[100];
+    cantidadNaipes = 100;
+};
+```
+
+---
+
+```C++
+struct Libro {
+    string hojas[100];
+    int cantidadHojas = 0;    
+};
+```
+
+--
+
+```C++
+struct Inventario {
+    Libro libros[100];
+    int cantidadLibros = 0;
+}
+```
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Registros - Ejercicio 2
+]
+
+Crear una estructura empleado que contiene la siguiente información:
+
+* Nombre
+* Dirección (calle, número, barrio: “María Selva”, “Candioti”, “Sur”, etc)
+* Fecha de nacimiento (día,mes,año)
+* Sexo (M = masculino, F = femenino)
+* Sueldo
+* Categoría (“Operario”, “Jefe de área”, “Gerente”)
+* Fecha de ingreso (día,mes,año)
+
+Utilizando la estructura, declarar un vector de 100 elementos y luego:
+
+* Imprimir el nombre y el sexo del cuarto empleado.
+* Imprimir los nombres de todos los empleados que tienen un salario mayor a $57500.
+* Aumentar un 15% el sueldo a los empleados con antigüedad mayor a 5 años.
+* Listar los empleados menores de 25 años.
+* Listar los empleados que viven en el barrio Sur.
+* Listar los operarios que viven en el barrio Candioti.
+* Listar el vector ordenado por nombre.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Registros - Ejercicio 3
+]
+
+Cuando son matriculados los alumnos de AEDD 2024 al Campus Virtual de la Facultad, se les
+asigna un idUsuario conformado por la concatenación de “ar+dni” y cuya clave
+inicial: “aedd2024”
+
+Se tiene un listado de 100 cuentas, donde cada cuenta está conformada por ambos campos:
+idUsuario y clave.
+
+Escribir un programa que permita iniciar sesión y, si es la primera vez que el usuario ingresa,
+el sistema le pedirá que actualice su contraseña. Si el usuario no existe en el listado es porque
+no fue dado de alta desde alumnado, por lo tanto el sistema deberá mostrar el mensaje
+correspondiente.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Registros - Ejercicio 4
+]
+
+Definir la estructura Ciudadano almacenando en la propiedad voto la intención de voto para las elecciones presidenciales 2023, siendo los valores posibles: 'R': ROJO / ‘A’: AZUL En base a un censo a 1000 ciudadanos, determinar cuál es el porcentaje de intención de voto para cada uno de los partidos de acuerdo al rango:
+
+* Entre 18 y 40 años.
+* Entre 41 y 60 años.
+* Más de 60 años.
+
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>

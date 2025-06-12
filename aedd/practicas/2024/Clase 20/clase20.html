@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 20</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 20 - TDA
+### Comisión A y F
+### Docente de práctica:
+#### Tomás Assenza
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+---
+layout: false
+
+.center[
+### Ejercicios - Guía práctica
+TDA - Ejercicio 1
+]
+
+Implementar el TDA contador. Su interfaz debe permitir crear variables del tipo e implementar las operaciones para incrementar (++) y decrementar (--) su valor. Se propone la siguiente interfaz pública:
+
+Ejemplo:
+
+contador crear (int valor);
+
+void incrementar (contador & c, int pasos) ; //incrementa c en ‘´pasos’
+
+void decrementar (contador & c, int pasos) ; //decrementa c en ‘´pasos’
+
+int toInteger (contador c);
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+TDA - Ejercicio 2
+]
+
+Implementar los siguientes TDAs y operaciones que permitan cargar sus datos y mostrarlos por pantalla, como así también aquellas que permitan calcular su área y perímetro.
+
+Círculo:
+
+* Archivo de interfaz
+  * Definir la estructura Circulo
+  * Circulo crear_circulo(...);
+  * float perimetro(Circulo c);
+  * float area(Circulo c);
+
+Cuadrado:
+
+* Archivo de interfaz
+  * Definir la estructura Cuadrado
+  * Cuadrado crear_cuadrado(...);
+  * float perimetro(Cuadrado c);
+  * float area(Cuadrado c);
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+TDA - Ejercicio 2
+]
+
+Rectángulo:
+
+  * Archivo de interfaz
+    * Definir la estructura Rectangulo
+    * Rectangulo crear(...);
+    * float perimetro(Rectangulo r);
+    * float area(Rectangulo r);
+
+Triángulo:
+
+* Archivo de interfaz
+  * Definir la estructura Triangulo
+  * Triangulo crear(...);
+  * float perimetro(Triangulo r);
+  * float area(Triangulo r);
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+TDA - Ejercicio 3
+]
+
+Implementar un programa cliente que muestre un menú con las distintas formas geométricas y que al acceder a la elegida se presente un submenú con la posibilidad de crear, mostrar el perímetro y el área de la figura elegida. Nota: para poder mostrar perímetro y área, la figura debe estar creada.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+TDA - Ejercicio 4
+]
+
+Definir la representación necesaria para manipular un TDA Hora. Este nuevo tipo de datos deberá almacenar la hora, los minutos y los segundos en forma separada y en notación de 24 horas.
+
+a. Implementar el TDA Hora y sus operaciones asociadas:
+* Hora ponerAHora (int hora, int min, int seg) permite configurar el reloj de acuerdo a valores dados en cualquier momento.
+* void mostrar24(Hora h): imprime la hora en notación 24 horas: hh:mm:ss.
+* void mostrar12(Hora h): imprime la hora en notación 12 hs : hh:mm:ss a.m ó hh:mm:ss p.m según corresponda.
+* void adelantar (Hora & h, int minutos): permite adelantar la hora una cantidad determinada de minutos.
+* void atrasar (Hora &h, int minutos): permite atrasar la hora una cantidad determinada de minutos.
+* int diferenciaEnMinutos (Hora h1, Hora h2): devuelve la cantidad de minutos entre 2 horas.
+* int diferenciaEnSegundos(Hora h1, Hora h2): devuelve la cantidad de segundos entre 2 horas.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+TDA - Ejercicio 4
+]
+
+b. Escribir un programa, que dada una lista de eventos (por cada evento se almacena el
+nombre del mismo y su duración esperada en minutos) y la hora de inicio del primer
+evento, mostrar por pantalla la hora de comienzo y fin de cada uno de los eventos. Nota:
+La lista de eventos se almacena en un arreglo estático de hasta 10 elementos.
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>

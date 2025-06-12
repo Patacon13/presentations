@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 1</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 1 - Introducción
+### Comisión A
+### Docentes de práctica:
+#### Tomás Assenza
+#### Facundo Sanchez
+#### Nicolas Huber
+#### Brian Briani
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+---
+
+layout: false
+
+## Definición de algoritmo
+"Conjunto finito y ordenado de pasos, que ejecutados de manera correcta, permite obtener un resultado o resolver un determinado problema."
+
+.center[![ejemplo algoritmo con un lavado de manos](./lavarsemanos.png)]
+
+---
+
+
+## Características
+* Eficaz: Debe resolver el problema.
+
+--
+
+* Finito: Debe tener un fin. Es decir, debe terminar su ejecución una vez finalizada una serie de pasos.
+
+--
+
+* Definido: No debe ser ambiguo.
+
+--
+
+* Preciso: Deben indicar que pasos seguir, y en que orden.
+
+--
+
+* Eficiente: El consumo de recursos debe ser aceptable.
+
+--
+
+* Legible: Se debe poder leer y entender facilmente.
+
+---
+
+# IDE
+
+Entorno Integrado de Desarrollo (Integrated Development Environment)
+
+* Herramienta que integra todos los recursos que necesita el programador.
+
+.center[![foto de IDE ZinjaI](./zinjai.jpg)]
+
+---
+
+.center[
+### Ejercicios
+Ejercicio 1 - Guía 1
+]
+
+Utilizando el Zinjai copia el siguiente programa en el editor. Luego, compílalo y ejecútalo. Observando el comportamiento resultante analizar: ¿Qué realiza el programa? ¿Cómo se estructura un programa en C++?
+
+```C++
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+  string nombre;
+  int edad;
+  
+  cout << "¿Cómo te llamas? ";
+  cin >> nombre;
+  cout << "¿Cuántos años tienes? ";
+  cin >> edad;
+  
+  cout << "¡Hola, " << nombre << "! Tienes " << edad << " años." << endl;
+  
+  return 0;
+}  
+```
+
+---
+
+.center[
+### Ejercicios
+Ejercicio 2 - Guía 1
+]
+
+Escribe un programa que solicite al usuario que ingrese dos números, y luego muestre la suma, la diferencia, el producto y el cociente de los dos números.
+
+Ejemplo:
+
+Ingresa el primer número: 130
+
+Ingresa el segundo número: 45
+
+Suma: 175
+
+Diferencia: 85
+
+Producto: 5850
+
+Cociente: 2
+
+---
+
+.center[
+### Solucion
+]
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+  
+  int primerOperando, segundoOperando;
+  
+  cout << "Ingresa el primer número: ";
+  cin >> primerOperando;
+  cout << "Ingresa el segundo número: ";
+  cin >> segundoOperando;
+  
+  cout << "Suma: " << primerOperando + segundoOperando << endl;
+  cout << "Diferencia: " << primerOperando - segundoOperando << endl;
+  cout << "Producto: " << primerOperando * segundoOperando << endl;
+  cout << "Cociente: " << primerOperando / segundoOperando << endl;
+  
+  return 0;
+}  
+```
+
+
+---
+
+.center[
+### Ejercicios
+Ejercicio 3 - Guía 1
+]
+
+Escribe un programa que solicite al usuario una temperatura en Celsius y luego convierta la temperatura a Fahrenheit utilizando la fórmula F = C * 1,8 + 32. Mostrar la temperatura en Celsius y Fahrenheit.
+
+Ejemplo:
+
+Ingresa la temperatura en Celsius: 36.2
+
+36.2 grados Celsius es igual a 97.16 grados Fahrenheit.
+
+---
+
+.center[
+### Solucion
+]
+
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+  float temperaturaCelsius;
+  
+  cout << "Ingresa la temperatura en Celsius: ";
+  cin >> temperaturaCelsius;
+  
+  cout << temperaturaCelsius << " grados Celsius es igual a " 
+       << temperaturaCelsius * 1.8 + 32 << " grados Fahrenheit." << endl;
+  
+  return 0;
+}  
+```
+
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create({ slideNumberFormat: ""});
+</script>
+</body>
+</html>

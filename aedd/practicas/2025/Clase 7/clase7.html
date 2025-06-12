@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 7</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 7 - Estructuras repetitivas
+### Comisión A
+### Docentes de práctica:
+#### Tomás Assenza
+#### Exequiel Benavidez
+#### Facundo Sanchez
+#### Nicolas Huber
+#### Brian Briani
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+
+---
+
+layout: false
+
+.center[
+### Ejercicio 9 - Guía 4
+]
+
+Eres parte de un equipo que gestiona una tienda de videojuegos. Tienen 7 productos con sus respectivos códigos y precios.
+
+.center[
+|codigo de producto|precio|
+|---|---|
+|1|29.87|
+|2|53.45|
+|3|12.76|
+|4|78.32|
+|5|45.19|
+|6|64.55|
+|7|17.92|
+]
+
+Tu tarea es desarrollar un programa en C++ que permita calcular lo siguiente:
+
+* Leer un par de valores código producto y cantidad vendida, para cada producto para cada día de la semana (de lunes a Sábado)
+* Calcular la ganancia total del día, que es la suma de las ganancias de todos los productos.
+* Determinar el valor total facturado en la semana, que es la suma de todas las ganancias diarias.
+
+---
+
+```C+++
+#include <iostream>
+using namespace std;
+int main(int argc, char *argv[]) {
+  float ganancia_diaria=0, ganancia_semanal = 0;
+  int cantidad, codigo;
+  for (int dia = 1; dia <= 7; dia++) {
+    ganancia_diaria = 0;
+    cout << "VENTAS DIA " << dia << endl;
+    for (int cp = 1; cp<=7; cp++) {
+      cout << "Ingrese la cantidad vendida del producto " << cp << endl;
+      cin >> cantidad;
+      switch (cp) {
+        case 1:
+          ganancia_diaria += cantidad * 29.87;
+          break;
+        case 2:
+          ganancia_diaria += cantidad * 53.45;
+          break;
+        case 3:
+          ganancia_diaria += cantidad * 12.76;
+          break;
+        case 4:
+          ganancia_diaria += cantidad * 78.32;
+          break;
+        case 5:
+          ganancia_diaria += cantidad * 45.19;
+          break;
+        case 6:
+          ganancia_diaria += cantidad * 64.55;
+          break;
+        case 7:
+          ganancia_diaria += cantidad * 17.92;
+      }
+```
+
+---
+
+```C++
+
+}
+cout << "Ganancia del dia " << dia << ": " << ganancia_diaria << endl;
+ganancia_semanal += ganancia_diaria;
+}
+cout << "Total facturado en la semana: " << ganancia_semanal << endl;
+return 0;
+}
+```
+
+---
+
+.center[
+### Ejercicio 16 - Guía 4
+]
+
+Un bot explorador necesita recorrer un planeta y puede hacerlo solo por coordenadas numeradas con números primos. Escribí un programa que le pida al usuario dos números enteros A y B (donde A < B) e indique cuántos números primos hay entre ellos (inclusive).
+
+**Ejemplo**:
+
+Entrada: A = 10, B = 20 -> Salida: Hay 4 números primos entre 10 y 20: 11, 13, 17, 19.
+
+---
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+  
+  int a, b, aux, numero, div, contador_primos = 0;
+  
+  cout << "Ingrese dos numeros" << endl;
+  cin >> a >> b;
+  
+  if (a > b) {
+    aux = a;
+    a = b;
+    b = aux;
+  }
+  
+  for (int i = a; i < b; i++) {
+    div=2;
+    while (i % div != 0 and div < i)
+      div ++;
+    
+    if(div == i)
+      contador_primos++;
+  }
+  
+  cout << "Entre " << a << " y " << b << " hay " 
+       << contador_primos << " numeros primos" 
+       << endl;
+
+  return 0;
+}
+```
+
+---
+
+#### Otra forma
+
+```C++
+#include <iostream>
+using namespace std;
+int main(int argc, char *argv[]) {
+  int a, b, numero, div, contadorPrimos = 0;
+  
+  cout << "Ingrese dos numeros" << endl;
+  cin >> a >> b;
+  
+  if (a > b) {
+    int aux = a;
+    a = b;
+    b = aux;
+  }
+  
+  for (int i = a; i <= b; i++) {
+    int numeroDivisor = 2;
+    bool esPrimo = true;
+    if (i < 2) esPrimo = false;
+    
+    while (numeroDivisor < i and esPrimo) {
+      if (i % numeroDivisor == 0) esPrimo = false;
+      numeroDivisor++;
+    }
+    
+    if (esPrimo) contadorPrimos++; 
+  }
+  
+  cout << "La cantidad de primos es: " << contadorPrimos << endl;
+  return 0;
+}
+```
+
+---
+
+.center[
+### Beecrowd - 1113
+]
+
+Lea un número indeterminado de pares de enteros. Escriba un mensaje para cada par, indicando si estos dos números están en orden ascendente o descendente.
+
+**Entrada**:
+
+La entrada cosnta de varios casos de prueba. Cada caso contiene dos enteros X e Y. La entrada finaliza cuando X = Y.
+
+**Salida**:
+
+Para cada caso de prueba imprima "Crescente" (creciente en portugués), si los valores de X e Y están en orden ascendente, caso contrario imprima "Decrescente" (decreciente en portugués).
+
+
+
+---
+
+.center[
+### Beecrowd - 1133
+]
+
+Escribir un programa que lea dos números enteros, X e Y. Imprimir todos los números entre X e Y que, dividiéndolo por 5, el resto sea igual a 2 o 3.
+
+**Entrada**:
+
+El archivo de entrada contiene dos valores positivos enteros cualquiera, no necesariamente en orden ascendente.
+
+**Salida**:
+
+Imprimir todos los números según la descripción anterior, siempre en orden ascendente.
+
+
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create({ slideNumberFormat: ""});
+</script>
+</body>
+</html>

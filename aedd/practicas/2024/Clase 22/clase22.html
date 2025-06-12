@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 22</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 22 - Archivos
+### Comisión A y F
+### Docente de práctica:
+#### Tomás Assenza
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+---
+
+layout: false
+
+# Archivos de texto
+
+* Apertura de archivos
+
+```c++
+archivo.open("nombreDeArchivo.txt");
+```
+
+--
+
+* Verificación de archivo abierto
+
+```c++
+if (archivo) {
+    // El archivo está abierto
+}
+else {
+    // El archivo no está abierto
+}
+```
+
+--
+
+```c++
+if (archivo.fail()) {
+    // El archivo no se pudo abrir
+}
+else {
+    // El archivo se pudo abrir
+}
+```
+
+---
+
+# Archivos de texto
+
+* Lectura de información
+
+```c++
+archivo >> variable;
+getline(archivo, string);
+getline(archivo, string, ',');
+archivo.getline(cadena, cantCar);
+archivo.getline(cadena, cantCar, ',');
+c = archivo.get();
+```
+
+--
+
+* Escritura en archivo
+
+```c++
+archivo << variable;
+```
+
+--
+
+* Cierre de archivos
+
+```c++
+archivo.close();
+```
+
+---
+
+# Archivos binarios
+
+* Lectura de información
+
+```c++
+// Funcion
+istream& read (char* s, streamsize n);
+// Ejemplo
+f.read((char *) &a, sizeof(a));
+```
+
+--
+
+* Escritura en archivos
+
+```c++
+// Funcion
+ostream& write (const char* s, streamsize n);
+// Ejemplo
+f.write((char *) &a, sizeof(int));
+```
+
+---
+
+# Archivos binarios
+
+* Operaciones
+  * seekg: indica la posición del próximo get.
+  * seekp: indica la posición del próximo put.
+  * tellg: devuelve la posición del cursor dentro del archivo de lectura.
+  * tellp: lo mismo del tellg, pero de escritura.
+* Posiciones
+  * ios::beg: Desplazamiento relativo al inicio del archivo.
+  * ios::end: Desplazamiento relativo al final del archivo.
+  * ios::cur: Desplazamiento relativo a la posición actual.
+
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Archivos - Ejercicio 1
+]
+
+Leer un archivo de texto y contar cuántos dígitos y letras contiene. Mostrar el resumen al finalizar la ejecución del programa.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Archivos - Ejercicio 2
+]
+
+Leer un archivo de texto (original.txt) y escribir en clave (enclave.txt). Escribirlo en clave no es más que sumar una cantidad al número en código ASCII de cada carácter. Esta cantidad deberá ingresarse por teclado.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Archivos - Ejercicio 3
+]
+
+Leer un archivo de texto e informar:
+* La cantidad de palabras del texto.
+* La longitud de la palabra más larga.
+* La cantidad de palabras que comienzan y terminan con letras elegidas por el usuario.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Archivos - Ejercicio 5
+]
+
+Escribir un programa que permita cargar desde teclado registros que contengan los siguientes campos: título del libro, autor, ISBN, precio, cantidad en existencia y cantidad vendida. Luego, guardar esta información en un archivo binario de “inventario”.
+	
+---
+
+.center[
+### Ejercicios - Guía práctica
+Archivos - Ejercicio 6
+]
+
+Escribir un programa que utilizando el archivo creado en el problema anterior nos permita:
+
+a. Recuperar del archivo el 3er libro y mostrar por pantalla su título y autor.
+
+b. Reemplazar en el archivo el 2do libro con uno nuevo, cuyos datos cargará el usuario por
+teclado.
+
+c. Mostrar por pantalla el inventario completo.
+
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>
