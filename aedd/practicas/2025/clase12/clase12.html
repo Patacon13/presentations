@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 12</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 12 - Arreglos unidimensionales
+### Comisión A y F
+### Docentes de práctica:
+#### Tomás Assenza
+#### Facundo Sanchez
+#### Nicolas Huber
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+---
+
+layout: false
+
+## Búsqueda lineal
+* ¿Cuando la utilizamos?
+
+--
+
+## Búsqueda binaria
+* ¿Cuándo la utilizamos?
+
+---
+
+# Búsqueda lineal
+
+```C++
+int buscaElemento(int arreglo[], int tam, int elemento) {
+```
+
+---
+
+# Búsqueda lineal
+
+```C++
+int buscaElemento(int arreglo[], int tam, int elemento) {
+  int i = -1;
+  bool encontrado = false;
+```
+
+---
+
+# Búsqueda lineal
+
+```C++
+int buscaElemento(int arreglo[], int tam, int elemento) {
+  int i = -1;
+  bool encontrado = false;
+
+  while (!encontrado and i < tam) {
+    i++;
+    if (arreglo[i] == elemento) encontrado = true;
+  }
+```
+
+---
+
+# Búsqueda lineal
+
+```C++
+int buscaElemento(int arreglo[], int tam, int elemento) {
+  int i = -1;
+  bool encontrado = false;
+
+  while (!encontrado and i < tam) {
+    i++;
+    if (arreglo[i] == elemento) encontrado = true;
+  }
+  if (i == tam) i = -1;
+  return i;
+}
+```
+
+---
+
+
+# Búsqueda binaria (como entenderla)
+
+```C++
+a = ALGUIEN_QUE_NO_CUMPLA;
+b = ALGUIEN_QUE_CUMPLA;
+```
+
+---
+
+# Búsqueda binaria (como entenderla)
+
+```C++
+a = ALGUIEN_QUE_NO_CUMPLA;
+b = ALGUIEN_QUE_CUMPLA;
+while (b-a > 1) {
+     c = (a+b)/2;
+```
+
+---
+
+
+# Búsqueda binaria (como entenderla)
+
+```C++
+a = ALGUIEN_QUE_NO_CUMPLA;
+b = ALGUIEN_QUE_CUMPLA;
+while (b-a > 1) {
+     c = (a+b)/2;
+     if (c CUMPLE)
+        b = c;
+     else
+        a = c;
+}
+// Llegados a este punto, a es el ultimo que no cumple, y b es el primero que cumple.
+```
+
+---
+
+# Búsqueda binaria
+
+```C++
+
+int busquedaBinaria(int arreglo[], int tam, int elemento) {
+  a = 0;
+  b = tam - 1;
+  while (b-a > 1) {
+      c = (a+b)/2;
+      if (arreglo[c] >= elemento)
+          b = c;
+      else
+          a = c;
+  }
+  return b;
+}
+```
+
+---
+
+.center[
+### Ejercicios
+]
+	
+
+14) Escribir una función que permita rotar una posición a la izquierda todos los elementos del vector. La rotación es circular (el elemento en la posición cero se desplaza “circularmente” a la última posición del vector).
+Ejemplo:
+rotar_izquierda([1,2,3,4], 4) → [2,3,4,1]
+
+---
+
+.center[
+### Ejercicios
+]
+	
+
+14) Escribir una función que permita rotar una posición a la izquierda todos los elementos del vector. La rotación es circular (el elemento en la posición cero se desplaza “circularmente” a la última posición del vector).
+Ejemplo:
+rotar_izquierda([1,2,3,4], 4) → [2,3,4,1]
+
+```C++
+void rotar_izquierda(int arreglo[], int tam) {
+  if (tam > 0) {
+    int elementoCero = arreglo[0];
+    for (int i = 0; i < tam - 1; i++) arreglo[i] = arreglo[i + 1];
+    arreglo[tam - 1] = elementoCero;
+  }
+  else cout << "No se puede rotar un arreglo de tamaño 0" << endl;
+}
+```
+
+---
+
+.center[
+### Ejercicios
+]
+
+1) Implementar una función que reciba dos listas (arreglos) ordenadas junto con sus respectivos
+tamaños lógicos y devuelva una nueva lista que contenga todos los elementos de las dos
+listas originales.
+
+---
+
+.center[
+### Ejercicios
+]
+
+1) Implementar una función que reciba dos listas (arreglos) ordenadas junto con sus respectivos
+tamaños lógicos y devuelva una nueva lista que contenga todos los elementos de las dos
+listas originales.
+
+```C++
+void combinaListas(int arreglo1[], int tam1, int arreglo2[], int tam2, int arreglo3[], int & tam3) {
+  for (int i = 0; i < tam1; i++) {
+    arreglo3[tam3] = arreglo1[i];
+    tam3++;
+  }
+
+  for (int i = 0; i < tam2; i++) {
+    arreglo3[tam3] = arreglo2[i];
+    tam3++;
+  }
+}
+```
+
+---
+
+.center[
+### Ejercicios
+]
+
+2) Una función debe recibir un vector de números enteros y su tamaño lógico (o sea, una lista
+de enteros). Debe retornar los datos actualizados, insertando un elemento detrás de cada
+elemento que tenga un valor X múltiplo de 100, con el valor X+1; y además devolver la
+cantidad de elementos insertados. Suponer que el tamaño físico del arreglo alcanza para
+hacer las inserciones. No recorrer el arreglo más de una vez.
+
+---
+
+.center[
+### Ejercicios
+]
+
+3) Una función debe recibir una lista de números enteros positivos. Debe retornar los datos
+actualizados, eliminando del vector los valores repetidos; y además devolver la cantidad de
+elementos pares eliminados y el promedio de los valores que quedan en el vector.
+
+---
+
+.center[
+### Ejercicios
+]
+
+4) Una función debe recibir una lista ordenada de números enteros positivos. Debe retornar los
+datos actualizados, eliminando del vector todos los valores impares que se encuentran en
+medio de dos valores pares; y además devolver la cantidad de elementos impares eliminados
+y la mayor diferencia entre dos elementos pares sucesivos considerando los valores que
+quedan en el vector.
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+    </script>
+  </body>
+</html>
