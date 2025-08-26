@@ -186,8 +186,8 @@ while (b-a > 1) {
 ```C++
 
 int busquedaBinaria(int arreglo[], int tam, int elemento) {
-  a = 0;
-  b = tam - 1;
+  a = 1;
+  b = tam;
   while (b-a > 1) {
       c = (a+b)/2;
       if (arreglo[c] >= elemento)
