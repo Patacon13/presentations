@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 13</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 13 - Búsqueda y ordenamiento
+### Comisión A y F
+### Docente de práctica:
+#### Tomás Assenza
+#### Facundo Sanchez
+#### Nicolas Huber
+#### Brian Briani
+
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+---
+
+layout: false
+
+# Ordenamiento seleccion directa
+
+```C++
+void seleccion(int vec[], const int tl) {
+  int i, j, min;
+
+  for (i = 0; i < tl; i++) {
+    min = i;
+    for (j = i + 1; j < tl; j++) 
+      if (vec[j] < vec[min]) min = j;
+    intercambio(vec[i], vec[min]);
+  }
+}
+```
+
+---
+
+# Ordenamiento inserción directa
+
+```C++
+void insercion(int vec[], const int tl) {
+  int i, j;
+
+  for (i = 1; i < tl; i++) {
+    j = i;
+    while ((j > 0) && (vec[j] < vec[j - 1])) {
+      intercambio(vec[j], vec[j - 1]);
+      j = j - 1;
+    }
+  }
+}
+```
+
+---
+
+# Ordenamiento burbuja
+
+```C++
+void burbuja(int vec[], const int tl) {
+  int pasada, k
+
+  for (pasada = 1; pasada < tl; pasada++) {
+    for (k = 0; k < tl - 1; k++)
+      if (vec[k] > vec[k + 1])
+        intercambio(vec[k], vec[k + 1]);
+  }
+}
+```
+
+---
+
+.center[![Merge Sort con marges en lugar de numeros](./margeSort.png)]
+
+---
+
+```C++
+void mergesort(int v[], int inicio, int final) {
+    if (final - inicio == 0)
+        return;
+    else {
+        mergesort(v, inicio, (inicio + final) / 2);
+        mergesort(v, (inicio + final) / 2 + 1, final);
+        merge(v, inicio, (inicio + final) / 2, (inicio + final) / 2 + 1, final);
+    }
+}
+
+void merge(int v[], int inicio1, int final1, int inicio2, int final2) {
+    int i, j, k;
+    int c[8];
+
+    i = inicio1;
+    j = inicio2;
+    k = 0;
+
+    while (i <= final1 && j <= final2) {
+        if (v[i] < v[j])
+            c[k++] = v[i++];
+        else
+            c[k++] = v[j++];
+    }
+
+    while (i <= final1)
+        c[k++] = v[i++];
+
+    while (j <= final2)
+        c[k++] = v[j++];
+
+    for (k = 0; k < final2 - inicio1 + 1; k++)
+        v[inicio1 + k] = c[k];
+}
+```
+
+---
+
+.center[
+### Ejercicios
+]
+
+2) La función llamada elimOrdenar recibe como parámetros un arreglo A de 500 números enteros,
+el tamaño lógico TLA del arreglo y un valor entero X. El arreglo A está desordenado. La función
+deberá devolver el vector A actualizado de la siguiente forma:
+
+* Se deben eliminar todos los valores que sean múltiplos de X.
+* El vector debe quedar ordenado ascendentemente.
+* La función deberá retornar la cantidad de elementos eliminados de A
+
+---
+
+.center[
+### Ejercicios
+]
+
+3) La función Uno() recibe dos arreglos de 500 números enteros (A y B), los tamaños lógicos de
+cada uno (TA y TB, TB <= TA) y un valor booleano (C). El arreglo A y el arreglo B están
+desordenados. La función Uno() debe retornar un vector V y su tamaño lógico TV, ordenado
+ascendentemente si C==True (descendentemente en otro caso) conteniendo solamente los
+valores de B que se encuentran en A, sin repeticiones. Los vectores A y B pueden contener
+elementos repetidos.
+
+---
+layout: false
+
+.center[
+### Ejercicios - Guía práctica
+Strings - Ejercicio 2
+]
+
+Diseñar una función que permita registrar un nuevo usuario al sistema. Los identificadores deben tener 8 caracteres, comenzar con una letra y los restantes pueden ser letras o números. La función debe recibir un string y comprobar que la misma sea un identificador de usuario válido.
+
+**Ejemplos**:
+
+*registrar("jperez12") --> true*
+
+*registrar("1jperez123") --> false*
+
+
+
+---
+
+```C++
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+bool registrar(string);
+
+int main(int argc, char *argv[]) {
+	cout << boolalpha;
+	cout << registrar("jperez12") << endl;
+	cout << registrar("1jperez123") << endl;
+	return 0;
+}
+
+bool registrar(string identificador) {
+	unsigned i = 1;
+	bool hayOtroDigito = false;
+	while (i < identificador.length() and !hayOtroDigito) {
+		if (!isalnum(identificador[i])) hayOtroDigito = true;
+		i++;
+	}
+	return !hayOtroDigito and 
+          identificador.length() == 8 and 
+          isalpha(identificador[0]);
+}
+```
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Strings - Ejercicio 3
+]
+
+Realizar un programa que pida una frase y nos indique si es o no palíndroma (se lee igual de izquierda a derecha que de derecha a izquierda).
+
+**Ejemplo**:
+
+*esPalindromo(“dabale arroz a la zorra el abad”) → True*
+
+---
+
+```c++
+#include <iostream>
+using namespace std;
+
+bool esPalindromo(string);
+
+int main(int argc, char *argv[]) {
+	cout << boolalpha;
+	cout << esPalindromo("dabale arroz a la zorra el abad") << endl;
+	cout << esPalindromo("dabale arros a la zorra el abad") << endl;
+	return 0;
+}
+
+bool esPalindromo(string cadenaAAnalizar) {
+	int indiceIzquierdo = 0, indiceDerecho = cadenaAAnalizar.length() - 1;
+	if (cadenaAAnalizar.length() > 0) {
+		bool cumpleCondicionPalindroma = true;
+		
+		while (indiceIzquierdo < indiceDerecho and cumpleCondicionPalindroma) {
+			
+			while (cadenaAAnalizar[indiceIzquierdo] == ' ') indiceIzquierdo++;
+			while (cadenaAAnalizar[indiceDerecho] == ' ') indiceDerecho--;
+			
+			if (cadenaAAnalizar[indiceIzquierdo]!=cadenaAAnalizar[indiceDerecho])
+              cumpleCondicionPalindroma = false;
+
+			indiceIzquierdo++;
+			indiceDerecho--;
+		}
+	}
+	return cadenaAAnalizar.length() == 0 or indiceIzquierdo >= indiceDerecho;
+}
+```
+
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Strings - Ejercicio 1
+]
+
+Diseñar un programa que permita generar direcciones de correo electrónico. El programa recibe el apellido y nombre de un usuario de la facultad (apellido y nombre se asignan a una sola variable) y debe retornar la dirección de correo electrónico (e-mail) generada. El dominio asignado a la Facultad para el e-mail es: frsf.utn.edu.ar, y el nombre de usuario se forma con la inicial del nombre y a continuación el apellido.
+
+**Ejemplo**:
+
+*Ingrese apellido y luego el nombre del profesor: Perez Juan*
+
+*Email: jperez@frsf.utn.edu.ar*
+
+---
+
+```c++
+#include <iostream>
+using namespace std;
+
+string armaMail(string);
+
+int main(int argc, char *argv[]) {
+	cout << armaMail("Assenza Tomas") << endl;
+	return 0;
+}
+
+string armaMail(string nombreApellido) {
+	string mail = "";
+	
+	if (nombreApellido.length() > 0) {
+		mail += tolower(nombreApellido[nombreApellido.rfind(' ') + 1]);
+		mail += tolower(nombreApellido[0]);
+		
+		mail += nombreApellido.substr(1, nombreApellido.find(' ') - 1);
+		
+		mail += "@frsf.utn.edu.ar";
+		
+	}
+	
+	return mail;
+	
+}
+```
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Strings - Ejercicio 7
+]
+
+Se dice que la palabra α es un anagrama de la palabra β si es posible obtener α cambiando el orden de las letras de β. Por ejemplo, “MORA” y “ROMA” son anagramas de RAMO. Realizar una función que compruebe si dos palabras son anagramas entre sí. Las palabras pueden contener letras mayúsculas y minúsculas.
+
+---
+
+```c++
+#include <iostream>
+using namespace std;
+bool sonAnagramas(string, string);
+
+int main(int argc, char *argv[]) {
+	cout << boolalpha;
+	cout << sonAnagramas("MORA", "RAMO") << endl;
+	cout << sonAnagramas("RAMO", "ROMA") << endl;
+	cout << sonAnagramas("RAMO", "RoMA") << endl;
+	cout << sonAnagramas("RAMO", "ROMO") << endl;  
+	return 0;
+}
+
+bool sonAnagramas(string primerString, string segundoString) {
+	int frecuenciasPrimerString[124] {}, frecuenciasSegundoString[124] {};
+	bool cumplenCondicionAnagrama = true;
+
+	for (unsigned i = 0; i < primerString.length(); i++) {
+		frecuenciasPrimerString[tolower(primerString[i])]++;
+	}	
+	for (unsigned i = 0; i < segundoString.length(); i++) {
+		frecuenciasSegundoString[tolower(segundoString[i])]++;
+	}
+	
+	int i = 'a';
+	while (i <= 'z' and cumplenCondicionAnagrama) {
+		if (frecuenciasPrimerString[i] != frecuenciasSegundoString[i]) 
+		    cumplenCondicionAnagrama = false;
+		i++;
+	}	
+	return cumplenCondicionAnagrama;
+}
+```
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Strings - Ejercicio 13
+]
+
+Desarrollar un programa en C++, el cual recibe un string como entrada. Este programa debe invocar a una función llamada invString_recursivo, la cual tiene como objetivo devolver el string invertido con respecto a su orden original, utilizando un enfoque recursivo para lograrlo. Asegúrese de que la función invString_recursivo sea implementada de manera recursiva.
+
+**Ejemplo**:
+
+*Si se recibe la cadena “lee un texto”, se retorna “otxet nu eel”*
+
+---
+
+```c++
+#include <iostream>
+using namespace std;
+
+string invString_recursivo(string entrada, int tamanioEntrada) {
+	if (tamanioEntrada == 0) return "";
+	return entrada[tamanioEntrada - 1] + 
+	       invString_recursivo(entrada, tamanioEntrada - 1);
+	
+}
+
+int main(int argc, char *argv[]) {
+	cout << invString_recursivo("lee un texto", 12) << endl;
+	return 0;
+}
+```
+
+
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+    </script>
+  </body>
+</html>
