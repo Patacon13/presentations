@@ -69,7 +69,7 @@ class: inverse, center, middle
 
 
 # Algoritmos y Estructuras de Datos
-## Clase de Práctica 14 - Strings y Registros
+## Clase de Práctica 14 - Strings y Estructuras
 ### Comisión A
 ### Docentes de práctica:
 #### Tomás Assenza
@@ -197,7 +197,7 @@ bool sonAnagramas(string primerString, string segundoString) {
 
 ---
 
-# Registros
+# Estructuras
 
 Declaración:
 
@@ -236,17 +236,17 @@ Operaciones válidas:
 * Usar el operador sizeof para determinar el tamaño de una estructura
 * Obtener la dirección (&) de una estructura
 
-**No hay ninguna otra operación disponible con registros completos**
+**No hay ninguna otra operación disponible con estructuras completos**
 
-Los operadores de comparación no son válidos entre valores de tipo registro. Las comparaciones deben ser campo a campo.
+Los operadores de comparación no son válidos entre valores de tipo estructura. Las comparaciones deben ser campo a campo.
 
 Los structs además, **se pasan por default por valor (copia)** y el programador debe explicitar el paso por referencia de ser necesario.
 
 ---
 
-Registros anidados:
+Estructuras anidados:
 
-* Se puede contar con registros anidados como por ejemplo:
+* Se puede contar con estructuras anidados como por ejemplo:
 
 ```C++
 struct Fecha {
@@ -267,7 +267,7 @@ nombreVariableEmpleado.fechaIngreso.anio
 
 .center[
 ### Ejercicios - Guía práctica
-Registros - Ejercicio 2
+Estructuras - Ejercicio 2
 ]
 
 Un diccionario puede ser visto como una colección ordenada de palabras. Cada palabra, consiste en un término (string de hasta 25 caracteres), una categoría gramatical (0 = sustantivo, 1 = adjetivo, 2 = artículo, 3 = pronombre y 4 = verbo), y una o más definiciones (lista de -como máximo- 5 strings).
@@ -282,7 +282,7 @@ En base a estas definiciones, se le solicita:
 
 .center[
 ### Ejercicios - Guía práctica
-Registros - Ejercicio 2
+Estructuras - Ejercicio 2
 ]
 
 * Defina e implemente la función agregarPalabra() siguiendo el siguiente esquema:
@@ -302,7 +302,7 @@ La función recibe una palabra y la agrega en orden alfabético dentro de un dic
 
 .center[
 ### Ejercicios - Guía práctica
-Registros - Ejercicio 4
+Estructuras - Ejercicio 4
 ]
 
 Una CAJA de supermercado puede ser vista como una COLA de PEDIDOS esperando ser atendidos. Toda CAJA tiene un NÚMERO IDENTIFICADOR (valor entero). A su vez, un PEDIDO se encuentra formado por un conjunto de ÍTEMS (máximo 30 ítems por PEDIDO) y
@@ -328,7 +328,7 @@ En base a estas definiciones, se le solicita:
 
 .center[
 ### Ejercicios - Guía práctica
-Registros - Ejercicio 5
+Estructuras - Ejercicio 5
 ]
 
 Y con las eliminatorias llegando a su fin, se viene el mundial de fútbol Qatar 2022. La organización ha solicitado que se desarrolle una solución para dar soporte al seguimiento de los partidos, como así también automatice la generación de llaves de cuartos, semis y finales. Dicho
