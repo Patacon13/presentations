@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 15</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 15 - Estructuras
+### Comisión A
+### Docente de práctica:
+#### Tomás Assenza
+#### Facundo Sanchez
+#### Nicolás Huber
+#### Brian Briani
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+---
+layout: false
+
+.center[
+### Ejercicio de repaso
+]
+
+En una BIBLIOTECA se gestionan prestamos de LIBROS. Un LIBRO puede ser visto como un conjunto ordenado de CAPITULOS acompañado de un título (tipo string) y un estado de préstamo (el valor booleano true corresponde a estado prestado y false a no prestado).
+
+Cada CAPITULO tiene un número (valor entero), un título (cadena de caracteres), una cantidad de páginas (valor entero) y un texto (tipo string).
+
+a) Defina todas las estructuras de datos necesarias para representar una BIBLIOTECA que
+gestiona préstamos referidos a 1000 LIBROS.
+
+---
+
+```c++
+#include <iostream>
+#include <string>
+#define TAMANIO_FISICO_LIBROS 1000
+#define TAMANIO_FISICO_CAPITULOS 1000
+using namespace std;
+
+struct Capitulo {
+	int numero;
+	string titulo;
+	int cantidadPaginas;
+	string texto;
+};
+
+struct Libro {
+	string titulo;
+	Capitulo capitulos[TAMANIO_FISICO_CAPITULOS];
+	int cantidadCapitulos;
+	bool estadoPrestamo;
+};
+
+struct Biblioteca {
+	Libro libros[TAMANIO_FISICO_LIBROS];
+	int cantidadLibros;
+};
+
+Biblioteca biblioteca;
+// No ingresamos los libros porque asumimos que al crear la biblioteca ya 
+// tiene capacidad para mil libros.
+
+// Otra alternativa
+Libro biblioteca[1000];
+
+```
+
+---
+
+.center[
+### Ejercicio de repaso
+]
+
+En una BIBLIOTECA se gestionan prestamos de LIBROS. Un LIBRO puede ser visto como un conjunto ordenado de CAPITULOS acompañado de un título (tipo string) y un estado de préstamo (el valor booleano true corresponde a estado prestado y false a no prestado).
+
+Cada CAPITULO tiene un número (valor entero), un título (cadena de caracteres), una cantidad de páginas (valor entero) y un texto (tipo string).
+
+b) Defina e implemente la función cantidadDePaginasPromedio la cual recibe una biblioteca y retorna la cantidad de páginas promedio que tienen sus libros.
+
+---
+
+```C++
+double cantidadDePaginasPromedio(Biblioteca biblioteca) {
+	long long sumaPaginas = 0;
+	for (int i = 0; i < biblioteca.cantidadLibros; i++) {
+		sumaPaginas += cantidadPaginasLibro(biblioteca.libros[i]);
+	}
+	
+	double resultado = 0.0;
+	if (biblioteca.cantidadLibros > 0) resultado = sumaPaginas / (double) biblioteca.cantidadLibros;
+	return resultado;
+}
+```
+
+--
+
+```C++
+int cantidadPaginasLibro(Libro libro) {
+	int sumaPaginas = 0;
+	for (int i = 0; i < libro.cantidadCapitulos; i++) {
+		sumaPaginas += libro.capitulos[i].cantidadPaginas;
+	}
+	return sumaPaginas;
+}
+```
+
+---
+
+En una BIBLIOTECA se gestionan prestamos de LIBROS. Un LIBRO puede ser visto como un conjunto ordenado de CAPITULOS acompañado de un título (tipo string) y un estado de préstamo (el valor booleano true corresponde a estado prestado y false a no prestado).
+
+Cada CAPITULO tiene un número (valor entero), un título (cadena de caracteres), una cantidad de páginas (valor entero) y un texto (tipo string).
+
+c) Defina e implemente la función listadoDePrestamos que recibe una biblioteca y devuelve una lista que contiene los libros que se encuentran prestados.
+
+---
+
+```C++
+// Se agregan los parámetros librosEnPrestamo y tlLibrosEnPrestamo para devolver "una lista que contiene los libros que se encuentran prestados"
+void listadoDePrestamos(Biblioteca biblioteca, Libro librosEnPrestamo[], int & tlLibrosEnPrestamo) {
+	tlLibrosEnPrestamo = 0;
+	for (int i = 0; i < biblioteca.cantidadLibros; i++) {
+		if (biblioteca.libros[i].estadoPrestamo) {
+			librosEnPrestamo[tlLibrosEnPrestamo] = biblioteca.libros[i];
+			tlLibrosEnPrestamo++;
+		}
+	}
+}
+```
+
+---
+
+Cada CAPITULO tiene un número (valor entero), un título (cadena de caracteres), una cantidad de páginas (valor entero) y un texto (tipo string).
+
+d) Defina e implemente la función ordenAlfabetico que recibe una biblioteca e imprime por pantalla en orden alfabético el listado de libros que tienen más de 10 capítulos.
+
+---
+
+```C++
+void ordenAlfabetico(Biblioteca biblioteca, Libro libros[], int & cantidadLibros) {
+	// En primer lugar, pongo todos los que cumplen, sin importar orden
+	
+	obtieneLibros(biblioteca, libros, cantidadLibros);
+	
+	// Ordeno los libros
+	ordenaLibros(libros, cantidadLibros);
+	
+	// Los muestro
+	cout << "A continuación, se listan los libros con más de 10 capitulos: " << endl;
+	imprimeLibros(libros, cantidadLibros);
+}
+```
+
+--
+
+```C++
+void obtieneLibros(Biblioteca biblioteca, Libro libros[], int & cantidadLibros) {
+	cantidadLibros = 0;
+	for (int i = 0; i < biblioteca.cantidadLibros; i++) {
+		if (biblioteca.libros[i].cantidadCapitulos > 10) {
+			libros[cantidadLibros] = biblioteca.libros[i];
+			cantidadLibros++;
+		}
+	}
+}
+```
+
+---
+
+```C++
+void ordenaLibros(Libro libros[], int cantidadLibros) {
+	bool huboIntercambio = true;
+	int i = 0;
+	
+	while (i < cantidadLibros - 1 && huboIntercambio) {
+		huboIntercambio = false;
+		for (int j = 0; j < cantidadLibros - i - 1; j++) {
+			if (libros[j].titulo > libros[j + 1].titulo) {
+				Libro aux = libros[j];
+				libros[j] = libros[j + 1];
+				libros[j + 1] = aux;
+				huboIntercambio = true;
+			}
+		}
+		i++;
+	}
+}
+```
+
+--
+
+```C++
+void imprimeLibros(Libro libros[], int cantidadLibros) {
+	cout << "Libros:" << endl;
+	for (int i = 0; i < cantidadLibros; i++) {
+		cout << libros[i].titulo << endl;
+	}
+	cout << endl;
+}
+```
+
+---
+
+Cada CAPITULO tiene un número (valor entero), un título (cadena de caracteres), una cantidad de páginas (valor entero) y un texto (tipo string).
+
+e) Tomando en consideración el texto de los libros, defina e implemente la función capituloMasCorto que recibe una biblioteca e imprime por pantalla toda la información asociada al libro que posee el capítulo con menos cantidad de texto.
+
+---
+
+```C++
+void capituloMasCorto(Biblioteca biblioteca) {
+  int indiceLibro, indiceCapitulo, minLongitud;
+  encontrarCapituloMasCortoIndice(biblioteca, indiceLibro, 
+                                  indiceCapitulo, minLongitud);
+
+  if (indiceLibro != -1 && indiceCapitulo != -1) {
+      cout << "Libro: " << biblioteca.libros[indiceLibro].titulo << endl;
+      cout << "Capitulo numero: " << biblioteca.libros[indiceLibro].
+                                     capitulos[indiceCapitulo].numero << endl;
+      cout << "Titulo capitulo: " << biblioteca.libros[indiceLibro].
+                                     capitulos[indiceCapitulo].titulo << endl;
+      cout << "Paginas: " << biblioteca.libros[indiceLibro].
+                                     capitulos[indiceCapitulo].
+                                     cantidadPaginas << endl;
+      cout << "Texto: " << biblioteca.libros[indiceLibro].
+                                      capitulos[indiceCapitulo].texto << endl;
+      cout << "Longitud del texto: " << minLongitud << " caracteres" << endl;
+  } else {
+      cout << "La biblioteca no tiene capitulos cargados." << endl;
+  }
+}
+```
+
+---
+
+```C++
+void encontrarCapituloMasCortoIndice(Biblioteca biblioteca, int& indiceLibro, 
+                                     int& indiceCapitulo, int& minLongitud) {
+  indiceLibro = -1;
+  indiceCapitulo = -1;
+  minLongitud = 1000000000; // centinela grande
+
+  for (int i = 0; i < biblioteca.cantidadLibros; i++) {
+      for (int j = 0; j < biblioteca.libros[i].cantidadCapitulos; j++) {
+          int longitudTexto = (int) biblioteca.libros[i].capitulos[j].
+                                    texto.length();
+          if (longitudTexto < minLongitud) {
+              minLongitud = longitudTexto;
+              indiceLibro = i;
+              indiceCapitulo = j;
+          }
+      }
+  }
+}
+```
+
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>
