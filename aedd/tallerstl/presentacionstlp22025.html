@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - STL</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Taller de Estructuras Dinámicas (Librería STL) - C++
+## Algoritmos y Estructuras de Datos
+### Tomás Assenza
+
+???
+---
+
+layout: false
+
+# Contenidos
+1. Auto
+2. Iteradores y rangos
+3. Pilas (stack)
+4. Colas (queue)
+5. Colas doblemente enlazadas (deque)
+
+???
+
+---
+
+class: inverse, center, middle
+
+# Auto
+
+---
+
+# Auto
+
+* Auto nos permite inferir el tipo de datos que la variable contendrá.
+
+---
+
+# Auto
+
+* Auto nos permite inferir el tipo de datos que la variable contendrá.
+* Al trabajar con la STL, es muy útil para la legibilidad del código.
+
+---
+
+# ¿Cómo utilizo auto?
+
+--
+
+```C++
+auto x = 5;
+auto y = "Soy una cadena de caracteres";
+cout << x << endl;
+cout << y << endl;
+```
+
+Nota al margen: y es una cadena de caracteres, es decir un arreglo de chars. Si en cambio lo igualaramos a un string, y sería un string.
+
+--
+
+```C++
+map<char, int> m = {{'a', 1}, {'b', 2}, {'c', 3}};
+
+//Recorrido visto en el taller
+for (pair<char, int> thisPair : m) {
+    cout << thisPair.first << ": " << thisPair.second << endl;
+}
+```
+
+--
+
+```C++
+map<char, int> m = {{'a', 1}, {'b', 2}, {'c', 3}};
+
+//Recorrido con auto
+for (auto thisPair : m) {
+    cout << thisPair.first << ": " << thisPair.second << endl;
+}
+```
+
+---
+
+class: inverse, center, middle
+
+
+# Iteradores
+
+
+---
+
+layout: false
+
+.left-column[
+  ### Iteradores
+]
+.right-column[
+Conceptos generales:
+- Variable que apunta a un elemento en una estructura de datos.
+]
+
+---
+
+.left-column[
+  ### Iteradores
+]
+.right-column[
+Conceptos generales:
+- Variable que apunta a un elemento en una estructura de datos.
+- Como su nombre nos indica, nos permite "iterar" la estructura de datos.
+]
+
+---
+
+.left-column[
+  ### Iteradores
+]
+.right-column[
+Conceptos generales:
+- Variable que apunta a un elemento en una estructura de datos.
+- Como su nombre nos indica, nos permite "iterar" la estructura de datos.
+- Dos iteradores comunes son begin() y end()
+]
+
+---
+
+### Declaración
+
+```c++
+<TipoDeEstructura>::iterator it;
+```
+
+--
+
+### Inicialización
+
+```c++
+<TipoDeEstructura>::iterator it = nombreDeEstructura.begin();
+<TipoDeEstructura>::iterator it = nombreDeEstructura.rbegin();
+<TipoDeEstructura>::iterator it = nombreDeEstructura.end();
+<TipoDeEstructura>::iterator it = nombreDeEstructura.rend();
+```
+
+Ejemplo:
+
+```c++
+set::iterator it = nombreDelSet.begin();
+set::reverse_iterator it = nombreDelSet.rbegin();
+```
+
+---
+
+# ¿Y si usamos auto?
+
+---
+
+### Declaración e inicialización
+
+```c++
+auto it = nombreDeEstructura.begin();
+```
+
+---
+
+### Suponiendo el código:
+
+```c++
+set<int> miSet = {1, 4, 5, 6, 8};
+auto it = miSet.begin();
+```
+
+--
+
+### Acceso al elemento
+
+```c++
+cout << *it << endl;
+```
+
+--
+
+### Acceso al siguiente elemento
+
+```c++
+it++;
+cout << *it << endl; //4
+```
+
+--
+
+### Acceso al elemento anterior
+
+```c++
+it--;
+cout << *it << endl; //1
+```
+
+---
+
+### Recorrido con iteradores
+
+```c++
+for (auto it = miSet.begin(); it != miSet.end(); it++) {
+    //código
+}
+```
+
+--
+
+### Recorrido con iteradores con condiciones
+
+```c++
+auto it = miSet.begin();
+while (it != miSet.end() and otraCondicion) {
+    //codigo
+}
+```
+
+---
+
+### Función find()
+
+```c++
+auto it = s.find(x);
+if (it == s.end()) {
+   // x no está en la estructura
+}
+```
+
+--
+
+### Función lower_bound() y upper_bound()
+
+* lower_bound() retorna un iterador al elemento mayor o igual a x
+* upper_bound() retorna un iterador al elemento más grande a x
+
+```c++
+set<int> s = {1, 4, 6, 7, 8};
+auto it = s.lower_bound(5); //*it vale 6
+auto it2 = s.upper_bound(5); //*it vale 6
+auto it3 = s.lower_bound(6); //*it vale 6
+auto it4 = s.upper_bound(6); //*it vale 7
+```
+
+---
+
+class: inverse, center, middle
+
+# Pilas (stacks)
+
+---
+
+layout: false
+
+.left-column[
+  ### Auto
+  ### Iteradores
+  ### Stacks
+]
+.right-column[
+Conceptos generales:
+- Estructura LIFO donde los elementos se agregan en el tope, y se remueven del mismo lugar.
+]
+
+
+---
+
+.left-column[
+  ### Auto
+  ### Iteradores
+  ### Stacks
+]
+.right-column[
+Conceptos generales:
+- Estructura LIFO donde los elementos se agregan en el tope, y se remueven del mismo lugar.
+- Solo es posible acceder al elemento en el tope tanto para añadirlo como para eliminarlo.
+]
+
+---
+
+.left-column[
+  ### Auto
+  ### Iteradores
+  ### Stacks
+]
+.right-column[
+Conceptos generales:
+- Estructura LIFO donde los elementos se agregan en el tope, y se remueven del mismo lugar.
+- Solo es posible acceder al elemento en el tope tanto para añadirlo como para eliminarlo.
+- SOLO ES POSIBLE ACCEDER AL ELEMENTO EN EL TOPE TANTO PARA AÑADIRLO COMO PARA ELIMINARLO!!!!!!
+]
+
+---
+
+### Definición
+
+```c++
+stack<tipoDeDato> nombreDeLaPila;
+```
+
+--
+
+### Acceder al elemento
+
+```c++
+pila.top();
+```
+
+--
+
+### Insertar un elemento
+
+```c++
+pila.push(elemento);
+```
+
+--
+
+### Eliminar un elemento
+
+```c++
+pila.pop();
+```
+
+---
+
+### Revisar si la pila está vacía
+
+```c++
+if (pila.empty()) {
+    //Está vacía
+}
+else {
+    //No está vacía
+}
+```
+
+---
+
+# Ejemplo de aplicación
+
+**Problema:**
+
+Ayelén es una gran matemática reconocida en todo el mundo por sus aportes con distintos teoremas, definiciones y cuestiones que la gran mayoría de la gente no logra comprender. Son tales sus aportes, que trabaja constantemente con fórmulas muy extensas con muchos paréntesis, llaves y corchetes que abren y cierran operaciones enormes con cálculos solo entendibles para algunas mentes brillantes. Como Ayelén no trabaja sola, le solicitó a sus ayudantes que realicen distinto tipo de manipulaciones sobre las fórmulas, pero algunos de ellos no trabajaron bien con los paréntesis y algunas fórmulas terminaron resultando mal formadas.
+
+Ayelén, preocupada por no perder sus avances, decidió ponerse manos a la obra. Eliminó todo lo que estaba dentro de los paréntesis, llaves y corchetes, y te envió sus fórmulas para que indiques si están bien formadas. Entendemos como fórmula bien formada a una serie de paréntesis que siempre están cerrados, y que nunca cierran antes de abrir. Por ejemplo, la fórmula "(([[{}]]))" está bien formada, pero la fórmula ")(())(" no.
+
+Tu trabajo será generar un programa que defina si una fórmula dada está bien formada o no.
+
+---
+
+# Simplificamos el problema antes de resolver
+
+Indicar si un texto de entrada contenido por paréntesis, está correctamente formado.
+
+---
+
+```c++
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+	stack<char> pila;
+	string formula;
+	
+	int contadorParentesis = 0;
+	
+	cin >> formula;
+	
+	return 0;
+}
+```
+
+---
+
+```c++
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+	stack<char> pila;
+	string formula;
+	
+	int contadorParentesis = 0;
+	
+	cin >> formula;
+	
+	for (auto thisSymbol : formula) pila.push(thisSymbol);
+	
+	return 0;
+}
+```
+
+---
+
+```c++
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+	stack<char> pila;
+	string formula;
+	
+	int contadorParentesis = 0;
+	
+	cin >> formula;
+	
+	for (auto thisSymbol : formula) pila.push(thisSymbol);
+	
+	while (!pila.empty() and 
+		   contadorParentesis >= 0) {
+		if (pila.top() == ')') contadorParentesis++;
+		else if (pila.top() == '(') contadorParentesis--;
+		pila.pop();
+	}
+	
+	bool respuesta = contadorParentesis == 0;
+	
+	cout << boolalpha << respuesta << endl;
+	
+	return 0;
+}
+```
+
+---
+
+class: inverse, center, middle
+
+# Colas
+
+---
+
+layout: inverse
+
+.left-column[
+  ### Auto
+  ### Iteradores
+  ### Stacks
+  ### Queue
+]
+.right-column[
+Conceptos generales:
+- Estructura FIFO donde los elementos se agregan en el final de la cola, y se remueven del frente.
+]
+
+---
+
+.left-column[
+  ### Auto
+  ### Iteradores
+  ### Stacks
+  ### Queue
+]
+.right-column[
+Conceptos generales:
+- Estructura FIFO donde los elementos se agregan en el final de la cola, y se remueven del frente.
+- Solo se pueden acceder al primer y último elemento.
+]
+
+---
+
+### Definición
+
+```c++
+queue<tipoDeDato> nombreDeLaCola;
+priority_queue<int> nombreDeLaCola;
+priority_queue<int,vector<int>,greater<int>> nombreDeLaCola;
+```
+
+--
+
+### Acceder al elemento
+
+```c++
+cola.front();
+cola.back(); //Aunque no es una forma estricta de acceso a colas, tambien se puede acceder este elemento
+```
+
+--
+
+### Insertar un elemento
+
+```c++
+cola.push(elemento);
+```
+
+--
+
+### Eliminar un elemento
+
+```c++
+cola.pop();
+```
+
+---
+
+### Revisar si la cola está vacía
+
+```c++
+if (cola.empty()) {
+    //Está vacía
+}
+else {
+    //No está vacía
+}
+```
+
+---
+
+# Ejemplo de aplicación
+
+**Problema**
+
+Imaginá que tenés una fila de personas en una parada de bondi. Cada uno tiene un número de entrada al bondi (porque no sé, ponele que el colectivero se puso estricto y ahora cada uno saca su numerito). La cosa es que cuando llega el bondi, cada persona sube en el orden en que sacó el número, pero solo si su número es múltiplo de tres (porque el colectivero también está medio loco y le pinta hacer eso). Los que no, se tienen que esperar al próximo bondi. ¡Clásico quilombo en la parada!
+
+--
+
+### Simplificamos el problema
+Ante una serie de ingresos (los vamos a harcodear para simplificar), indicar cuáles suben en orden, y cuáles esperan. Solo esperan los que no son múltiplos de 3.
+
+---
+
+```c++
+int main() {
+   queue<int> filaBondi;
+    
+    filaBondi.push(7);
+    filaBondi.push(3);
+    filaBondi.push(10);
+    filaBondi.push(9);
+    filaBondi.push(2);
+    filaBondi.push(15);
+    
+    coleMisterioso(filaBondi);
+
+    return 0;
+}
+```
+
+---
+
+```c++
+void coleMisterioso(std::queue<int>& numeros) {
+    cout << "Suben: ";
+    while (!numeros.empty()) {
+        int num = numeros.front();
+        numeros.pop();
+
+        if (num % 3 == 0) {
+            cout << num << " "; 
+        } else {
+            cout << "(espera " << num << ") "; 
+        }
+    }
+    cout << endl;
+}
+```
+
+---
+
+class: inverse, center, middle
+
+# Colas doblemente enlazadas (deque)
+
+---
+
+layout: inverse
+
+.left-column[
+  ### Auto
+  ### Iteradores
+  ### Stacks
+  ### Queue
+  ### Deque
+]
+.right-column[
+Conceptos generales:
+- Permite agregar y sacar del principio y final.
+]
+
+---
+
+.left-column[
+  ### Auto
+  ### Iteradores
+  ### Stacks
+  ### Queue
+  ### Deque
+]
+.right-column[
+Conceptos generales:
+- Permite agregar y sacar del principio y final.
+- Permite acceder a cualquier elemento.
+]
+
+---
+
+### Definición
+
+```c++
+deque<tipoDeDato> nombreDeLaDeque;
+```
+
+--
+
+### Acceder al elemento
+
+```c++
+cout << d[indice] << endl;
+cout << d.front() << endl;
+cout << d.back() << endl;
+```
+
+--
+
+### Insertar un elemento
+
+```c++
+d.push_back(elemento);
+d.push_front(elemento);
+```
+
+--
+
+### Eliminar un elemento
+
+```c++
+d.pop_front();
+d.pop_back();
+```
+
+--
+
+### Revisar si la pila está vacía
+
+```c++
+if (d.empty()) {
+    //Está vacía
+}
+else {
+    //No está vacía
+}
+```
+
+---
+
+# Ejemplo de aplicación
+
+**Problema**
+
+En el Centro de Monitoreo de Eventos (CME), Franco es el operador encargado de gestionar y priorizar todas las alertas de seguridad en tiempo real para la ciudad. En el turno nocturno, los eventos de la ciudad comienzan a multiplicarse y Franco necesita una solución para manejar los eventos más recientes, eliminando aquellos eventos viejos que ya no sean relevantes para mantener el flujo de información claro y ordenado.
+
+Se pide implementar un sistema que cumpla con los siguientes requisitos:
+
+* Cada vez que llegue un evento nuevo, debe agregarse al sistema en la posición adecuada para poder visualizarlo de inmediato.
+* Si el sistema excede la capacidad de almacenamiento de eventos recientes (por ejemplo, 10 eventos), los eventos más antiguos deben eliminarse automáticamente para dar lugar a los nuevos.
+* La lista de eventos debe poder mostrarse en el orden en que ocurrieron, del más reciente al menos reciente, mostrando solo aquellos que aún son relevantes.
+
+Franco confía en tu solución para poder responder ante cualquier eventualidad, asegurándose de mantener a la ciudad segura y en orden.
+
+---
+
+# Simplificamos el problema
+
+Crear una cola doblemente enlazada que permita agregar eventos, eliminar los antiguos y mostrarlos en orden.
+
+---
+
+```c++
+int main() {
+    deque<string> eventos;
+    agregarEvento(eventos, "Usuario inició sesión");
+    agregarEvento(eventos, "Usuario cambió configuración");
+    agregarEvento(eventos, "Nuevo mensaje recibido");
+    agregarEvento(eventos, "Archivo descargado");
+
+    limpiarEventosViejos(eventos, 3);
+
+    mostrarEventos(eventos);
+    return 0;
+}
+```
+
+--
+
+```c++
+void agregarEvento(deque<string> & eventos, string & evento) {
+    eventos.push_front(evento);
+}
+```
+
+--
+
+```c++
+void limpiarEventosViejos(deque<string> & eventos, unsigned & maxEventos) {
+    while (eventos.size() > maxEventos) {
+        eventos.pop_back();
+    }
+}
+```
+
+--
+
+```c++
+void mostrarEventos(deque<string> & eventos) {
+    cout << "Eventos recientes:" << endl;
+    for (auto evento : eventos) {
+        cout << "- " << evento << endl;
+    }
+}
+```
+
+---
+
+class: inverse, center, middle
+
+# Fin
+
+### Contacto: tassenza@frsf.utn.edu.ar (o, por mensaje privado de Teams).
+
+### ¡Gracias por participar de parte del Equipo de Algoritmos y Estructuras de Datos!
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+    </script>
+  </body>
+</html>
+
+
