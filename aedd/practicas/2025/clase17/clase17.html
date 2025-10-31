@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 16</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 16 - Matrices
+### Comisión A y F
+### Docente de práctica:
+#### Tomás Assenza
+#### Facundo Sanchez
+#### Nicolás Huber
+#### Brian Briani
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+---
+layout: false
+
+.center[
+### Ejercicios - Guía práctica
+Matrices - Ejercicio 2
+]
+
+Una empresa de aerolíneas nacional posee aviones de 4 categorías y viaja a 50 localidades de zonas turísticas del país. Se dispone de un registro de todos los pasajes vendidos en una temporada en una matriz de pasajes vendidos indexada por código de categoría (0, 1, 2, 3) y código de destino (0 a 49). Además se dispone de un vector ordenado por código de destino que indica el nombre de cada localidad.
+
+* La cantidad de pasajeros por localidad.
+* La cantidad de pasajeros por categoría.
+* Las localidades a las que no se vendió ningún pasaje.
+* La localidad a la que viajó la menor cantidad de pasajeros.
+* La cantidad de localidades a las cuales viajaron más de 1000 pasajeros.
+* Indicar si existe o no alguna categoría de aviones para las que no se vendió ningún pasaje.
+
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Matrices - Ejercicio 6
+]
+
+Se recibe una matriz SopaLetras (orden 10 x 10) de caracteres y una palabra P almacenada en una cadena de caracteres de longitud máxima 10. Se debe informar:
+Si esa palabra se encuentra en alguna fila, de derecha a izquierda. (Si se la encuentra indicarlo con un mensaje del tipo: la palabra XXXX está en la fila NN).
+Cuántas columnas tienen únicamente letras minúsculas)
+
+**Nota**: Si la palabra tiene menos de 10 caracteres (por ejemplo 6), se considera que está en una
+fila si la palabra aparece ocupando las últimas seis posiciones y todas las restantes son blancos.
+
+
+---
+
+# Problema Omega-Up (parcial)
+
+https://omegaup.com/arena/problem/MatrizyVector/
+
+---
+
+# Problema Omega-Up (parcial)
+
+https://omegaup.com/arena/problem/Los-cuadrados-semimagicos
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>
