@@ -134,8 +134,8 @@ PersonaArchivo convertirAFormatoArchivo(Persona persona) {
 */
 Persona convertirDesdeFormatoArchivo(PersonaArchivo personaArchivo) {
   Persona persona;
-  persona.nombre = (string) personaArchivo.nombre;
-  persona.apellido = (string) personaArchivo.apellido;
+  persona.nombre = string(personaArchivo.nombre);
+  persona.apellido = string(personaArchivo.apellido);
   persona.anioNacimiento = personaArchivo.anioNacimiento;
   return persona;
 }
@@ -227,7 +227,7 @@ f.read((char *) &a, sizeof(a));
 // Funcion
 ostream& write (const char* s, streamsize n);
 // Ejemplo
-f.write((char *) &a, sizeof(int));
+f.write((char *) &a, sizeof(a));
 ```
 
 ---
