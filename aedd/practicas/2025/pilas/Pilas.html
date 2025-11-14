@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AEDD - Punteros</title>
+    <title>AEDD - Pilas</title>
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -69,24 +69,152 @@ class: inverse, center, middle
 
 
 # Algoritmos y Estructuras de Datos
-## Clase de Práctica - Punteros y Estructuras dinámicas
-### Comisión A, F, G
-### Docentes de práctica:
+## Clase de Práctica - Pilas (presentación extra)
+### Comisión A
+### Docente:
 #### Tomás Assenza
-#### Lijandy Jiménez
-#### Facundo Sanchez
 Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
 
 ---
 layout: false
 
-# Punteros
+# ¿Están bien puestos estos paréntesis?
 
-* Las variables normales contienen un valor específico.
-* Un puntero contiene una **dirección de memoria**.
-* El operador \& permite obtener la dirección de memoria de una variable.
-* El operador \* permite obtener el valor apuntado de un puntero.
+* Tenemos un string con ( y ).
 
+--
+
+* Queremos saber si está bien formado:
+
+--
+
+  * A cada ( le corresponde un ) más adelante.
+
+--
+
+  * Nunca cerramos más de lo que abrimos.
+
+--
+
+Ejemplos:
+
+✅ ()(())(()())
+
+❌ )()((()())(
+
+
+---
+
+# Primera idea
+
+* Recorro el string
+--
+
+  * abren++ si veo (
+
+--
+  * cierran-- si veo ) 
+
+--
+
+Retorno abren == cierran
+
+---
+
+# Código de la primera idea
+
+```C++
+bool estaBienFormado(const string& s) {
+}
+```
+
+---
+
+# Código de la primera idea
+
+```C++
+bool estaBienFormadoContando(const string& s) {
+  int abren = 0, cierran = 0;
+}
+```
+
+---
+
+# Código de la primera idea
+
+```C++
+bool estaBienFormadoContando(const string& s) {
+  int abren = 0, cierran = 0;
+
+  for (int i = 0; i < s.length(); i++) {
+      char c = s[i];
+      if (c == '(') abren++;
+      else if (c == ')') cierran++;
+  }
+
+}
+```
+
+---
+
+# Código de la primera idea
+
+```C++
+bool estaBienFormadoContando(const string& s) {
+  int abren = 0, cierran = 0;
+
+  for (int i = 0; i < s.length(); i++) {
+      char c = s[i];
+      if (c == '(') abren++;
+      else if (c == ')') cierran++;
+  }
+
+  return abren == cierran;
+}
+```
+
+---
+
+# Esto... ¿Funciona?
+
+## Caso problemático
+
+* Si tengo -> ()
+  * abren = 1
+  * cierran = 1
+
+
+--
+
+Me retorna true... ¡Pero no debería!
+
+---
+
+# Otras ideas
+
+* Balanceo
+
+--
+
+* Recorrerlo completo
+
+--
+
+* ¿Pila?
+
+---
+
+# Idea con una pila
+
+* Una estructura que nos permita recordar lo último que abrimos
+
+--
+
+* Si cerramos algo que no estaba abierto... ¡Fin!
+
+---
+
+# Código
 
 ```C++
 int count = 7;
