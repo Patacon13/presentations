@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 18</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 22 - Archivos
+### Comisión A
+### Docente de práctica:
+#### Tomás Assenza
+#### Facundo Sanchez
+#### Nicolas Huber
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+---
+
+layout: false
+
+* En C++, además de los strings, existen los arreglos de caracteres (cadenas).
+
+--
+
+* Como no podemos manejar tamaños dinámicos en archivos binarios por el acceso aleatorio, estamos obligados a usar cadenas.
+
+---
+
+Ejemplo:
+
+```C++
+struct Persona {
+  string nombre;
+  string apellido;
+  int anioNacimiento;
+};
+struct PersonaArchivo {
+  char nombre[50];
+  char apellido[50];
+  int anioNacimiento;
+};
+```
+
+---
+
+```C++
+/*
+*Para facilitar el guardado en el archivo se crea una función que transforma
+*entre las estructuras.
+*/
+PersonaArchivo convertirAFormatoArchivo(Persona persona) {
+  PersonaArchivo personaArchivo;
+  
+  strncpy(personaArchivo.nombre, persona.nombre.c_str(), 
+          sizeof(personaArchivo.nombre) - 1);
+  personaArchivo.nombre[sizeof(personaArchivo.nombre) - 1] = '\0';
+
+  strncpy(personaArchivo.apellido, persona.apellido.c_str(), 
+          sizeof(personaArchivo.apellido) - 1);
+  personaArchivo.apellido[sizeof(personaArchivo.apellido) - 1] = '\0';
+
+  personaArchivo.anioNacimiento = persona.anioNacimiento;
+  return personaArchivo;
+}
+```
+
+---
+
+```C++
+/*
+* Para facilitar la lectura del archivo se crea una función que transforma
+* entre las estructuras.
+*/
+Persona convertirDesdeFormatoArchivo(PersonaArchivo personaArchivo) {
+  Persona persona;
+  persona.nombre = string(personaArchivo.nombre);
+  persona.apellido = string(personaArchivo.apellido);
+  persona.anioNacimiento = personaArchivo.anioNacimiento;
+  return persona;
+}
+```
+
+---
+
+# Archivos de texto
+
+* Apertura de archivos
+
+```c++
+archivo.open("nombreDeArchivo.txt");
+```
+
+--
+
+* Verificación de archivo abierto
+
+```c++
+if (archivo) {
+    // El archivo está abierto
+}
+else {
+    // El archivo no está abierto
+}
+```
+
+--
+
+```c++
+if (archivo.fail()) {
+    // El archivo no se pudo abrir
+}
+else {
+    // El archivo se pudo abrir
+}
+```
+
+---
+
+# Archivos de texto
+
+* Lectura de información
+
+```c++
+archivo >> variable;
+getline(archivo, string);
+getline(archivo, string, ',');
+archivo.getline(cadena, cantCar);
+archivo.getline(cadena, cantCar, ',');
+c = archivo.get();
+```
+
+--
+
+* Escritura en archivo
+
+```c++
+archivo << variable;
+```
+
+--
+
+* Cierre de archivos
+
+```c++
+archivo.close();
+```
+
+---
+
+# Archivos binarios
+
+* Lectura de información
+
+```c++
+// Funcion
+istream& read (char* s, streamsize n);
+// Ejemplo
+f.read((char *) &a, sizeof(a));
+```
+
+--
+
+* Escritura en archivos
+
+```c++
+// Funcion
+ostream& write (const char* s, streamsize n);
+// Ejemplo
+f.write((char *) &a, sizeof(a));
+```
+
+---
+
+# Archivos binarios
+
+* Operaciones
+  * seekg: indica la posición del próximo get.
+  * seekp: indica la posición del próximo put.
+  * tellg: devuelve la posición del cursor dentro del archivo de lectura.
+  * tellp: lo mismo del tellg, pero de escritura.
+* Posiciones
+  * ios::beg: Desplazamiento relativo al inicio del archivo.
+  * ios::end: Desplazamiento relativo al final del archivo.
+  * ios::cur: Desplazamiento relativo a la posición actual.
+
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Archivos - Ejercicio 1
+]
+
+Leer un archivo de texto y contar cuántos dígitos y letras contiene. Mostrar el resumen al finalizar la ejecución del programa.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Archivos - Ejercicio 2
+]
+
+Leer un archivo de texto (original.txt) y escribir en clave (enclave.txt). Escribirlo en clave no es más que sumar una cantidad al número en código ASCII de cada carácter. Esta cantidad deberá ingresarse por teclado.
+
+---
+
+```C++
+int shift;
+cout << "Ingresar desplazamiento (puede ser negativo): ";
+cin >> shift;
+
+
+ifstream archivoEntrada;
+archivoEntrada.open("original.txt");
+
+ofstream archivoSalida;
+archivoSalida.open("enclave.txt"); 
+
+if (!archivoEntrada || !archivoSalida) {
+  cout << "No se pudo abrir los archivos" << endl;
+}
+
+else {
+  char c;
+  
+  archivoEntrada.get(c);
+  while(!archivoEntrada.eof()) {
+    if (c != ' ') c += shift;
+    cout << "imprimiendo" << " " << c << endl;
+    archivoSalida << c;
+    archivoEntrada.get(c);
+  }
+  
+  
+  
+  archivoSalida.close();
+  
+  cout << "Listo. Archivo enclave.txt generado." << endl;
+}
+```
+
+.center[
+### Ejercicios - Guía práctica
+Archivos - Ejercicio 3
+]
+
+Leer un archivo de texto e informar:
+* La cantidad de palabras del texto.
+* La longitud de la palabra más larga.
+* La cantidad de palabras que comienzan y terminan con letras elegidas por el usuario.
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Archivos - Ejercicio 5
+]
+
+Escribir un programa que permita cargar desde teclado registros que contengan los siguientes campos: título del libro, autor, ISBN, precio, cantidad en existencia y cantidad vendida. Luego, guardar esta información en un archivo binario de “inventario”.
+	
+---
+
+```C++
+void copiarACampo(char[] dest, int maxlen, string& src) {
+	strncpy(dest, src.c_str(), maxlen - 1);
+	dest[maxlen - 1] = '\0';
+}
+
+Libro cargarLibroPorTeclado() {
+	Libro l;
+	string s;
+	
+	cout << "Titulo: ";
+	getline(cin >> ws, s);
+	copiarACampo(l.titulo, sizeof(l.titulo), s);
+	
+	cout << "Autor: ";
+	getline(cin, s);
+	copiarACampo(l.autor, sizeof(l.autor), s);
+	
+	cout << "ISBN: ";
+	getline(cin, s);
+	copiarACampo(l.isbn, sizeof(l.isbn), s);
+	
+	cin >> ws;
+	cout << "Precio: ";
+	cin >> l.precio;
+	
+	cout << "Cantidad en existencia: ";
+	cin >> l.cantidadExistencia;
+	
+	cout << "Cantidad vendida: ";
+	cin >> l.cantidadVendida;
+	
+	
+	return l;
+}
+```
+
+---
+
+```C++
+void agregarRegistros(char[] nombreArchivo) {
+	ofstream archivoSalida;
+	archivoSalida.open(nombreArchivo, ios::binary | ios::out | ios::app);
+	
+	if (!archivoSalida) {
+		cout << "No se pudo abrir " << nombreArchivo << " para escritura (binario).\n";
+	}
+	else {
+		char seguir = 's';
+		while (seguir == 's' || seguir == 'S') {
+			Libro l = cargarLibroPorTeclado();
+			archivoSalida.write((char *) &l, sizeof(l));
+			if (!archivoSalida) {
+				cout << "Error escribiendo registro.\n";
+			}
+			cout << "¿Cargar otro? (s/n): ";
+			cin >> seguir;
+		}
+		
+	}
+	
+}
+```
+
+---
+
+.center[
+### Ejercicios - Guía práctica
+Archivos - Ejercicio 6
+]
+
+Escribir un programa que utilizando el archivo creado en el problema anterior nos permita:
+
+a. Recuperar del archivo el 3er libro y mostrar por pantalla su título y autor.
+
+b. Reemplazar en el archivo el 2do libro con uno nuevo, cuyos datos cargará el usuario por
+teclado.
+
+c. Mostrar por pantalla el inventario completo.
+
+---
+
+Recordemos que a estas funciones les faltan validaciones!!!
+
+```C++
+void leerLibroEnPos(ifstream& f, int pos1, Libro& out) {
+  int offset = (pos1 - 1) * sizeof(Libro);
+  f.seekg(0, ios::end);
+  f.seekg(offset, ios::beg);
+  f.read((char *) & out, sizeof(Libro)));
+}
+```
+
+---
+
+```C++
+void escribirLibroEnPos(ofstream& f, int pos1, const Libro& in) {
+  int offset = (pos1 - 1) * sizeof(Libro);
+  f.seekp(0, ios::end);
+  f.seekp(offset, ios::beg);
+  f.write((char *) & in, sizeof(libro))
+}
+```
+
+
+---
+
+```C++
+void listarRegistros(char[] nombreArchivo) {
+	ifstream archivoEntrada;
+	archivoEntrada.open(nombreArchivo);
+	Libro l;
+	int idx = 0;
+	while (!archivoEntrada.eof())) {
+		f.read(char *) &l, sizeof(l)
+		cout << "=== Registro #" << idx++ << " ===\n";
+		cout << "Titulo: " << l.titulo << "\n";
+		cout << "Autor: " << l.autor << "\n";
+		cout << "ISBN: " << l.isbn << "\n";
+		cout << "Precio: " << l.precio << "\n";
+		cout << "Existencia: " << l.cantidadExistencia << "\n";
+		cout << "Vendida: " << l.cantidadVendida << "\n\n";
+	}
+}
+```
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>

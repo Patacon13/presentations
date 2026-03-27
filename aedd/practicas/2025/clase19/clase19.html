@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Punteros</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica - Punteros y Estructuras dinámicas
+### Comisión A
+### Docentes de práctica:
+#### Tomás Assenza
+#### Facundo Sanchez
+#### Nicolás Huber
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+---
+layout: false
+
+# Punteros
+
+* Las variables normales contienen un valor específico.
+* Un puntero contiene una **dirección de memoria**.
+* El operador \& permite obtener la dirección de memoria de una variable.
+* El operador \* permite obtener el valor apuntado de un puntero.
+
+
+```C++
+int count = 7;
+int * countPtr;
+countPtr = &count;
+```
+
+---
+
+
+.center[
+### Ejercicios - Guía práctica 17
+Punteros - Ejercicio 1
+]
+
+Para cada uno de los siguientes enunciados, escriba el código correspondiente. Suponer que se han declarado las siguientes variables:
+
+```
+float num1 = 3.1415926, num2 = 0.12345
+```
+
+En base a estas definiciones, se le solicita:
+
+* Declarar un puntero a float llamado pnum. 
+* Asignar la dirección de la variable num1 a pnum. 
+* Imprimir el valor de la variable apuntada por pnum. 
+* Asignar el valor de la variable apuntada por pnum a la variable num2. 
+* Imprimir el valor de num2. 
+* Imprimir la dirección de num2 y la dirección almacenada en pnum. ¿Es la misma dirección?
+
+---
+
+# Declaración de un puntero
+
+```C++
+float *pnum;
+```
+
+--
+
+# Asignación de dirección
+
+```C++
+pnum = &num1;
+```
+
+--
+
+# Impresión del valor apuntado
+
+```C++
+std::cout << *pnum << std::endl;
+```
+
+---
+
+# Asignación del valor apuntado a num2
+
+```C++
+num2 = *pnum;
+```
+
+--
+
+# Impresión de direcciones
+
+```C++
+cout << &num2 << endl;
+cout << pnum << endl;
+```
+
+---
+
+.center[
+### Ejercicios - Guía práctica 17
+Punteros - Ejercicio adaptado
+]
+
+Crear un array de 10 números y recorrerlo con un solo puntero.
+
+---
+
+# Solución
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numeros[10] = {10, 4, 3, 2, 4, 6, 7, 6, 5, 4};
+    int* puntero = numeros;
+    for (int i = 0; i < 10; i++) {
+        cout << *puntero << " ";
+        puntero++;
+    }
+    cout << endl;
+}
+```
+
+---
+layout: false
+
+.center[
+### Ejercicios - Guía práctica 18
+#### Estructuras dinámicas - Ejercicio 1
+]
+
+Escribir una función que permita unir dos listas lineales A y B que contienen números enteros y devolver A U B (la lista resultado debe contener los elementos en A ó en B, sin repetidos).
+
+---
+
+# Solución
+
+```C++
+struct Nodo {
+    int valor;
+    Nodo* siguiente;
+};
+```
+
+---
+
+# Solución
+
+```C++
+void agregaNodo(Nodo*& cabeza, int valor) {
+    Nodo* nuevoNodo = new Nodo();
+    nuevoNodo.valor = valor;
+    if (cabeza == NULL) {
+        cabeza = nuevoNodo;
+    } else {
+        Nodo* temp = cabeza;
+        while (temp->siguiente != NULL) {
+            temp = temp->siguiente;
+        }
+        temp->siguiente = nuevoNodo;
+    }
+}
+```
+
+---
+
+# Solución
+
+```C++
+bool estaEnLaLista(Nodo* cabeza, int valor) {
+    Nodo* temp = cabeza;
+    bool encontrado = false;
+    while (temp != NULL and !encontrado) {
+        if (temp->dato == valor) {
+            encontrado = true;
+        }
+        temp = temp->siguiente;
+    }
+    return encontrado;
+}
+```
+
+---
+
+# Solución
+
+```C++
+Nodo* unirListas(Nodo* listaA, Nodo* listaB) {
+    Nodo* listaResultado = NULL;
+
+    Nodo* tempA = listaA;
+    while (tempA != NULL) {
+        if (!estaEnLaLista(listaResultado, tempA->dato)) {
+            agregarNodo(listaResultado, tempA->dato);
+        }
+        tempA = tempA->siguiente;
+    }
+
+    Nodo* tempB = listaB;
+    while (tempB != NULL) {
+        if (!estaEnLaLista(listaResultado, tempB->dato)) {
+            agregarNodo(listaResultado, tempB->dato);
+        }
+        tempB = tempB->siguiente;
+    }
+
+    return listaResultado;
+}
+```
+
+---
+
+.center[
+####Estructuras dinámicas - Ejercicio 2
+]
+
+En una lista enlazada se guarda como información, números naturales de hasta 4 cifras. 
+La información se cargó en la lista de manera que esté ordenada en forma creciente. Pero se cree que hay algunos errores, es decir que hay tramos que no están en orden creciente. 
+Se debe construir una función que actualice la lista, eliminando los tramos que no están en forma creciente.
+
+
+---
+
+.center[
+### Ejercicios - Guía práctica 18
+####Estructuras dinámicas - Ejercicio 3
+]
+
+Declarar los tipos de datos necesarios para almacenar una lista secuencial enlazada cuyos nodos contienen la siguiente información: 
+
+* Una cadena de caracteres con el nombre de una ciudad. 
+* Las coordenadas X e Y de dicha ciudad en el plano. 
+* Un número de registración que se asigna aleatoriamente. 
+
+Escribir funciones que reciban la lista y permitan:
+
+* Informar el nombre de la ciudad con el número de registro más bajo. 
+* Informar si la lista está ordenada alfabéticamente por nombre de ciudad. 
+* Eliminar de la lista todas las ciudades que tengan ordenada en el plano menor que 0. 
+
+
+---
+
+.center[
+### Ejercicios - Guía práctica 18
+####Estructuras dinámicas - Ejercicio 4
+]
+
+En dos listas Curso1 y Curso2 de tipo CALIFICACIONES se tiene la información de las notas obtenidas por los alumnos de dos comisiones de ISI, en las 6 asignaturas de primer año. Ambas listas están ordenadas por ID de los alumnos.
+Se solicita integrar ambas listas generando una nueva. <br><br>
+Las listas de tipo CALIFICACIONES tienen en cada nodo la siguiente información: ID Alumno (6 cifras) y un vector con las 6 calificaciones finales de las asignaturas de primer año. <br><br>
+En la lista INTEGRADA deben aparecer los alumnos ordenados por promedio de las 6 calificaciones (de mayor a menor). La lista integrada contiene en cada nodo solamente el ID del alumno, y un valor real con el promedio obtenido. <br><br>
+Definir los tipos de datos y una función que reciba las dos listas y retorne la lista INTEGRADA.  
+
+
+
+
+
+
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script>
+      var slideshow = remark.create({ slideNumberFormat: ""});
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>
