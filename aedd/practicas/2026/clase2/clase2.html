@@ -100,8 +100,6 @@ float precio = (int) 16.77 + (int) 23.99;
 
 ---
 
----
-
 .center[
 ### Ejercicio 2 - Guía 2
 ]
@@ -250,33 +248,26 @@ int main() {
 
 ---
 
+---
+
 .center[
-### Ejercicio 9 - Guía 3
+### Ejercicio 12 - Guía 3
 ]
 
-**9. Parsing de Fecha Compactada**
+**12. Transformación ASCII**
 
-**Objetivo:** Descomponer una fecha en formato numérico continuo en sus componentes.
+**Objetivo:** Aplicar una operación aritmética sobre los valores ASCII de caracteres alfabéticos.
 
 **Especificaciones:**
+* Solicite el ingreso de una cadena compuesta únicamente por letras mayúsculas.
+* Genere una nueva cadena donde cada carácter sea reemplazado por el carácter correspondiente al valor ASCII original incrementado en 1.
+    * Ejemplo: 'A' (65) -> 'B' (66), 'Z' (90) -> '[' (91).
 
-* Solicite el ingreso de una cadena de exactamente 8 caracteres numéricos con el formato MMDDYYYY (mes-dia-año).
-* Extraiga y muestre por separados
-  * Mes (posiciones 0-1).
-  * Día (posiciones 2-3).
-  * Año (posiciones 4-7)
+**Ejemplo de ejecución:**
 
-Ejemplo de ejecución:
-
-Entrada: 12252025
-
-Salida:
-
-Mes: 12
-
-Día: 25
-
-Año: 2025
+| Entrada | Salida |
+|---|---|
+| ABC | BCD |
 
 ---
 
@@ -291,20 +282,16 @@ Año: 2025
 using namespace std;
 
 int main() {
-    string fechaCompacta;
-    string mes, dia, año;
+    string cadena;
 
-    cout << "Ingrese una fecha compacta (MMDDYYYY, 8 dígitos): ";
-    cin >> fechaCompacta;
+    cout << "Ingrese una cadena de 3 letras mayusculas (ej. ABC): ";
+    cin >> cadena;
+    
+    cadena.at(0)++;
+    cadena.at(1)++;
+    cadena.at(2)++;
 
-    // Se asume que el usuario ingresa exactamente los 8 caracteres de forma valida.
-    mes = fechaCompacta.substr(0, 2);
-    dia = fechaCompacta.substr(2, 2);
-    año = fechaCompacta.substr(4, 4);
-
-    cout << "Mes: " << mes << endl;
-    cout << "Día: " << dia << endl;
-    cout << "Año: " << año << endl;
+    cout << "Cadena transformada: " << cadena << endl;
 
     return 0;
 }
