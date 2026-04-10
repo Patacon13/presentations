@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 2</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 2 - Tipos de datos, operadores y casting
+### Comisión A
+### Docentes de práctica:
+#### Tomás Assenza
+#### Facundo Sanchez
+#### Nicolas Huber
+#### Brian Briani
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+---
+
+layout: false
+
+## Casting
+
+* Implicito
+```C++
+int numeroEntero;
+float numeroFlotante = 4.5;
+numeroEntero = numeroFlotante;
+```
+
+--
+
+* Explícito
+```C++
+float precio = (int) 16.77 + (int) 23.99;
+```
+
+---
+
+---
+
+.center[
+### Ejercicio 2 - Guía 2
+]
+
+2. ¡Explora la magia de la salud con este desafío de programación en C++! Tu tarea: crea un programa que calcule y muestre el Índice de Masa Corporal (IMC) a partir del peso (en kilogramos, con precisión de 1 dígito) y la estatura (en metros, con precisión de 2 dígitos). Utiliza la fórmula:
+
+**IMC=peso/(estatura)&sup2;**
+
+*Nota: ¿En qué casos (para cuáles datos de entrada) se producirán errores en el cálculo de la expresión del IMC? Ejecuta el programa y analiza su comportamiento en dichos casos.*
+
+---
+
+.center[
+### Solucion
+]
+
+```C++
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+    double peso, estatura, imc;
+
+    cout << "Ingrese el peso en kilogramos (un decimal): ";
+    cin >> peso;
+
+    cout << "Ingrese la estatura en metros (dos decimales): ";
+    cin >> estatura;
+
+    imc = peso / (estatura * estatura);
+
+    cout << fixed << setprecision(1);
+    cout << "Su IMC es: " << imc << endl;
+
+    return 0;
+}
+```
+
+---
+
+.center[
+### Ejercicio 1 - Guía 3
+]
+
+**1. Generación de Correo Institucional**
+
+**Objetivo:** Construir una dirección de correo electrónico institucional a partir de datos personales.
+
+**Especificaciones:**
+* Solicite al usuario el ingreso de una cadena con el formato: `Apellido Nombre` (separados por un espacio).
+* Extraiga la inicial del nombre y el apellido completo.
+* Genere el correo electrónico mediante el patrón: `inicial_del_nombre + apellido + @frsf.utn.edu.ar`.
+* Presente el resultado en pantalla.
+
+---
+
+.center[
+### Solucion
+]
+
+```C++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string apellido, nombre, correo;
+    char inicialNombre;
+
+    cout << "Ingrese Apellido y Nombre (separados por un espacio): ";
+    
+    cin >> apellido >> nombre;
+
+    inicialNombre = toLower(nombre.at(0));
+
+    correo = inicialNombre + apellido + "@frsf.utn.edu.ar";
+
+    cout << "Correo electrónico: " << correo << endl;
+
+    return 0;
+}
+```
+
+---
+
+.center[
+### Ejercicio 7 - Guía 3
+]
+
+**7. Inversión de Palabras Cortas**
+
+**Objetivo:** Invertir el orden de los caracteres en palabras de longitud limitada.
+
+**Especificaciones:**
+
+* Solicite el ingreso de dos palabras (cada una con un máximo de 5 letras).
+* Para cada palabra, invierta el orden de sus caracteres.
+* Muestre ambas palabras invertidas.
+
+**Ejemplo:**
+
+* Entrada 1: casa
+* Entrada 2: perro
+* Salida: asac orrep
+
+---
+
+.center[
+### Solucion
+]
+
+```C++
+int main() {
+    string palabra1, palabra2;
+
+    cout << "Ingrese la primera palabra (max 5 letras): ";
+    cin >> palabra1;
+    
+    cout << "Ingrese la segunda palabra (max 5 letras): ";
+    cin >> palabra2;
+
+    aux = palabra1.at(0);
+    palabra1.at(0) = palabra1.at(4);
+    palabra1.at(4) = aux;
+
+    aux = palabra1.at(1);
+    palabra1.at(1) = palabra1.at(3);
+    palabra1.at(3) = aux;
+
+    aux = palabra2.at(0);
+    palabra2.at(0) = palabra2.at(4);
+    palabra2.at(4) = aux;
+
+    aux = palabra2.at(1);
+    palabra2.at(1) = palabra2.at(3);
+    palabra2.at(3) = aux;
+
+    cout << "Palabras invertidas: ";
+    cout << palabra1 << " " << palabra2 << endl;
+    return 0;
+}
+```
+
+---
+
+.center[
+### Ejercicio 9 - Guía 3
+]
+
+**9. Parsing de Fecha Compactada**
+
+**Objetivo:** Descomponer una fecha en formato numérico continuo en sus componentes.
+
+**Especificaciones:**
+
+* Solicite el ingreso de una cadena de exactamente 8 caracteres numéricos con el formato MMDDYYYY (mes-dia-año).
+* Extraiga y muestre por separados
+  * Mes (posiciones 0-1).
+  * Día (posiciones 2-3).
+  * Año (posiciones 4-7)
+
+Ejemplo de ejecución:
+
+Entrada: 12252025
+
+Salida:
+
+Mes: 12
+
+Día: 25
+
+Año: 2025
+
+---
+
+.center[
+### Solucion
+]
+
+```C++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string fechaCompacta;
+    string mes, dia, año;
+
+    cout << "Ingrese una fecha compacta (MMDDYYYY, 8 dígitos): ";
+    cin >> fechaCompacta;
+
+    // Se asume que el usuario ingresa exactamente los 8 caracteres de forma valida.
+    mes = fechaCompacta.substr(0, 2);
+    dia = fechaCompacta.substr(2, 2);
+    año = fechaCompacta.substr(4, 4);
+
+    cout << "Mes: " << mes << endl;
+    cout << "Día: " << dia << endl;
+    cout << "Año: " << año << endl;
+
+    return 0;
+}
+```
+---
+
+.center[
+### Puesta en Común
+]
+
+* Guía 2 - Ejercicio 4
+* Guía 3 - Ejercicio 13
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create({ slideNumberFormat: ""});
+</script>
+</body>
+</html>
