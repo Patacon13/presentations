@@ -113,7 +113,7 @@ Ejemplos:
   * abren++ si veo (
 
 --
-  * cierran-- si veo ) 
+  * cierran++ si veo ) 
 
 --
 
@@ -133,7 +133,7 @@ bool estaBienFormado(const string& s) {
 # Código de la primera idea
 
 ```C++
-bool estaBienFormadoContando(const string& s) {
+bool estaBienFormado(const string& s) {
   int abren = 0, cierran = 0;
 }
 ```
@@ -143,7 +143,7 @@ bool estaBienFormadoContando(const string& s) {
 # Código de la primera idea
 
 ```C++
-bool estaBienFormadoContando(const string& s) {
+bool estaBienFormado(const string& s) {
   int abren = 0, cierran = 0;
 
   for (int i = 0; i < s.length(); i++) {
@@ -160,7 +160,7 @@ bool estaBienFormadoContando(const string& s) {
 # Código de la primera idea
 
 ```C++
-bool estaBienFormadoContando(const string& s) {
+bool estaBienFormado(const string& s) {
   int abren = 0, cierran = 0;
 
   for (int i = 0; i < s.length(); i++) {
@@ -179,7 +179,7 @@ bool estaBienFormadoContando(const string& s) {
 
 ## Caso problemático
 
-* Si tengo -> ()
+* Si tengo -> )(
   * abren = 1
   * cierran = 1
 
