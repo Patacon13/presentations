@@ -189,24 +189,32 @@ int main() {
 ---
 
 .center[
-### Ejercicio 7 - Guía 3
+### Ejercicio 9 - Guía 3
 ]
 
-**7. Inversión de Palabras Cortas**
+**9. Parsing de Fecha Compactada**
 
-**Objetivo:** Invertir el orden de los caracteres en palabras de longitud limitada.
+**Objetivo:** Descomponer una fecha en formato numérico continuo en sus componentes.
 
 **Especificaciones:**
 
-* Solicite el ingreso de dos palabras (cada una con un máximo de 5 letras).
-* Para cada palabra, invierta el orden de sus caracteres.
-* Muestre ambas palabras invertidas.
+* Solicite el ingreso de una cadena de exactamente 8 caracteres numéricos con el formato MMDDYYYY (mes-dia-año).
+* Extraiga y muestre por separados
+  * Mes (posiciones 0-1).
+  * Día (posiciones 2-3).
+  * Año (posiciones 4-7)
 
-**Ejemplo:**
+Ejemplo de ejecución:
 
-* Entrada 1: casa
-* Entrada 2: perro
-* Salida: asac orrep
+Entrada: 12252025
+
+Salida:
+
+Mes: 12
+
+Día: 25
+
+Año: 2025
 
 ---
 
@@ -215,33 +223,27 @@ int main() {
 ]
 
 ```C++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 int main() {
-    string palabra1, palabra2;
+    string fechaCompacta;
+    string mes, dia, año;
 
-    cout << "Ingrese la primera palabra (max 5 letras): ";
-    cin >> palabra1;
-    
-    cout << "Ingrese la segunda palabra (max 5 letras): ";
-    cin >> palabra2;
+    cout << "Ingrese una fecha compacta (MMDDYYYY, 8 dígitos): ";
+    cin >> fechaCompacta;
 
-    aux = palabra1.at(0);
-    palabra1.at(0) = palabra1.at(4);
-    palabra1.at(4) = aux;
+    // Se asume que el usuario ingresa exactamente los 8 caracteres de forma valida.
+    mes = fechaCompacta.substr(0, 2);
+    dia = fechaCompacta.substr(2, 2);
+    año = fechaCompacta.substr(4, 4);
 
-    aux = palabra1.at(1);
-    palabra1.at(1) = palabra1.at(3);
-    palabra1.at(3) = aux;
+    cout << "Mes: " << mes << endl;
+    cout << "Día: " << dia << endl;
+    cout << "Año: " << año << endl;
 
-    aux = palabra2.at(0);
-    palabra2.at(0) = palabra2.at(4);
-    palabra2.at(4) = aux;
-
-    aux = palabra2.at(1);
-    palabra2.at(1) = palabra2.at(3);
-    palabra2.at(3) = aux;
-
-    cout << "Palabras invertidas: ";
-    cout << palabra1 << " " << palabra2 << endl;
     return 0;
 }
 ```
