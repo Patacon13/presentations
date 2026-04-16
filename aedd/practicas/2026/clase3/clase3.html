@@ -56,6 +56,10 @@
       .center {
         float: center;
       }
+      .small-code .remark-code {
+        font-size: 0.8em;
+        line-height: 1.2;
+      }
       
     </style>
   </head>
@@ -232,6 +236,38 @@ Un postulante a un empleo realiza un test de capacitación. Se ingresa por tecla
 ---
 
 .center[
+### Solución - Ejercicio 4
+]
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+    int total, correctas;
+    cout << "Total de preguntas: ";
+    cin >> total;
+    cout << "Respuestas correctas: ";
+    cin >> correctas;
+
+    float porcentaje = (correctas * 100.0) / total;
+
+    if (porcentaje >= 90)
+        cout << "Nivel máximo" << endl;
+    else if (porcentaje >= 75)
+        cout << "Nivel medio" << endl;
+    else if (porcentaje >= 50)
+        cout << "Nivel regular" << endl;
+    else
+        cout << "Fuera de nivel" << endl;
+
+    return 0;
+}
+```
+
+---
+
+.center[
 ### Ejercicio 7 - Guía 4
 ]
 
@@ -240,6 +276,33 @@ Diseñe un algoritmo que lea un número de tres cifras y determine si es o no ca
 **Ejemplo**:
 * Si se ingresa 383, el programa retorna un mensaje indicando que es capicúa.
 * Si se ingresa 473, el programa retorna un mensaje indicando que no es capicúa
+
+---
+
+.center[
+### Solución - Ejercicio 7
+]
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num;
+    cout << "Ingrese un número de tres cifras: ";
+    cin >> num;
+
+    int centena = num / 100;
+    int unidad  = num % 10;
+
+    if (centena == unidad)
+        cout << num << " es capicúa" << endl;
+    else
+        cout << num << " no es capicúa" << endl;
+
+    return 0;
+}
+```
 
 ---
 
@@ -258,6 +321,45 @@ final de la compra del cliente estará sujeto a las siguientes condiciones:
 
 Escribir un programa en C++ que permita leer por teclado el monto de la compra y su forma de pago, y que calcule el monto final a pagar por el cliente de acuerdo a la forma de pago elegida.
 Cuando corresponda, especificar también el monto a pagar en cada cuota.
+
+---
+
+.center[
+### Solución - Ejercicio 6
+]
+
+.small-code[
+```C++
+#include <iostream>
+using namespace std;
+int main() {
+    float monto, total;
+    char pago;
+    cin >> monto >> pago;
+    if (pago == 'c' || pago == 'C') {
+        int cuotas;
+        cin >> cuotas;
+        if (cuotas == 3) {
+            total = monto * 1.10;
+            cout << "Total: $" << total << endl;
+            cout << "Por cuota: $" << total / 3 << endl;
+        } else {
+            cout << "Total: $" << monto << endl;
+        }
+    } else if (pago == 'd' || pago == 'D') {
+        if (monto > 3000)
+            total = monto * 0.85;
+        else
+            total = monto;
+        cout << "Total: $" << total << endl;
+    } else if (pago == 'b' || pago == 'B') {
+        total = monto * 0.70;
+        cout << "Total: $" << total << endl;
+    }
+    return 0;
+}
+```
+]
 
 ---
 
