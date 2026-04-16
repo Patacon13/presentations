@@ -79,8 +79,129 @@ class: inverse, center, middle
 Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
 
 ---
-
 layout: false
+
+Declaración de librería
+
+```C++
+string str = "Hola mundo";
+```
+
+--
+
+Entradas:
+
+* cin
+* getline(cin, cadena)
+* getline(cin, cadena, '<caracterDeCorte>')
+* cin >> ws o cin.ignore(...) para gestionar buffer de entrada.
+
+--
+
+Salidas: cout
+
+--
+
+Comparaciones lexicográficas (==, !=, >, <, >=, <=)
+
+--
+
+Concatenación de cadenas con +
+
+---
+
+Funciones:
+
+Obtener longitud:
+
+* str.length()
+* str.size()
+
+--
+
+Buscar un elemento:
+
+* str.find("ElTextoQueQuieroBuscar")
+* str.find("ElTextoQueQuieroBuscar", indiceDeDondeArrancar)
+
+--
+
+Insertar un elemento en un punto particular:
+
+* str.insert(dondeInsertar, "ElTextoQueQuieroInsertar")
+* str.insert(dondeInsertar, 'a');
+
+--
+
+Obtener una subcadena
+
+* str.substr(posicionDesdeDondeEmpezar, tamañoSubcadena);
+
+--
+
+Intercambiar strings
+
+* str.swap(str2)
+
+--
+
+Poner un string al final de otro
+
+* str.append(str2);
+
+
+---
+
+
+.center[
+### Ejercicio 10 - Concatenación de Extremos
+]
+
+**Objetivo:** Extraer prefijos y sufijos de longitud determinada y combinarlos.
+
+**Especificaciones:**
+* Solicite el ingreso de una frase.
+* Extraiga los primeros 5 caracteres y los últimos 5 caracteres.
+* Muestre por separado ambos segmentos y luego su concatenación.
+
+**Restricción:** Asuma que la cadena ingresada posee al menos 5 caracteres.
+
+**Ejemplo:**
+```
+Entrada: ComputaciónAvanzada
+Primeros 5: Comput
+Últimos 5:  nzada
+Concatenación: Computnzada
+```
+
+---
+
+.center[
+### Solución - Ejercicio 10
+]
+
+```C++
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string frase;
+    cout << "Entrada: ";
+    cin >> frase;
+
+    string primeros = frase.substr(0, 5);
+    string ultimos  = frase.substr(frase.length() - 5, 5);
+
+    cout << "Primeros 5: " << primeros << endl;
+    cout << "Últimos 5: "  << ultimos  << endl;
+    cout << "Concatenación: " << primeros + ultimos << endl;
+
+    return 0;
+}
+```
+
+---
 
 ## Estructura if
 
@@ -94,51 +215,11 @@ layout: false
 
 * Selección anidada: Una sentencia if es anidada cuando la acción de la rama verdadera y/o la rama falsa, son también una sentencia if.
 
----
-
-.center[
-### OmegaUp - 5725
-]
-
-**Descripción**
-
-Una secuencia de tres enteros A, B, C es creciente débil si a <= b <= c y decreciente débil si a >= b >= c. Si la secuencia es tanto creciente débil como decreciente débil, preferiremos notar el hecho de que todos sus números son iguales. Escribe un programa que determine si una secuencia dada es creciente débil, decreciente débil, si todos los números son iguales o si no existe un orden aparente.
-
-**Entrada**
-
-Los tres enteros A, B, C. Puedes suponer que -100 <= A, B, C <= 100.
-
-**Salida**
-
-Una letra C si la secuencia es creciente débil, una letra D si es decreciente débil, una letra I si todos los números son iguales o una letra X si no existe un orden aparente.
 
 ---
 
 .center[
-### Solución
-]
-
-```C++
-#include <iostream>
-using namespace std;
-  
-int main() {
-  int a,b,c;
-  cin >> a >> b >> c;
-
-  if (a == b && b == c) cout << "I" << endl;
-  else if (a <= b && b <= c) cout << "C" << endl;
-  else if (a >= b && b >= c) cout << "D" << endl;
-  else cout << "X" << endl;
-  return 0;
-}
-```
-
-
----
-
-.center[
-### Ejercicio 4 - Guía 3
+### Ejercicio 4 - Guía 4
 ]
 
 Un postulante a un empleo realiza un test de capacitación. Se ingresa por teclado la cantidad total de preguntas realizadas y la cantidad de preguntas contestadas correctamente. Se pide desarrollar un programa que informe el nivel obtenido por el postulante, según el porcentaje de respuestas correctas y sabiendo que:
@@ -151,7 +232,7 @@ Un postulante a un empleo realiza un test de capacitación. Se ingresa por tecla
 ---
 
 .center[
-### Ejercicio 7 - Guía 3
+### Ejercicio 7 - Guía 4
 ]
 
 Diseñe un algoritmo que lea un número de tres cifras y determine si es o no capicúa. Un número es capicúa si “se lee igual al derecho y al revés”.
@@ -163,7 +244,7 @@ Diseñe un algoritmo que lea un número de tres cifras y determine si es o no ca
 ---
 
 .center[
-### Ejercicio 6 - Guía 3
+### Ejercicio 6 - Guía 4
 ]
 
 
