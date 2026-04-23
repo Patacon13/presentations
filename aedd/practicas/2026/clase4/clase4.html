@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 4</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 4 - Estructuras condicionales
+### Comisión A
+### Docentes de práctica:
+#### Tomás Assenza
+#### Exequiel Benavidez
+#### Facundo Sanchez
+#### Nicolas Huber
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+
+---
+
+layout: false
+
+.center[
+### Ejercicio 5 - Guía 4
+]
+
+**Descripción**
+
+Se solicita escribir el código requerido para poder ingresar desde el teclado un número de día de la semana (de 1 a 7) y un número de mes (de 1 a 12), y que imprima el nombre del día de la semana y el del mes correspondientes, en texto. Si el día o el mes ingresado es incorrecto entonces deberá mostrarse un mensaje de error que indique la situación.
+
+**Ejemplos**
+Si el usuario ingresa:
+```text
+3, 8
+```
+Su programa deberá mostrar:
+```text
+Martes y Agosto
+```
+
+Si el usuario ingresa:
+```text
+12, 7
+```
+Su programa deberá mostrar:
+```text
+Día inexistente.
+```
+
+---
+
+.center[
+### Solución (Parte 2)
+]
+
+```C++
+#include<iostream>
+
+using namespace std;
+
+int  main()
+{
+	int dia, mes;
+	
+	cout << "Ingrese el dia de la semana (1-7): ";
+	cin >> dia;
+	cout << endl << "Ingrese el mes (1-12): ";
+	cin >> mes;
+	
+	if(dia>7 || dia <1 || mes>12 || mes<1)
+		cout << "Dia inexistente";
+	else
+		{
+		cout << "Dia: ";
+		switch(dia)
+		{
+		case 1: cout <<"Lunes"; break;
+		case 2: cout <<"Martes";  break;
+		case 3: cout <<"Miercoles"; break;
+		case 4: cout <<"Jueves";  break;
+		case 5: cout <<"Viernes"; break;
+		case 6: cout <<"Sabado";  break;
+		case 7: cout <<"Domingo"; break;
+		}
+```   
+
+---
+
+.center[
+### Solución (Parte 2)
+]
+
+``` C++
+		switch(mes)
+		{
+		case 1:
+			cout << " Enero"<<endl; break;
+		case 2:
+			cout << " Febrero"<<endl; break;
+		case 3:
+			cout << " Marzo"<<endl; break;
+		case 4:
+			cout << " Arbil"<<endl; break;
+		case 5:
+			cout << " Mayo"<<endl;  break;
+		case 6:
+			cout << " Junio"<<endl; break;
+		case 7:
+			cout << " Julio"<<endl; break;
+		case 8:
+			cout << " Agosto"<<endl;  break;
+		case 9:
+			cout << " Septiembre"<<endl;  break;
+		case 10:
+			cout << " Octubre"<<endl; break;
+		case 11:
+			cout << " Noviembre"<<endl; break;
+		case 12:
+			cout << " Diciembre"<<endl; break;
+		}}
+	return 0;}
+
+```
+---
+.center[
+### Ejercicio 9 - Guía 4]
+Escribir un programa que dado un número del 0 al 9, escriba en pantalla los números restantes
+hasta el 10.
+
+**Ejemplo**
+``` bash
+Ingrese un número del 1 al 10: 7
+8 9
+```
+---
+.center[
+### Solución]
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+	int numero;
+	cout << "Ingrese un numero (entre 0 y 9)"<<endl;
+	cin >> numero;
+	
+	switch(numero){
+	case 0:       cout<<"1\t";
+	case 1:       cout<<"2\t";
+	case 2:       cout<<"3\t";
+	case 3:       cout<<"4\t";
+	case 4:       cout<<"5\t";
+	case 5:       cout<<"6\t";
+	case 6:       cout<<"7\t";
+	case 7:       cout<<"8\t";
+	case 8:       cout<<"9\t";
+	case 9:       cout<<"10\t";
+		break;
+	default:
+		cout<<"Se ingreso un numero fuera del rango"<<endl;
+	};
+}
+```
+
+---
+.center[
+### Ejercicio 10 - Guia 4
+]
+
+Realizar un programa que permita al usuario calcular el perímetro de un triángulo. Para esto, el programa mostrará un menú con las opciones Equilátero, Isósceles y Escaleno. Si la opción ingresada por el usuario es incorrecta, se muestra un mensaje indicando el error y se cierra la aplicación. Si es correcta, el programa solicitará el ingreso de los datos necesarios para el cálculo. Tener en cuenta que la información ingresada en este paso debe ser positiva. Una vez ingresados todos los datos necesarios, el programa debe realizar el cálculo del perímetro y mostrar el resultado por pantalla.
+
+**Ejemplo**
+
+```bash
+Indique el tipo de triángulo con el que desea trabajar:
+1- Equilatero
+2- Isoceles
+3- Escaleno
+Tipo de triangulo: 1
+Triangulo Esquilatero
+Valor del lado: 8.7
+Perimetro: 26.1
+```
+
+
+---
+
+.center[
+### Solución
+]
+
+
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+
+```
+
+---
+
+.center[
+### Solucion (parte 2)
+]
+
+```C++
+
+    return 0;
+}
+```
+
+---
+
+---
+
+# Puesta en común
+
+* Ejercicio
+* Ejercicio
+* Ejercicio
+
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create({ slideNumberFormat: ""});
+</script>
+</body>
+</html>
