@@ -121,8 +121,7 @@ Día inexistente.
 
 using namespace std;
 
-int  main()
-{
+int  main() {
 	int dia, mes;
 	
 	cout << "Ingrese el dia de la semana (1-7): ";
@@ -130,20 +129,18 @@ int  main()
 	cout << endl << "Ingrese el mes (1-12): ";
 	cin >> mes;
 	
-	if(dia>7 || dia <1 || mes>12 || mes<1)
+	if (dia > 7 || dia < 1 || mes > 12 || mes < 1)
 		cout << "Dia inexistente";
-	else
-		{
+	else {
 		cout << "Dia: ";
-		switch(dia)
-		{
-		case 1: cout <<"Lunes"; break;
-		case 2: cout <<"Martes";  break;
-		case 3: cout <<"Miercoles"; break;
-		case 4: cout <<"Jueves";  break;
-		case 5: cout <<"Viernes"; break;
-		case 6: cout <<"Sabado";  break;
-		case 7: cout <<"Domingo"; break;
+		switch(dia) {
+			case 1: cout << "Lunes"; break;
+			case 2: cout << "Martes";  break;
+			case 3: cout << "Miercoles"; break;
+			case 4: cout << "Jueves";  break;
+			case 5: cout << "Viernes"; break;
+			case 6: cout << "Sabado";  break;
+			case 7: cout << "Domingo"; break;
 		}
 ```   
 
@@ -154,36 +151,37 @@ int  main()
 ]
 
 ``` C++
-		switch(mes)
-		{
+		switch(mes) {
 		case 1:
-			cout << " Enero"<<endl; break;
+			cout << " Enero" << endl; break;
 		case 2:
-			cout << " Febrero"<<endl; break;
+			cout << " Febrero" << endl; break;
 		case 3:
-			cout << " Marzo"<<endl; break;
+			cout << " Marzo" << endl; break;
 		case 4:
-			cout << " Arbil"<<endl; break;
+			cout << " Arbil" << endl; break;
 		case 5:
-			cout << " Mayo"<<endl;  break;
+			cout << " Mayo" << endl;  break;
 		case 6:
-			cout << " Junio"<<endl; break;
+			cout << " Junio" << endl; break;
 		case 7:
-			cout << " Julio"<<endl; break;
+			cout << " Julio" << endl; break;
 		case 8:
-			cout << " Agosto"<<endl;  break;
+			cout << " Agosto" << endl;  break;
 		case 9:
-			cout << " Septiembre"<<endl;  break;
+			cout << " Septiembre" << endl;  break;
 		case 10:
-			cout << " Octubre"<<endl; break;
+			cout << " Octubre" << endl; break;
 		case 11:
-			cout << " Noviembre"<<endl; break;
+			cout << " Noviembre" << endl; break;
 		case 12:
-			cout << " Diciembre"<<endl; break;
-		}}
-	return 0;}
-
+			cout << " Diciembre" << endl; break;
+		}
+	}
+	return 0;
+}
 ```
+
 ---
 .center[
 ### Ejercicio 9 - Guía 4]
@@ -205,10 +203,10 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 	int numero;
-	cout << "Ingrese un numero (entre 0 y 9)"<<endl;
+	cout << "Ingrese un numero (entre 0 y 9)" << endl;
 	cin >> numero;
 	
-	switch(numero){
+	switch (numero) {
 	case 0:       cout<<"1\t";
 	case 1:       cout<<"2\t";
 	case 2:       cout<<"3\t";
@@ -221,8 +219,8 @@ int main(int argc, char *argv[]) {
 	case 9:       cout<<"10\t";
 		break;
 	default:
-		cout<<"Se ingreso un numero fuera del rango"<<endl;
-	};
+		cout<<"Se ingreso un numero fuera del rango" << endl;
+	}
 }
 ```
 
@@ -259,7 +257,29 @@ Perimetro: 26.1
 using namespace std;
 
 int main() {
+    int tipo;
+    float lado1, lado2, lado3, perimetro;
 
+    cout << "Indique el tipo de triangulo con el que desea trabajar:" << endl;
+    cout << "1- Equilatero" << endl;
+    cout << "2- Isoceles" << endl;
+    cout << "3- Escaleno" << endl;
+    cout << "Tipo de triangulo: ";
+    cin >> tipo;
+
+    if (tipo < 1 || tipo > 3) {
+        cout << "Opcion invalida." << endl;
+    } else {
+        switch (tipo) {
+            case 1:
+                cout << "Triangulo Equilatero" << endl;
+                cout << "Valor del lado: ";
+                cin >> lado1;
+                if (lado1 <= 0)
+                    cout << "El valor debe ser positivo." << endl;
+                else
+                    perimetro = lado1 * 3;
+                break;
 ```
 
 ---
@@ -269,7 +289,33 @@ int main() {
 ]
 
 ```C++
-
+			case 2:
+                cout << "Triangulo Isoceles" << endl;
+                cout << "Valor del lado repetido: ";
+                cin >> lado1;
+                cout << "Valor del lado distinto: ";
+                cin >> lado2;
+                if (lado1 <= 0 || lado2 <= 0)
+                    cout << "Los valores deben ser positivos." << endl;
+                else
+                    perimetro = lado1 * 2 + lado2;
+                break;
+            case 3:
+                cout << "Triangulo Escaleno" << endl;
+                cout << "Valor del lado 1: ";
+                cin >> lado1;
+                cout << "Valor del lado 2: ";
+                cin >> lado2;
+                cout << "Valor del lado 3: ";
+                cin >> lado3;
+                if (lado1 <= 0 || lado2 <= 0 || lado3 <= 0)
+                    cout << "Los valores deben ser positivos." << endl;
+                else
+                    perimetro = lado1 + lado2 + lado3;
+                break;
+        }
+        cout << "Perimetro: " << perimetro << endl;
+    }
     return 0;
 }
 ```
@@ -280,9 +326,8 @@ int main() {
 
 # Puesta en común
 
-* Ejercicio
-* Ejercicio
-* Ejercicio
+* Ejercicio 9
+* Ejercicio 14
 
 
 </textarea>
