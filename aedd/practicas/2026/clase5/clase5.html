@@ -78,83 +78,9 @@ class: inverse, center, middle
 Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
 
 
-
+   
 ---
-
 layout: false
-
-.center[
-### Ejercicio Practica Parcial _Amartizando_
-]
-
-<hr>
-**Enunciado**
-
-<div style="font-size:medium;">
-Estás en el equipo que programa la última sonda enviada a Marte, y se te solicita:
-Hacer el programa de seguimiento del amartizaje. El mismo consiste en tomar los datos de la sonda durante el descenso hasta que se amartiza, y luego entregar algunos resultados.<br>
-El programa toma cada 1 segundo una lectura de 3 valores:
-<ul>
-    <li> Altitud (en metros)</li>
-    <li> Distancia al lugar de amartizaje previsto (en metros)</li>
-    <li> Dirección (1 letra mayúscula N,S,E,O)</li>
-</ul>
-
-La distancia y dirección actualizan las coordenadas (x,y) de la sonda. Los valores iniciales de x e y son (0,0). En cada lectura, se actualiza el (x,y) previo de la siguiente manera:
-
-<ul>
-    <li>Si la dirección es norte (N), se suma su distancia al valor de y, mientras que si es sur (S) se resta su distancia al valor y.</li>
-    <li>Si la dirección es este (E), se suma su distancia al valor de x, mientras que si es oeste (O), se resta su distancia al valor de x.</li>
-</ul>
-
-El programa debe leer las ternas de datos de cada medición. El ingreso de datos termina cuando la sonda efectivamente amartizo y la altitud en la terna es 0. Se debe mostrar por pantalla:
-<ol>
-    <li> Velocidad promedio de descenso de la sonda desde que se inició la toma de datos hasta el aterrizaje (2 decimales de precisión). La misma se calcula como (altura inicial / lecturas por segundo), en el ejemplo 5000/9, lo que da 555.55m/s. </li>
-    <li> Valores finales de las coordenadas x e y que han sido calculadas en base a cada medición. La posición final (coordenadas x,y) se calculan como la sumatoria de x=(4-6+3-3) = -2 y la sumatoria de y=(2-3+6-4+2) = 3. </li>
-
-</ol>
-
-</div>
-
-
----
-
-.center[
-### Solución
-]
-
-```C++
-#include <iostream>
-#include <iomanip>
-
-using namespace std;
-
-int main() {
-    
-    float altura_inicial, altura, x=0, y=0, dist;
-    int mediciones = 0;
-    char dir;
-    bool primera = true;
-    do{
-        cin >> altura >> dist >> dir;
-        mediciones++;
-        
-        if(primera){
-            primera = false;
-            altura_inicial = altura;
-        }
-        if(dir == 'N')        y += dist;
-        else if(dir == 'S')   y -= dist;
-        else if(dir == 'E')   x += dist;
-        else if(dir == 'O')   x -= dist;
-    }
-    while(altura > 0);
-    cout <<fixed<<setprecision(2);
-    cout << "Velocidad promedio: "<< altura_inicial/mediciones << " m/s" << endl;
-    cout << "Posicion final: " << x << ", " << y << endl;
-}
-```   
----
 .center[
 ### Ejercicio Practica Parcial _Geoposicionamiento_
 ]
@@ -289,6 +215,81 @@ int main() {
     }
 
     return 0;
+}
+```
+
+
+---
+
+.center[
+### Ejercicio Practica Parcial _Amartizando_
+]
+
+<hr>
+**Enunciado**
+
+<div style="font-size:medium;">
+Estás en el equipo que programa la última sonda enviada a Marte, y se te solicita:
+Hacer el programa de seguimiento del amartizaje. El mismo consiste en tomar los datos de la sonda durante el descenso hasta que se amartiza, y luego entregar algunos resultados.<br>
+El programa toma cada 1 segundo una lectura de 3 valores:
+<ul>
+    <li> Altitud (en metros)</li>
+    <li> Distancia al lugar de amartizaje previsto (en metros)</li>
+    <li> Dirección (1 letra mayúscula N,S,E,O)</li>
+</ul>
+
+La distancia y dirección actualizan las coordenadas (x,y) de la sonda. Los valores iniciales de x e y son (0,0). En cada lectura, se actualiza el (x,y) previo de la siguiente manera:
+
+<ul>
+    <li>Si la dirección es norte (N), se suma su distancia al valor de y, mientras que si es sur (S) se resta su distancia al valor y.</li>
+    <li>Si la dirección es este (E), se suma su distancia al valor de x, mientras que si es oeste (O), se resta su distancia al valor de x.</li>
+</ul>
+
+El programa debe leer las ternas de datos de cada medición. El ingreso de datos termina cuando la sonda efectivamente amartizo y la altitud en la terna es 0. Se debe mostrar por pantalla:
+<ol>
+    <li> Velocidad promedio de descenso de la sonda desde que se inició la toma de datos hasta el aterrizaje (2 decimales de precisión). La misma se calcula como (altura inicial / lecturas por segundo), en el ejemplo 5000/9, lo que da 555.55m/s. </li>
+    <li> Valores finales de las coordenadas x e y que han sido calculadas en base a cada medición. La posición final (coordenadas x,y) se calculan como la sumatoria de x=(4-6+3-3) = -2 y la sumatoria de y=(2-3+6-4+2) = 3. </li>
+
+</ol>
+
+</div>
+
+
+---
+
+.center[
+### Solución
+]
+
+```C++
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+    
+    float altura_inicial, altura, x=0, y=0, dist;
+    int mediciones = 0;
+    char dir;
+    bool primera = true;
+    do{
+        cin >> altura >> dist >> dir;
+        mediciones++;
+        
+        if(primera){
+            primera = false;
+            altura_inicial = altura;
+        }
+        if(dir == 'N')        y += dist;
+        else if(dir == 'S')   y -= dist;
+        else if(dir == 'E')   x += dist;
+        else if(dir == 'O')   x -= dist;
+    }
+    while(altura > 0);
+    cout <<fixed<<setprecision(2);
+    cout << "Velocidad promedio: "<< altura_inicial/mediciones << " m/s" << endl;
+    cout << "Posicion final: " << x << ", " << y << endl;
 }
 ```
 
