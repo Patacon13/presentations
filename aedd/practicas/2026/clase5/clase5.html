@@ -169,7 +169,7 @@ deduce a partir del teorema de Pitágoras como:
 <br>
 <img src="formula.png" alt="Distancia Euclídea" width="250" position="center"/>
 <br>
-En su forma más simple, los sistemas de geoposicionamiento utilizan coordenadas en el espacio para determinar rutas. Dado un conjunto de puntos definidos como reales, estos sistemas calculan la distancia total a recorrer entre ORIGEN (PO) y DESTINO (PD) usando puntos intermedios. En nuestro caso, las rutas llevan 2 puntos intermedios (p1 y p2) que definen un camino alternativo entre PO y PD de la siguiente manera: (PO,p1,p2,PD). Para realizar un cálculo, el sistema le pide al usuario que, además de PO y PD, indique 2 caminos alternativos. Luego, calcula la distancia total a recorrer desde PO a PD por ambas rutas. Finalmente, determina cuál de las dos rutas es la más corta y brinda las instrucciones a seguir en base a los puntos cardinales Norte, Sur, Este, Oeste (en este orden) para el primer tramo (PO,p1) de la ruta ganadora según la cantidad de saltos enteros a realizar.
+En su forma más simple, los sistemas de geoposicionamiento utilizan coordenadas en el espacio para determinar rutas. Dado un conjunto de puntos definidos como reales, estos sistemas calculan la distancia total a recorrer entre ORIGEN (PO) y DESTINO (PD) usando puntos intermedios. En nuestro caso, las rutas llevan 2 puntos intermedios (p1 y p2) que definen un camino alternativo entre PO y PD. El sistema debe evaluar un lote de N rutas alternativas (siendo N un valor ingresado por el usuario). Para realizar un cálculo, el sistema le pide al usuario el punto PO y el punto PD. Se debe validar mediante una estructura repetitiva que PD sea distinto a PO; caso contrario, solicitar el reingreso de PD. Luego, el usuario indicará la cantidad N de rutas a evaluar e ingresará los puntos intermedios para cada una. Luego, calcula la distancia total a recorrer desde PO a PD por ambas rutas. Finalmente, determina cuál de las dos rutas es la más corta y brinda las instrucciones a seguir en base a los puntos cardinales Norte, Sur, Este, Oeste (en este orden) para el primer tramo (PO,p1) de la ruta ganadora según la cantidad de saltos enteros a realizar.
 </div>
 
 <div style="width: 100%; overflow: auto;">
@@ -198,26 +198,30 @@ En este caso, el usuario ha indicado PO y PD, junto con dos rutas alternativas (
 
 using namespace std;
 
-int main(){
+int main() {
+    float po_x, po_y, pd_x, pd_y;
+    int n;
+    
+    float distMinima;
+    int rutaGanadora = 0;
+    float mejor_p1x, mejor_p1y;
 
-    int po_x, po_y, pd_x, pd_y;
-    int p1_x, p1_y, p2_x, p2_y;
-    int q1_x, q1_y, q2_x, q2_y;
-    float dist1, dist2;
-
-    cout << "Ingrese la posicion del punto de partida (x y): ";
+    cout << "Ingrese la posicion del punto de partida PO (x y): ";
     cin >> po_x >> po_y;
-    cout << "Ingrese la posicion del punto de destino (x y): ";
-    cin >> pd_x >> pd_y;
 
-    cout << "Ingrese la posicion del punto 1 del primer camino (x y): ";
-    cin >> p1_x >> p1_y;
-    cout << "Ingrese la posicion del punto 2 del primer camino (x y): ";
-    cin >> p2_x >> p2_y;
-    cout << "Ingrese la posicion del punto 1 del segundo camino (x y): ";
-    cin >> q1_x >> q1_y;
-    cout << "Ingrese la posicion del punto 2 del segundo camino (x y): ";
-    cin >> q2_x >> q2_y;
+    // 1. Validacion de destino (do-while)
+    do {
+        cout << "Ingrese la posicion del punto de destino PD (x y): ";
+        cin >> pd_x >> pd_y;
+
+        if (po_x == pd_x && po_y == pd_y) {
+            cout << "ERROR: El destino no puede ser igual al origen. Reintente." << endl;
+        }
+    } while (po_x == pd_x && po_y == pd_y);
+
+    // 2. Ingreso de cantidad de rutas
+    cout << "Ingrese la cantidad de rutas a evaluar: ";
+    cin >> n;
 ```
 
 ---
@@ -227,33 +231,63 @@ int main(){
 ]
 
 ```C++
-    //Distancia del primer camino: po -> p1 -> p2 -> pd
-    dist1 = sqrt(pow(p1_x - po_x, 2) + pow(p1_y - po_y, 2)) + sqrt(pow(p2_x - p1_x, 2) + pow(p2_y - p1_y, 2)) + sqrt(pow(pd_x - p2_x, 2) + pow(pd_y - p2_y, 2));
+    // 3. Bucle para procesar el lote de rutas
+    for (int i = 1; i <= n; i++) {
+        float p1_x, p1_y, p2_x, p2_y;
+        float distActual;
 
-    //Distancia del segundo camino: po -> q1 -> q2 -> pd
-    dist2 = sqrt(pow(q1_x - po_x, 2) + pow(q1_y - po_y, 2)) + sqrt(pow(q2_x - q1_x, 2) + pow(q2_y - q1_y, 2)) + sqrt(pow(pd_x - q2_x, 2) + pow(pd_y - q2_y, 2));
+        cout << "RUTA " << i << " ---" << endl;
+        cout << "Punto intermedio 1 (x y): ";
+        cin >> p1_x >> p1_y;
+        cout << "Punto intermedio 2 (x y): ";
+        cin >> p2_x >> p2_y;
 
-    if(dist1 < dist2){
-        int x = p1_x - po_x;
-        int y = p1_y - po_y;
+        distActual = sqrt(pow(p1_x - po_x, 2) + pow(p1_y - po_y, 2)) + 
+                     sqrt(pow(p2_x - p1_x, 2) + pow(p2_y - p1_y, 2)) + 
+                     sqrt(pow(pd_x - p2_x, 2) + pow(pd_y - p2_y, 2));
 
-        if(y>0)     cout << "Ir al NORTE ("<<y<<")"<<endl;
-        else        cout << "Ir al SUR ("<<-y<<")"<<endl;
+        cout << "Distancia calculada: " << distActual << endl;
 
-        if(x>0)     cout << "Ir al ESTE ("<<x<<")"<<endl;
-        else        cout << "Ir al OESTE ("<<-x<<")"<<endl;
-    } 
-    else 
-    {
-        int x = q1_x - po_x;
-        int y = q1_y - po_y;
-
-        if(y>0)     cout << "Ir al NORTE ("<<y<<")"<<endl;
-        else        cout << "Ir al SUR ("<<-y<<")"<<endl;
-
-        if(x>0)     cout << "Ir al ESTE ("<<x<<")"<<endl;
-        else        cout << "Ir al OESTE ("<<-x<<")"<<endl;
+        if (i == 1 || distActual < distMinima) {
+            distMinima = distActual;
+            rutaGanadora = i;
+            
+            mejor_p1x = p1_x;
+            mejor_p1y = p1_y;
+        }
     }
+
+}
+```
+
+---
+
+.center[
+### Solucion (parte 3)
+]
+```C++
+// 4. Resultado final e instrucciones
+    if (rutaGanadora != 0) {
+        cout << "LA RUTA MAS CORTA ES LA: " << rutaGanadora << endl;
+        cout << "DISTANCIA TOTAL: " << distMinima << endl;
+
+        float x = mejor_p1x - po_x;
+        float y = mejor_p1y - po_y;
+
+        cout << "INSTRUCCIONES: " << endl;
+        if (y > 0) {
+            cout << "- Ir al NORTE (" << y << ")" << endl;
+        } else if (y < 0) {
+            cout << "- Ir al SUR (" << -y << ")" << endl;
+        }
+
+        if (x > 0) {
+            cout << "- Ir al ESTE (" << x << ")" << endl;
+        } else if (x < 0) {
+            cout << "- Ir al OESTE (" << -x << ")" << endl;
+        }
+    }
+
     return 0;
 }
 ```
