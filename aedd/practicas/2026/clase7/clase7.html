@@ -77,6 +77,61 @@ class: inverse, center, middle
 #### Nicolas Huber
 Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
 
+---
+
+layout: false 
+font-size: small;
+
+# Solución Código Enigma (Parte 1)
+
+```C++
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+	int NumBloque=0, Max=0, aux, cantCifras=1, MaxDelBloque=0, armarNum=1;
+	string Cadena;
+	cin>>Cadena;
+```
+---
+
+layout: false 
+font-size: small;
+
+# Solución Código Enigma (Parte 2)
+
+```C++
+
+	for(int i=0;i<Cadena.size();i++) { 
+		if(tolower(Cadena.at(i))!='n'){
+			Cadena.at(i)=tolower(Cadena.at(i));
+			NumBloque+=Cadena.at(i)-'a';
+		}
+		if(tolower(Cadena.at(i))=='n' or i==(Cadena.size()-1)){
+			aux=NumBloque;
+			while(aux>9){
+				aux/=10;
+				cantCifras++;
+			}
+			for(int j=cantCifras;j>0;j--) { 
+				if(j%2!=0){
+					MaxDelBloque+=(NumBloque%10*armarNum);
+					NumBloque/=10;
+					armarNum*=10;
+				}else{NumBloque/=10;}
+			}
+			if(MaxDelBloque>Max){Max=MaxDelBloque;}
+			MaxDelBloque=0;
+			NumBloque=0;
+			cantCifras=1;
+			armarNum=1;
+		}
+	}
+	cout<<Max;
+	return 0;
+}
+```
 
 
 ---
