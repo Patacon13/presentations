@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AEDD - Clase 7</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 80%;
+        float: right;
+        padding-top: 1em;
+      }
+      .right-custom {
+        width: 35%;
+        float: right;
+        padding-top: 0em;
+      }
+      .right-custom2 {
+        width: 80%;
+        float: right;
+        padding-top: 1.5em;
+      }
+      .center {
+        float: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+class: inverse, center, middle
+---
+
+# Algoritmos y Estructuras de Datos
+## Clase de Práctica 7 - Funciones recursivas
+### Comisión A
+### Docentes de práctica:
+#### Tomás Assenza
+#### Exequiel Benavidez
+#### Facundo Sanchez
+#### Nicolas Huber
+Universidad Tecnológica Nacional - Facultad Regional Santa Fe	
+
+
+
+---
+
+layout: false
+# Funciones recursivas - proceso
+
+* Se llama a una función recursiva y se le envía el problema.
+* La función analiza si se puede resolver el problema (caso base), si es así lo resuelve y termina.
+* Si no se puede resolver, lo convierte en uno de menor complejidad y lo envía a otra instancia de su función.
+* El proceso se repite hasta que llega a un caso que puede resolver, lo resuelve y termina.
+
+---
+
+# Tips para desarrollar funciones recursivas
+
+* Cada llamada recursiva (a la misma función) debe definir un problema de menor complejidad.
+* Debe existir por lo menos un caso base (o sera infinita!).
+
+---
+
+.center[
+### Ejercicio 2 - Guía 7
+]
+
+Escribir una función recursiva que calcule la suma de los dígitos de un número entero que son múltiplos de N.
+
+**Ejemplos de uso**:
+
+* sumaDigMul(1234,2) -> 6 
+* sumaDigMul(44,4) -> 8
+* sumaDigMul(7,3) -> 0 
+* sumaDigMul(4,4) -> 4
+
+---
+
+```C++
+#include <iostream>
+using namespace std;
+
+int sumDigMul(int, int);
+
+int main(int argc, char *argv[]) {
+  
+  int n,d;
+  
+  cout << "Ingrese un numero y un divisor"<< endl;
+  cin >> n >> d;
+  
+  cout << "La suma de los digitos divisibles por " << d << " es: "
+       << sumDigMul(n,d) << endl;
+  
+  return 0;
+}
+
+int sumDigMul(int numero, int div) {
+  int digito = numero % 10;
+  
+  if (numero < 10) {
+    if (numero % div == 0) return numero;
+    return 0;
+  }
+  
+  if (digito % div == 0) return digito + sumDigMul(numero/10, div);
+  return sumDigMul(numero/10, div);
+      
+}  
+```
+
+---
+
+.center[
+### Ejercicio 5 - Guía 7
+]
+
+Dado un número entero largo, imprimirlo en orden inverso. Resolverlo a través de una función recursiva
+
+**Ejemplos de uso**:
+
+* inverso(35891) -> 1 9 8 5 3
+* inverso(7) -> 7
+
+---
+
+```C++
+#include <iostream>
+using namespace std;
+
+void inverso(long);
+
+int main(int argc, char *argv[]) {
+  
+  inverso(123456);
+  
+  return 0;
+}
+
+void inverso(long num) {
+  
+  if(num/10 > 0) {
+    cout << num%10 << '\t';
+    inverso(num/10);
+  }
+    
+  cout << num << '\t';
+  
+}
+```
+
+---
+
+.center[
+### Ejercicio 6 - Guía 7
+]
+
+Escribir una función recursiva que transforme un número entero positivo a notación binaria
+
+Ejemplos de uso:
+
+* decBinario(41) -> 101001 
+* decBinario(13) -> 1101
+
+---
+
+```C++
+#include <iostream>
+using namespace std;
+
+unsigned decBinario(unsigned num);
+
+int main(int argc, char *argv[]) {
+  unsigned x;
+  cout << "CONVERSOR DECIMAL A BINARIO"<<endl;
+  while (cin >> x) {
+    cout<< "decBinario(" << x << ") = " << decBinario(x)<<endl;
+  }
+  
+  
+  return 0;
+}
+
+unsigned int decBinario(unsigned int num) {
+  
+  if (num / 2 > 0) {
+    return num % 2 + 10 * decBinario(num/2);
+  }
+  
+  if (num % 2 == 0) return 0;
+
+  return 1;
+  
+}
+```
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create({ slideNumberFormat: ""});
+</script>
+</body>
+</html>
