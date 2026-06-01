@@ -20,25 +20,25 @@
         }
 
         * { box-sizing: border-box; }
-        body { background-color: #E2E8F0; margin: 0; padding: 0; height: 100vh; overflow: hidden; }
+        html, body { background-color: #E2E8F0; margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; position: fixed; }
 
         .slide-container {
-            width: 1280px; height: 720px;
+            width: 100%; height: 100%;
             background-color: #FFFFFF;
             font-family: 'Inter', sans-serif;
-            position: absolute; top: 50%; left: 50%;
+            position: absolute; top: 0; left: 0;
             overflow: hidden;
             display: flex; flex-direction: column;
             padding: 60px 80px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.12);
             opacity: 0; visibility: hidden;
-            transform: translate(-50%, -50%) scale(calc(var(--scale-factor) * 0.95));
+            transform: scale(0.95);
             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
         }
 
         .slide-container.active {
             opacity: 1; visibility: visible; 
-            transform: translate(-50%, -50%) scale(var(--scale-factor)); z-index: 10;
+            transform: scale(1); z-index: 10;
             box-shadow: 0 40px 100px rgba(0, 43, 91, 0.25);
         }
 
@@ -379,6 +379,14 @@ q.<span class="kw">offer</span>(<span class="str">"Maria"</span>);
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const slides = document.querySelectorAll('.slide-container');
+        
+        // Crear wrapper maestro
+        const wrapper = document.createElement('div');
+        wrapper.id = 'presentation-area';
+        wrapper.style.cssText = 'position: absolute; top: 50%; left: 50%; width: 1280px; height: 720px; transform: translate(-50%, -50%); transform-origin: center center;';
+        document.body.appendChild(wrapper);
+        slides.forEach(slide => wrapper.appendChild(slide));
+
         let currentSlide = 0;
 
         if (slides.length > 0) {
@@ -445,7 +453,7 @@ q.<span class="kw">offer</span>(<span class="str">"Maria"</span>);
             const w = document.documentElement.clientWidth || window.innerWidth;
             const h = document.documentElement.clientHeight || window.innerHeight;
             const scale = Math.min(w / 1280, h / 720) * 0.95;
-            document.documentElement.style.setProperty('--scale-factor', scale);
+            wrapper.style.transform = `translate(-50%, -50%) scale(${scale})`;
         }
         window.addEventListener('resize', resize);
         resize(); // Llamada inicial
