@@ -16,6 +16,7 @@
             --bg-neutral: #F8FAFC;
             --text-main: #1E293B;
             --text-light: #64748B;
+            --scale-factor: 1;
         }
 
         * { box-sizing: border-box; }
@@ -30,12 +31,13 @@
             padding: 60px 80px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.12);
             opacity: 0; visibility: hidden;
-            transform: scale(0.95);
+            transform: scale(calc(var(--scale-factor) * 0.95));
             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
+            transform-origin: center center;
         }
 
         .slide-container.active {
-            opacity: 1; visibility: visible; transform: scale(1); z-index: 10;
+            opacity: 1; visibility: visible; transform: scale(var(--scale-factor)); z-index: 10;
             box-shadow: 0 40px 100px rgba(0, 43, 91, 0.25);
         }
 
@@ -105,51 +107,6 @@
 
         .branding-footer { position: absolute; bottom: 35px; left: 80px; color: #94A3B8; font-weight: 600; font-size: 14px; letter-spacing: 1px; }
         .branding-footer span { color: var(--utn-gold); }
-
-        /* 5. RESPONSIVE / MOBILE */
-        @media (max-width: 1024px) {
-            .slide-container { width: 90vw; height: 90vh; padding: 40px; }
-            .section-title-layout h2 { font-size: 80px; }
-            h1 { font-size: 70px !important; }
-            .branding-footer { bottom: 20px; left: 40px; }
-        }
-
-        @media (max-width: 768px) {
-            .slide-container { width: 100vw; height: 100dvh; padding: 25px 25px 50px 25px; border-radius: 0; overflow-y: auto; }
-            .slide-container.bleed-image-layout { padding: 25px 25px 50px 25px; }
-            .content-area { justify-content: flex-start; }
-            .slide-title { font-size: 32px; margin-bottom: 20px; border-left-width: 8px; padding-left: 15px; }
-            p, li { font-size: 16px; }
-            
-            .two-column { grid-template-columns: 1fr; gap: 20px; }
-            .tiled-content { flex-direction: column; gap: 15px; }
-            .tile { padding: 20px; }
-            .tile .icon { font-size: 32px; margin-bottom: 10px; }
-            .tile h3 { font-size: 20px; }
-            
-            .bleed-image-layout { grid-template-columns: 1fr; }
-            .bleed-text-side { padding: 0; }
-            .bleed-image-side { height: 250px; border-radius: 12px; margin-top: 20px; object-position: center top; }
-            
-            .section-title-layout h2 { font-size: 50px; }
-            .section-title-layout p { font-size: 16px; letter-spacing: 3px; }
-            
-            h1 { font-size: 42px !important; }
-            h1 span { font-size: 32px !important; }
-            #slide1 img { height: 70px !important; margin-bottom: 20px !important; }
-            #slide1 p { font-size: 14px !important; margin-top: 20px !important; }
-            
-            #slide14 h2 { font-size: 50px !important; }
-            #slide14 p { font-size: 20px !important; }
-            
-            table { font-size: 14px; }
-            th { padding: 12px; font-size: 16px; }
-            td { padding: 12px; font-size: 14px; }
-            
-            pre { font-size: 13px; padding: 15px; overflow-x: auto; }
-            
-            .branding-footer { bottom: 15px; left: 25px; font-size: 12px; }
-        }
     </style>
 </head>
 <body>
@@ -469,6 +426,26 @@ q.<span class="kw">offer</span>(<span class="str">"Maria"</span>);
             if (touchendX < touchstartX - 50) goToSlide(currentSlide + 1);
             if (touchendX > touchstartX + 50) goToSlide(currentSlide - 1);
         }, { passive: true });
+
+        // Navegación por toques (Tap)
+        document.addEventListener('click', e => {
+            if (window.getSelection().toString().length > 0) return;
+            const clickX = e.clientX;
+            const screenWidth = window.innerWidth;
+            if (clickX < screenWidth * 0.3) {
+                goToSlide(currentSlide - 1);
+            } else {
+                goToSlide(currentSlide + 1);
+            }
+        });
+
+        // Escalar la presentación dinámicamente
+        function resize() {
+            const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720) * 0.95;
+            document.documentElement.style.setProperty('--scale-factor', scale);
+        }
+        window.addEventListener('resize', resize);
+        resize(); // Llamada inicial
     });
 </script>
 </body>
