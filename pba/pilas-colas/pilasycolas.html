@@ -436,18 +436,6 @@ q.<span class="kw">offer</span>(<span class="str">"Maria"</span>);
             if (touchendX > touchstartX + 50) goToSlide(currentSlide - 1);
         }, { passive: true });
 
-        // Navegación por toques (Tap)
-        document.addEventListener('click', e => {
-            if (window.getSelection().toString().length > 0) return;
-            const clickX = e.clientX;
-            const screenWidth = window.innerWidth;
-            if (clickX < screenWidth * 0.3) {
-                goToSlide(currentSlide - 1);
-            } else {
-                goToSlide(currentSlide + 1);
-            }
-        });
-
         // Escalar la presentación dinámicamente
         function resize() {
             const w = document.documentElement.clientWidth || window.innerWidth;
